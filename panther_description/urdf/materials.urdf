@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<robot name="dude_materials">
+
+  <material name="Black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+
+  <material name="Blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+
+  <material name="Green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
+  <material name="Grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+  <material name="DarkGrey">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <material name="GunMetalGrey">
+    <color rgba="0.46 0.5 0.56 1.0"/>
+  </material>
+
+  <material name="Red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <material name="White-Alpha">
+    <color rgba="1.0 1.0 1.0 0.35"/>
+  </material>
+  
+  <material name="Yellow">
+    <color rgba="0.8 0.8 0.0 1.0"/>
+  </material>
+
+  <material name="Yellow-Aplha">
+    <color rgba="0.8 0.8 0.0 0.8"/>
+  </material>
+</robot>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      description.launch
+\authors   Raffaello Bonghi <raffaello@rnext.it
+\copyright Copyright (c) 2016, Raffaello Bonghi, All rights reserved.
+
+-->
+<launch>
+  <!-- Send the Panther Robot URDF/XACRO to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find panther_description)/urdf/description.xacro'" />
+  
+  <!-- Activate node to propagate the joint state -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+</launch>
