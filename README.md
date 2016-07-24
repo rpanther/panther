@@ -13,7 +13,9 @@ Panther is a tracked robot with two tracks to explorer the environment outdoor. 
 * [Configuration](http://rnext.it/panther/configuration-panther/) - With the github repository you can configure your robot to run and wandering. In this guide you have all detailed informations to download and set the robot.
 
 ## Packages
-* **panther_description**
+* **panther_description** - Rendering and graphic information about Panther. Inside this packages are available all meshes.
+* **panther_control** - Configuration and launch file for all driver assembled inside the robot.
+* **panther_unmanned** - Launch file to bringup or launch the robot in autonomous navigation.
 
 [NVIDIA Jetson TX1]: http://www.nvidia.com/object/jetson-tx1-dev-kit.html
 [ZED]: https://www.stereolabs.com/
