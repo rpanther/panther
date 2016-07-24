@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="track">
+
+ <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
+ <xacro:macro name="track" params="position parent passive_wheel_type *joint_pose">
+
+  <!-- TRACK FIXED LINKS -->
+  <link name="track_${position}_link">
+    <inertial>
+      <origin xyz="-0.0168 0.0080 0.0061" rpy="0 0 0" />
+      <mass value="0.512" />
+      <inertia ixx="0.0008" ixy="0" ixz="0"
+        iyy="0.005" iyz="0.0001"
+        izz="0.005" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/track_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="track_${position}_joint" type="fixed">
+    <xacro:insert_block name="joint_pose"/>
+    <parent link="${parent}" />
+    <child link="track_${position}_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="iron_${position}_Link">
+    <inertial>
+      <origin xyz="0.028 0.026 0.011" rpy="0 0 0" />
+      <mass value="1.412" />
+      <inertia ixx="0.0021" ixy="0.0009" ixz="0.0003"
+        iyy="0.0080" iyz="0.0002"
+        izz="0.009" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/iron_link.STL" />
+      </geometry>
+      <material name="GunMetalGrey" />
+    </visual>
+  </link>
+  <joint name="iron_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="iron_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="damper_${position}_Link">
+    <inertial>
+      <origin xyz="0.011 0.014 0.028" rpy="0 0 0" />
+      <mass value="0.028" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0.0007" iyz="0"
+        izz="0.0002" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/damper_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="damper_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="damper_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="damper_label_${position}_Link">
+    <inertial>
+      <origin xyz="0.0111 0.0137 0.0341" rpy="0 0 0" />
+      <mass value="0.0062" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/damper_label_link.STL" />
+      </geometry>
+      <material name="Green" />
+    </visual>
+  </link>
+  <joint name="damper_label_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="damper_${position}_Link" />
+    <child link="damper_label_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="fender_${position}_Link">
+    <inertial>
+      <origin xyz="-0.0044 0.0167 0.0872" rpy="0 0 0" />
+      <mass value="0.0853" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0.0007" iyz="0"
+        izz="0.0007" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/fender_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="fender_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="fender_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="chain_${position}_Link">
+    <inertial>
+      <origin xyz="0.101 0.0001 -0.0026" rpy="0 0 0" />
+      <mass value="0.0708" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/${position}/chain_link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="chain_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="chain_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="rubber_${position}_Link">
+    <inertial>
+      <origin xyz="-0.0137 0 -0.0014" rpy="0 0 0" />
+      <mass value="0.466" />
+      <inertia ixx="0.0016" ixy="0" ixz="-0.0003"
+        iyy="0.0090" iyz="0"
+        izz="0.007" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/rubber_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="rubber_${position}_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="rubber_${position}_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- PASSIVE WHEELS -->
+  <link name="wheel_${position}_center_up_Link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.016" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_center_up_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_center_up_joint" type="${passive_wheel_type}">
+    <origin
+      xyz="0 0 0.0735790044064745"
+      rpy="1.5707963267949 -0.800774112020821 6.31428234397228E-17" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_center_up_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_front_up_Link">
+    <inertial>
+      <origin xyz="0 0 -0.020143" rpy="0 0 0" />
+      <mass value="0.043" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_front_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_front_up_joint" type="${passive_wheel_type}">
+    <origin
+      xyz="-0.18867 -0.020143 0.010536"
+      rpy="-1.5708 -0.13483 3.1416" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_front_up_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_front_down_Link">
+    <inertial>
+      <origin xyz="0 0 -0.020143" rpy="0 0 0" />
+      <mass value="0.0431" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_front_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_front_down_joint" type="${passive_wheel_type}">
+    <origin
+      xyz="-0.15659 -0.020143 -0.034143"
+      rpy="1.5708 -0.36637 2.3494E-17" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_front_down_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_center_A_Link">
+    <inertial>
+      <origin xyz="-0.064 -0.046 0.004" rpy="0 0 0" />
+      <mass value="0.0082" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_center_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_center_A_joint" type="${passive_wheel_type}">
+    <origin xyz="-0.065 -0.004 -0.042" rpy="1.5708 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_center_A_Link" />.
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_center_B_Link">
+    <inertial>
+      <origin xyz="-0.020 -0.0465 0.004" rpy="0 0 0" />
+      <mass value="0.0083" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_center_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_center_B_joint" type="${passive_wheel_type}">
+    <origin xyz="-0.020 -0.004 -0.042" rpy="1.5708 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_center_B_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_center_C_Link">
+    <inertial>
+      <origin xyz="0.020 -0.0462 0.004" rpy="0 0 0" />
+      <mass value="0.0083" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_center_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_center_C_joint" type="${passive_wheel_type}">
+    <origin xyz="0.020 -0.004 -0.042" rpy="1.5708 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_center_C_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel_${position}_center_D_Link">
+    <inertial>
+      <origin xyz="0.0648 -0.0462 0.004" rpy="0 0 0" />
+      <mass value="0.0083" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/wheel_center_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="wheel_${position}_center_D_joint" type="${passive_wheel_type}">
+    <origin xyz="0.065 -0.004 -0.042" rpy="1.5707963267949 0 0" />
+    <parent link="track_${position}_link" />
+    <child link="wheel_${position}_center_D_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- TRACTION WHEELS -->
+  <link name="gear_${position}_Link">
+    <inertial>
+      <origin xyz="0 0 0.008" rpy="0 0 0" />
+      <mass value="0.0111" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/gear_link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="gear_${position}_joint" type="continuous">
+    <xacro:if value="${position == 'left'}">
+    <origin
+      xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
+      rpy="-1.5707963267949 -1.50760970347625 3.14159265358979" />
+    </xacro:if>
+    <xacro:if value="${position == 'right'}">
+    <origin
+      xyz="0.0536535102814494 0.00979339452125411 0.0186240655062149"
+      rpy="1.5707963267949 -1.50760970347625 3.14159265358979" />
+    </xacro:if>
+    <parent link="track_${position}_link" />
+    <child link="gear_${position}_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="sprocket_${position}_Link">
+    <inertial>
+      <origin xyz="0 0 -0.0167" rpy="0 0 0" />
+      <mass value="0.098" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/sprocket_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="sprocket_${position}_joint" type="continuous">
+    <xacro:if value="${position == 'left'}">
+    <origin
+      xyz="0.15476 -0.020382 -0.026643"
+      rpy="1.5708 -1.5708 0" />
+    </xacro:if>
+    <xacro:if value="${position == 'right'}">
+    <origin
+      xyz="0.15476 0.020382 -0.026643"
+      rpy="-1.5708 -1.5708 0" />
+    </xacro:if>
+    <parent link="track_${position}_link" />
+    <child link="sprocket_${position}_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  </xacro:macro>
+
+</robot>
