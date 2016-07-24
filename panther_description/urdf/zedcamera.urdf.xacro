@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="zedcamera" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="zedcamera" params="parent *joint_pose">
+
+  <link name="zed_stand_link">
+    <inertial>
+      <origin xyz="0 -0.0184 0.0173" rpy="0 0 0" />
+      <mass value="0.0173" />
+      <inertia ixx="2.76959607332778E-06" ixy="-7.16716953193216E-11" ixz="-1.34923517166624E-10"
+        iyy="6.44872593702919E-06" iyz="6.78675778442728E-08"
+        izz="4.02458373877404E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/zed/stand_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="zed_stand_sensor" type="fixed">
+    <xacro:insert_block name="joint_pose"/>
+    <parent link="${parent}" />
+    <child link="zed_stand_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="zed_Link">
+    <inertial>
+      <origin xyz="0 0 0.016" rpy="0 0 0" />
+      <mass value="0.6031" />
+      <inertia ixx="9.23924784521736E-05" ixy="2.60198941057937E-12" ixz="1.09417755562675E-13"
+        iyy="0.00146233786235907" iyz="3.89711252858911E-08"
+        izz="0.00144603978576908" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/zed/zed_link.STL" />
+      </geometry>
+      <material name="Grey" />
+    </visual>
+  </link>
+  <joint name="zed_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+    <parent link="zed_stand_link" />
+    <child link="zed_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  </xacro:macro>
+</robot>

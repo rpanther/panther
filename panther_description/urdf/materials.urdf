@@ -30,6 +30,10 @@
     <color rgba="0.8 0.0 0.0 1.0"/>
   </material>
 
+  <material name="Pink">
+    <color rgba="1 0.2 0.8 1.0"/>
+  </material>
+
   <material name="White">
     <color rgba="1.0 1.0 1.0 1.0"/>
   </material>
@@ -44,5 +48,9 @@
 
   <material name="Yellow-Aplha">
     <color rgba="0.8 0.8 0.0 0.8"/>
+  </material>
+
+  <material name="Gold">
+    <color rgba="1 1 0.752941176470588 1" />
   </material>
 </robot>

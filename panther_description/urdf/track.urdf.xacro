@@ -87,7 +87,7 @@
       <geometry>
         <mesh filename="${path_meshes}/track/${position}/damper_label_link.STL" />
       </geometry>
-      <material name="Green" />
+      <material name="Pink" />
     </visual>
   </link>
   <joint name="damper_label_${position}_joint" type="fixed">

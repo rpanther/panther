@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="chassis">
+
+  <xacro:macro name="chassis" params="parent *joint_pose">
+
+  <link name="frame_link">
+    <inertial>
+      <origin xyz="0.00103 0.0004 0.058" rpy="0 0 0" />
+      <mass value="1.147" />
+      <inertia ixx="0.011143732226453" ixy="2.27736840022485E-05" ixz="0.000768863495805356"
+        iyy="0.0184528503285751" iyz="2.40527095667182E-05"
+        izz="0.0219088128480578" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/frame_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="frame_joint" type="fixed">
+    <xacro:insert_block name="joint_pose"/>
+    <parent link="${parent}" />
+    <child link="frame_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="iron_link">
+    <inertial>
+      <origin xyz="0.0281 0 0.0937" rpy="0 0 0" />
+      <mass value="0.3807" />
+      <inertia ixx="0.00642171613922155" ixy="-1.27146364607724E-05" ixz="0.00104685045665363"
+        iyy="0.00481705063423172" iyz="-1.02337979356958E-05"
+        izz="0.00823286470028232" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/iron_link.STL" />
+      </geometry>
+      <material name="GunMetalGrey" />
+    </visual>
+  </link>
+  <joint name="iron_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="iron_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="cover_link">
+    <inertial>
+      <origin xyz="0.01778 -0.00041 0.0988" rpy="0 0 0" />
+      <mass value="0.6239" />
+      <inertia ixx="0.0048755987222233" ixy="-1.38766517701348E-05" ixz="0.00186582349335646"
+        iyy="0.0123513454475927" iyz="1.14402787558388E-05"
+        izz="0.0140947881519727" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/cover_link.STL" />
+      </geometry>
+      <material name="White-Alpha" />
+    </visual>
+  </link>
+  <joint name="cover_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="cover_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="antenna_link">
+    <inertial>
+      <origin
+        xyz="0.0898 0 0.2155" rpy="0 0 0" />
+      <mass value="0.03533" />
+      <inertia ixx="0.000282557456056564" ixy="-1.96947016275118E-11" ixz="2.80818860472359E-05"
+        iyy="6.45073496450279E-05" iyz="3.01113041958032E-11"
+        izz="0.000307448183905368" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/antenna_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="antenna_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="antenna_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="speaker_link">
+    <inertial>
+      <origin xyz="0.105 0 0.09470" rpy="0 0 0" />
+      <mass value="0.6255" />
+      <inertia ixx="0.00595054924573582" ixy="1.54972105693142E-17" ixz="-1.34222979086086E-21"
+        iyy="0.00017071835083138" iyz="-8.64209351241396E-18"
+        izz="0.00595054924573582" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/speaker_link.STL" />
+      </geometry>
+      <material name="Gold" />
+    </visual>
+  </link>
+  <joint name="speaker_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="speaker_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="charge_Link">
+    <inertial>
+      <origin xyz="-0.00065 0.0040 0.00065" rpy="0 0 0" />
+      <mass value="0.0049" />
+      <inertia ixx="1.88298361729241E-07" ixy="-9.05119559629111E-09" ixz="1.84328236191772E-09"
+        iyy="8.57358054158734E-07" iyz="1.25447733906985E-08"
+        izz="7.73895417971906E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/charge_link.STL" />
+      </geometry>
+      <material name="Blue" />
+    </visual>
+  </link>
+  <joint name="charge_joint" type="fixed">
+    <origin xyz="-0.0504 0.06362 0" rpy="1.5707963267949 0 0" />
+    <parent link="frame_link" />
+    <child link="charge_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="IMU_link">
+    <inertial>
+      <origin
+        xyz="0.002192 0.001241 0.000301"
+        rpy="0 0 0" />
+      <mass value="0.00456597126352491" />
+      <inertia ixx="2.67621227004883E-07" ixy="2.98461528217097E-08" ixz="2.61743631414246E-08"
+        iyy="9.30031615735385E-07" iyz="3.86352794956382E-09"
+        izz="6.80030175979387E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/IMU_link.STL" />
+      </geometry>
+      <material name="Red" />
+    </visual>
+  </link>
+  <joint name="IMU_joint" type="fixed">
+    <origin
+      xyz="0.0420817256507905 0 0.091441320597534"
+      rpy="3.13677140039975 -6.09351154012223E-17 -1.5707963267949" />
+    <parent link="frame_link" />
+    <child link="IMU_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="connectors_link">
+    <inertial>
+      <origin xyz="0.1745 0.0339 0.1091" rpy="0 0 0" />
+      <mass value="0.0708" />
+      <inertia ixx="0.000362068881034577" ixy="-7.70651461569325E-06" ixz="2.34686430674194E-05"
+        iyy="0.000138172417150234" iyz="-6.93402905112227E-05"
+        izz="0.000236927840215248" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/connectors_link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="connectors_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="connectors_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="ssd_link">
+    <inertial>
+      <origin xyz="0.00095 -0.00011 0.0031" rpy="0 0 0" />
+      <mass value="0.0427" />
+      <inertia ixx="1.77491831386846E-05" ixy="2.28450378389574E-07" ixz="-1.93475819680817E-08"
+        iyy="3.5077947505707E-05" iyz="2.31216416056502E-09"
+        izz="5.2544572820951E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/ssd_link.STL" />
+      </geometry>
+      <material name="Grey" />
+    </visual>
+  </link>
+  <joint name="ssd_joint" type="fixed">
+    <origin
+      xyz="-0.0465581999999993 0.0307500000000006 0.0467424000000017"
+      rpy="3.14159265358979 0 0" />
+    <parent link="frame_link" />
+    <child link="ssd_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="jetson_carrier_link">
+    <inertial>
+      <origin xyz="0.0385 0.02167 0.00953" rpy="0 0 0" />
+      <mass value="0.05208" />
+      <inertia ixx="1.36170018377782E-05" ixy="8.38611240500124E-07" ixz="-4.79467802124809E-07"
+        iyy="3.618139427206E-05" iyz="-5.02791911288937E-07"
+        izz="4.27350235788097E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/jetson/carrier_link.STL" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="jetson_carrier_joint" type="fixed">
+    <origin
+      xyz="-0.1 0.01 0.055"
+      rpy="-1.5707963267949 0 0" />
+    <parent link="frame_link" />
+    <child link="jetson_carrier_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="jetson_tx1_link">
+    <inertial>
+      <origin xyz="0.0339 -0.0064 -0.00574" rpy="0 0 0" />
+      <mass value="0.0747" />
+      <inertia ixx="0.000189260214606175" ixy="-3.62601702140744E-06" ixz="1.04156349484491E-06"
+        iyy="0.000194645180332423" iyz="5.44491260645182E-08"
+        izz="0.000382161755658342" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/jetson/tx1_core_link.STL" />
+      </geometry>
+      <material name="GunMetalGrey" />
+    </visual>
+  </link>
+  <joint name="jetson_tx1_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="jetson_carrier_link" />
+    <child link="jetson_tx1_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="battery_link">
+    <inertial>
+      <origin xyz="0 0 0.018" rpy="0 0 0" />
+      <mass value="0.24981" />
+      <inertia
+        ixx="0.00044483" ixy="1.2332E-20" ixz="1.0603E-21"
+        iyy="7.6356E-05" iyz="2.4007E-20"
+        izz="0.00046843" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/chassis/battery_link.STL" />
+      </geometry>
+      <material name="Blue" />
+    </visual>
+  </link>
+  <joint name="battery_joint" type="fixed">
+    <origin xyz="0.13 0 0.01" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="battery_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="unav_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.09 0.09 0.005"/>
+      </geometry>
+      <material name="Blue" />
+    </visual>
+  </link>
+  <joint name="unav_joint" type="fixed">
+    <origin xyz="0.10 0 0.13" rpy="0 0 0" />
+    <parent link="frame_link" />
+    <child link="unav_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  </xacro:macro>
+
+</robot>

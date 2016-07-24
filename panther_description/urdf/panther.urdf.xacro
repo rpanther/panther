@@ -4,6 +4,8 @@
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/chassis.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -15,15 +17,34 @@
 
   <!-- base_link -->
   <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.001" radius="0.05"/>
+      </geometry>
+      <material name="Green" />
+    </visual>
   </link>
 
+  <!-- Chassis -->
+  <xacro:chassis parent="base_link">
+    <origin xyz="0 0 0.08" rpy="0 0 3.14159" />
+  </xacro:chassis>
+  <!-- Chassis - END -->
+
+  <!-- ZED -->
+  <xacro:zedcamera parent="frame_link">
+    <origin xyz="0.03600 0 0.1900" rpy="0 0 -1.5707963267949" />
+  </xacro:zedcamera>
+  <!-- ZED - END -->
+
   <!-- Track -->
-   <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
-  <xacro:track position="left" parent="base_link" passive_wheel_type="fixed">
-    <origin xyz="0 -0.2 0" rpy="0 0 0" />
+  <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
+  <xacro:track position="left" parent="frame_link" passive_wheel_type="fixed">
+    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:track>
-  <xacro:track position="right" parent="base_link" passive_wheel_type="fixed">
-    <origin xyz="0 0.2 0" rpy="0 0 0" />
+  <xacro:track position="right" parent="frame_link" passive_wheel_type="fixed">
+    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
   </xacro:track>
   <!-- Track - END -->
 
