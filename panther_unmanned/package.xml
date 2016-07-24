@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>panther_unmanned</name>
+  <version>0.1.0</version>
+  <description>
+	This is a list of all demo avaiable for robot
+  </description>
+
+  
+  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/rbonghi/panther</url>
+
+  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+
+  <run_depend>dude_description</run_depend>
+  <run_depend>orbus_interface</run_depend>
+
+</package>
