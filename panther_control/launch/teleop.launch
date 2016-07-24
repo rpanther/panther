@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="joy_dev" default="/dev/input/js0" />
+
+  <rosparam command="load" file="$(find panther_control)/config/teleop.yaml" />
+
+  <node pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" value="$(arg joy_dev)" />
+  </node>
+
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
+
+</launch>

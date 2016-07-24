@@ -1,0 +1,10 @@
+analyzers:
+  computers:
+    type: GenericAnalyzer
+    path: Computers
+    contains: [
+      'HD Temp',
+      'CPU Usage',
+      'CPU Temperature',
+      'HD Usage',
+      'NFS']
