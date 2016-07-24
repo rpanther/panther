@@ -9,8 +9,8 @@
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
-  <property name="path_meshes" value="package://panther_description/meshes"/>
-  <property name="M_PI" value="3.14159"/>
+  <xacro:property name="path_meshes" value="package://panther_description/meshes"/>
+  <xacro:property name="M_PI" value="3.14159"/>
   <!-- Global properties -->
 
   <xacro:macro name="panther_robot">
