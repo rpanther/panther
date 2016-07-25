@@ -337,7 +337,7 @@
   </joint>
 
   <!-- TRACTION WHEELS -->
-  <link name="gear_${position}_Link">
+<!--  <link name="gear_${position}_Link">
     <inertial>
       <origin xyz="0 0 0.008" rpy="0 0 0" />
       <mass value="0.0111" />
@@ -367,9 +367,9 @@
     <parent link="track_${position}_link" />
     <child link="gear_${position}_Link" />
     <axis xyz="0 0 -1" />
-  </joint>
+  </joint>-->
 
-  <link name="sprocket_${position}_Link">
+<!--  <link name="sprocket_${position}_Link">
     <inertial>
       <origin xyz="0 0 -0.0167" rpy="0 0 0" />
       <mass value="0.098" />
@@ -399,7 +399,7 @@
     <parent link="track_${position}_link" />
     <child link="sprocket_${position}_Link" />
     <axis xyz="0 0 -1" />
-  </joint>
+  </joint>-->
 
   </xacro:macro>
 

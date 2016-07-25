@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sprocket">
+
+ <xacro:macro name="sprocket" params="name position parent *joint_pose">
+
+  <link name="sprocket_${position}_Link">
+    <inertial>
+      <origin xyz="0 0 -0.0167" rpy="0 0 0" />
+      <mass value="0.098" />
+      <inertia ixx="0" ixy="0" ixz="0"
+        iyy="0" iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path_meshes}/track/sprocket_link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${-sprocket_leght / 2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="${sprocket_leght}" radius="${sprocket_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${name}" type="continuous">
+    <xacro:if value="${position == 'left'}">
+    <origin
+      xyz="0.15476 -0.020382 -0.026643"
+      rpy="1.5708 -1.5708 0" />
+    </xacro:if>
+    <xacro:if value="${position == 'right'}">
+    <origin
+      xyz="0.15476 0.020382 -0.026643"
+      rpy="-1.5708 -1.5708 0" />
+    </xacro:if>
+    <parent link="track_${position}_link" />
+    <child link="sprocket_${position}_Link" />
+    <axis xyz="0 0 -1" />
+    <limit effort="12" velocity="22"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <transmission name="${name}_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="${name}_motor">
+      <mechanicalReduction>${gear_teeth/sprocket_teeth}</mechanicalReduction>
+    </actuator>
+    <joint name="${name}">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  </xacro:macro>
+</robot>

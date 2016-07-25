@@ -5,6 +5,8 @@
   <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/chassis.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/sprocket.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/gear.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
   <!-- Included URDF/XACRO Files -->
 
@@ -12,6 +14,17 @@
   <xacro:property name="path_meshes" value="package://panther_description/meshes"/>
   <xacro:property name="M_PI" value="3.14159"/>
   <!-- Global properties -->
+
+  <!-- Sprocket and gear properties -->
+  <xacro:property name="sprocket_radius" value="0.0325"/>
+  <xacro:property name="sprocket_leght" value="0.05"/>
+  <xacro:property name="sprocket_teeth" value="24"/>
+  <xacro:property name="gear_teeth" value="16"/>
+
+  <xacro:property name="wheel_offset_x" value="-0.00"/>
+  <xacro:property name="wheel_offset_y" value="0.08"/>
+  <xacro:property name="wheel_offset_z" value="${wheel_radius}"/>
+  <!-- Sprocket and gear properties -->
 
   <xacro:macro name="panther_robot">
 
@@ -47,6 +60,24 @@
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
   </xacro:track>
   <!-- Track - END -->
+
+  <!-- Sprocket -->
+  <xacro:sprocket name="Left" position="left" parent="track_left_link">
+    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+  </xacro:sprocket>
+  <xacro:sprocket name="Right" position="right" parent="track_right_link">
+    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
+  </xacro:sprocket>
+  <!-- Sprocket - END -->
+
+  <!-- Gear -->
+  <xacro:gear name="Left" position="left" parent="track_left_link">
+    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+  </xacro:gear>
+  <xacro:gear name="Right" position="right" parent="track_right_link">
+    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
+  </xacro:gear>
+  <!-- Gear - END -->
 
   </xacro:macro>
 
