@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <robot name="zedcamera" xmlns:xacro="http://ros.org/wiki/xacro">
 
+<xacro:property name="optical_y_offset" value="0.06" />
+<xacro:property name="optical_x_offset" value="0.03" />
+
   <xacro:macro name="zedcamera" params="parent *joint_pose">
 
   <link name="zed_stand_link">
@@ -26,7 +29,7 @@
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="zed_Link">
+  <link name="zed_camera_link">
     <inertial>
       <origin xyz="0 0 0.016" rpy="0 0 0" />
       <mass value="0.6031" />
@@ -42,12 +45,40 @@
       <material name="Grey" />
     </visual>
   </link>
-  <joint name="zed_joint" type="fixed">
+  <joint name="zed_camera_joint" type="fixed">
     <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
     <parent link="zed_stand_link" />
-    <child link="zed_Link" />
+    <child link="zed_camera_link" />
     <axis xyz="0 0 0" />
   </joint>
+
+    <joint name="zed_left_joint" type="fixed">
+      <origin xyz="${optical_y_offset} 0 ${optical_x_offset}" rpy="${-M_PI/2} ${-M_PI/2} 0"/>
+      <parent link="zed_camera_link"/>
+      <child link="zed_left_frame" />
+    </joint>
+    <link name="zed_left_frame"/>
+
+    <joint name="zed_left_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="zed_left_frame" />
+      <child link="zed_left_optical_frame" />
+    </joint>
+    <link name="zed_left_optical_frame"/>
+
+    <joint name="zed_right_joint" type="fixed">
+      <origin xyz="${-optical_y_offset} 0 ${optical_x_offset}" rpy="${-M_PI/2} ${-M_PI/2} 0"/>
+      <parent link="zed_camera_link" />
+      <child link="zed_right_frame" />
+    </joint>
+    <link name="zed_right_frame"/>
+
+    <joint name="zed_right_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="zed_right_frame" />
+      <child link="zed_right_optical_frame" />
+    </joint>
+    <link name="zed_right_optical_frame"/>
 
   </xacro:macro>
 </robot>
