@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2016, Raffaello Bonghi
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Officine Robotiche nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <arg name="svo_file"         default=""/>
+  <arg name="publish_tf"       default="false"/>
+  <arg name="camera"           default="zed_camera"/>
+
+  <!-- Laserscan topic -->
+  <arg name="scan_topic" default="scan"/>
+  <arg name="scan_processing"  default="true"/>
+  <arg name="cloud_frame_id"  default="zed_left_frame"/>
+
+  <group if="$(arg publish_tf)">
+    <include file="$(find zed_wrapper)/launch/zed_tf.launch" />
+  </group>
+  
+  <group ns="$(arg camera)">
+    <node name="zed_wrapper_node" pkg="zed_wrapper" type="zed_wrapper_node" args="$(arg svo_file)" output="screen">
+
+      <param name="resolution"            value="2" />
+      <param name="quality"               value="2" />
+      <param name="sensing_mode"          value="1" />
+      <param name="frame_rate"            value="30" />
+
+      <param name="rgb_topic"             value="rgb/image_rect_color" />
+      <param name="rgb_cam_info_topic"    value="rgb/camera_info" />
+      <param name="rgb_frame_id"          value="zed_left_frame" />
+
+      <param name="left_topic"            value="left/image_rect_color" />
+      <param name="left_cam_info_topic"   value="left/camera_info" />
+      <param name="left_frame_id"         value="zed_left_frame" />
+
+      <param name="right_topic"           value="right/image_rect_color" />
+      <param name="right_cam_info_topic"  value="right/camera_info" />
+      <param name="right_frame_id"        value="zed_right_frame" />
+
+      <param name="depth_topic"           value="depth/image_raw" />
+      <param name="depth_cam_info_topic"  value="depth/camera_info" />
+      <param name="depth_frame_id"        value="zed_left_frame" />
+
+      <param name="point_cloud_topic"     value="point_cloud/cloud" />
+      <param name="cloud_frame_id"        value="$(arg cloud_frame_id)" />
+
+    </node>
+
+ 
+   <!--                        Laserscan 
+     This uses lazy subscribing, so will not activate until scan is requested.
+   -->
+    <group if="$(arg scan_processing)">
+      <!-- <node pkg="nodelet" type="nodelet"  args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet $(arg camera)_nodelet_manager"> -->
+      <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" output="screen">
+        <!-- Pixel rows to use to generate the laserscan. For each column, the scan will
+	     return the minimum value for those pixels centered vertically in the image. -->
+        <param name="scan_height" value="7"/>
+        <param name="output_frame_id" value="$(arg cloud_frame_id)"/>
+        <param name="range_min" value="0.1"/>
+        <remap from="image" to="depth/image_raw"/>
+        <remap from="camera_info" to="depth/camera_info"/>
+        <remap from="scan" to="$(arg scan_topic)"/>
+      </node>
+     </group>
+  </group>
+</launch>

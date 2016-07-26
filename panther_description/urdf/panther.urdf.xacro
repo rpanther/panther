@@ -54,7 +54,8 @@
 
   <!-- IMU -->
   <xacro:imu name="base_imu" parent="frame_link">
-    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />
+    <!--<origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />-->
+    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${-M_PI/2} 0 ${M_PI/2}" />
   </xacro:imu>
   <!-- IMU -->
 
