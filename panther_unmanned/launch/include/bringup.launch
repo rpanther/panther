@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
+  <arg name="zed_stereo_enabled" default="true"/>
   <arg name="joystick_enabled" default="false"/>
 
   <!-- Load unav hardware interface -->
@@ -32,6 +33,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Launch IMU sensor -->
   <include file="$(find panther_control)/launch/include/imu.launch" />
+
+  <!-- Start ZED camera and laser scan -->
+  <group if="$(arg zed_stereo_enabled)">
+    <include file="$(find panther_control)/launch/include/zed_stereo.launch" />
+  </group>
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick_enabled)">
