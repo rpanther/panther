@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="imu">
+
+  <xacro:macro name="imu" params="name parent *joint_pose">
+
+    <link name="${name}_link">
+      <inertial>
+        <origin xyz="0.0002 0.003 -0.00025" rpy="0 0 0" />
+        <mass value="0.0045" />
+        <inertia
+          ixx="6.80127923442653E-07" ixy="2.58853590724977E-08" ixz="6.27330058259111E-09"
+          iyy="2.67621227004883E-07" iyz="3.00971478682596E-08"
+          izz="9.29933868272119E-07" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${path_meshes}/imu/imu_Link.STL" />
+        </geometry>
+        <material name="Red" />
+      </visual>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="joint_pose"/>
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+
+ </xacro:macro>
+
+</robot>

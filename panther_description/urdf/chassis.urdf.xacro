@@ -142,33 +142,6 @@
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="IMU_link">
-    <inertial>
-      <origin
-        xyz="0.002192 0.001241 0.000301"
-        rpy="0 0 0" />
-      <mass value="0.00456597126352491" />
-      <inertia ixx="2.67621227004883E-07" ixy="2.98461528217097E-08" ixz="2.61743631414246E-08"
-        iyy="9.30031615735385E-07" iyz="3.86352794956382E-09"
-        izz="6.80030175979387E-07" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_meshes}/chassis/IMU_link.STL" />
-      </geometry>
-      <material name="Red" />
-    </visual>
-  </link>
-  <joint name="IMU_joint" type="fixed">
-    <origin
-      xyz="0.0420817256507905 0 0.091441320597534"
-      rpy="3.13677140039975 -6.09351154012223E-17 -1.5707963267949" />
-    <parent link="frame_link" />
-    <child link="IMU_link" />
-    <axis xyz="0 0 0" />
-  </joint>
-
   <link name="connectors_link">
     <inertial>
       <origin xyz="0.1745 0.0339 0.1091" rpy="0 0 0" />

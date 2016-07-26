@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <include file="$(find panther_control)/launch/include/driver.launch" />
 
   <!-- Launch IMU sensor -->
-  <!--<include file="$(find dude_control)/launch/include/imu.launch" />-->
+  <include file="$(find dude_control)/launch/include/imu.launch" />
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick_enabled)">

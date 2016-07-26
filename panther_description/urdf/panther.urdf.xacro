@@ -8,6 +8,7 @@
   <xacro:include filename="$(find panther_description)/urdf/sprocket.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/gear.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -50,6 +51,12 @@
     <origin xyz="0.03600 0 0.1900" rpy="0 0 -1.5707963267949" />
   </xacro:zedcamera>
   <!-- ZED - END -->
+
+  <!-- IMU -->
+  <xacro:imu name="base_imu" parent="frame_link">
+    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />
+  </xacro:imu>
+  <!-- IMU -->
 
   <!-- Track -->
   <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
