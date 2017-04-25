@@ -1,0 +1,20 @@
+# Definition motors
+joint: [ 'left_joint' , 'right_joint' ]
+
+left_joint:
+  number: 1
+  encoder: {CPR: 400, channels: 2, position: 1}
+  limits: {position: 6.28, velocity: 15.0, current: 5.0, effort: 20.0}
+  pid:
+    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0}
+  ratio: 16.0
+  rotation: 1
+
+right_joint:
+  number: 0
+  encoder: {CPR: 400, channels: 2, position: 1}
+  limits: {position: 6.28, velocity: 15.0, current: 5.0, effort: 20.0}
+  pid:
+    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0}
+  ratio: 16.0
+  rotation: -1

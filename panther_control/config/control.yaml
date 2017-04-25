@@ -1,12 +1,12 @@
 # Publish all joint states -----------------------------------
-unav_joint_publisher:
+roboteq_joint_publisher:
   type: "joint_state_controller/JointStateController"
   publish_rate: 50
 
-unav_velocity_controller:
+roboteq_velocity_controller:
   type: "diff_drive_controller/DiffDriveController"
-  left_wheel: 'Left'
-  right_wheel: 'Right'
+  left_wheel: 'left_joint'
+  right_wheel: 'right_joint'
   publish_rate: 50
   pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
   twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
@@ -17,13 +17,13 @@ unav_velocity_controller:
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
-  enable_odom_tf: false
+  enable_odom_tf: true
 
   # Panther hardware provides wheel velocities
   estimate_velocity_from_position: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 10 # default: 1.0
+  wheel_separation_multiplier:  1 # default: 1.0
 #  wheel_radius_multiplier:     1 # default: 1.0
 
   # Velocity and acceleration limits

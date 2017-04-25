@@ -46,7 +46,8 @@
   <transmission name="${name}_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="${name}_motor">
-      <mechanicalReduction>${gear_teeth/sprocket_teeth}</mechanicalReduction>
+      <!--<mechanicalReduction>${gear_teeth/sprocket_teeth}</mechanicalReduction>-->
+      <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="${name}">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>

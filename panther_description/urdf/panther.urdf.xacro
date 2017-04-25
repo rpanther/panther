@@ -70,19 +70,19 @@
   <!-- Track - END -->
 
   <!-- Sprocket -->
-  <xacro:sprocket name="Left" position="left" parent="track_left_link">
+  <xacro:sprocket name="left_joint" position="left" parent="track_left_link">
     <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:sprocket>
-  <xacro:sprocket name="Right" position="right" parent="track_right_link">
+  <xacro:sprocket name="right_joint" position="right" parent="track_right_link">
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
   </xacro:sprocket>
   <!-- Sprocket - END -->
 
   <!-- Gear -->
-  <xacro:gear name="Left" position="left" parent="track_left_link">
+  <xacro:gear name="left_joint" position="left" parent="track_left_link">
     <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:gear>
-  <xacro:gear name="Right" position="right" parent="track_right_link">
+  <xacro:gear name="right_joint" position="right" parent="track_right_link">
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
   </xacro:gear>
   <!-- Gear - END -->
