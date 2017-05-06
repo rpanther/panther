@@ -1,58 +1,49 @@
 
 mixing: 0
-pwm_frequency: 10.0
 break_delay: 250
-control_frequency: 50.0
-diagnostic_frequency: 5.0
+over_voltage_limit: 30.0
 over_voltage_hysteresis: 5.0
-over_voltage_limit: 10.0
-under_voltage_limit: 10.0
+under_voltage_limit: 5.0
+pwm_frequency: 16.0
+
 # Definition motors
 joint: [left_joint, right_joint]
 
 left_joint:
+  number: 2
+  ratio: 16.0
+  rotation: 1
+  stall_detection: 2
+  amper_limit: 20.0
+  max_speed: 256.0
+  max_acceleration: 3125.0
+  max_deceleration: 3125.0
+  max_forward: 100
+  max_reverse: 100
+  encoder: {configuration: 2, position: 1, PPR: 400,  encoder_high_count_limit: 20000, encoder_low_count_limit: -20000, encoder_home_count: 0}
+  pid:
+    closed_loop_position: 2
+    closed_loop_velocity: 6
+    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    torque: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 2, position_mode_velocity: 1000, turn_min_to_max: 25.0}
+
+right_joint:
   number: 1
   ratio: 16.0
   rotation: 1
-  stall_detection: 1
-  amper_limit: 5.0
-  operating_mode: 6
-
-  max_acceleration: 1000.0
-  max_deceleration: 1000.0
+  stall_detection: 2
+  amper_limit: 20.0
+  max_speed: 256.0
+  max_acceleration: 3125.0
+  max_deceleration: 3125.0
   max_forward: 100
   max_reverse: 100
-  max_speed: 10.0
-
-  encoder: {PPR: 1, channels: 0, encoder_high_count_limit: 1000, encoder_home_count: 0, encoder_low_count_limit: -1000, position: 1}
-
+  encoder: {configuration: 2, position: 1, PPR: 400,  encoder_high_count_limit: 20000, encoder_low_count_limit: -20000, encoder_home_count: 0}
   pid:
     closed_loop_position: 2
     closed_loop_velocity: 6
+    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
     torque: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
     velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 2, position_mode_velocity: 1000, turn_min_to_max: 25.0}
-    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
-
-right_joint:
-  number: 0
-  ratio: 16.0
-  rotation: 1
-  stall_detection: 1
-  amper_limit: 5.0
-  operating_mode: 6
-
-  max_acceleration: 1000.0
-  max_deceleration: 1000.0
-  max_forward: 100
-  max_reverse: 100
-  max_speed: 10.0
-
-  encoder: {PPR: 1, channels: 0, encoder_high_count_limit: 1000, encoder_home_count: 0, encoder_low_count_limit: -1000, position: 1}
-
-  pid:
-    closed_loop_position: 2
-    closed_loop_velocity: 6
-    torque: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
-    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 2, position_mode_velocity: 1000, turn_min_to_max: 25.0}
-    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
 

@@ -1,10 +1,7 @@
 analyzers:
   computers:
     type: GenericAnalyzer
-    path: Computers
+    path: Roboteq
     contains: [
-      'HD Temp',
-      'CPU Usage',
-      'CPU Temperature',
-      'HD Usage',
-      'NFS']
+      'Roboteq',
+      'joint']

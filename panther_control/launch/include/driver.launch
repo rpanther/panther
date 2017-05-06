@@ -41,8 +41,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </node>
 
     <!-- Diagnostic Aggregator -->
-    <!--<node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
         <rosparam command="load" file="$(find panther_control)/config/diagnostics.yaml"/>
-    </node>-->
+    </node>
 
 </launch>
