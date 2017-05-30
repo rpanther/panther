@@ -96,7 +96,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Track -->
   <!-- passive_wheel_type type: (1) continuous or (2) fixed -->
-  <xacro:track name="Left" position="left" parent="frame_link" passive_wheel_type="fixed">
+  <xacro:track name="left_joint" position="left" parent="frame_link" passive_wheel_type="fixed">
     <origin 
       xyz="0 -0.161 -0.014" 
       rpy="0 0 0" />
@@ -110,7 +110,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
       rpy="-${M_PI/2} -${M_PI/2} ${M_PI}" />
   </xacro:track>
-  <xacro:track name="Right" position="right" parent="frame_link" passive_wheel_type="fixed">
+  <xacro:track name="right_joint" position="right" parent="frame_link" passive_wheel_type="fixed">
     <origin 
       xyz="0 0.161 -0.014"
       rpy="0 0 0" />

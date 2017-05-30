@@ -1,0 +1,82 @@
+
+# general configuration
+mixing: 0
+break_delay: 250
+over_voltage_limit: 30.0
+over_voltage_hysteresis: 5.0
+under_voltage_limit: 5.0
+pwm_frequency: 16.0
+# Definition motors
+joint: [left_joint, right_joint]
+
+#Definition input and output
+InOut:
+  analog:
+    '1': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 2.5, range_input_max: 4.75, range_input_min: 0.25}
+    '2': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 2.5, range_input_max: 4.75, range_input_min: 0.25}
+    '3': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 2.5, range_input_max: 4.75, range_input_min: 0.25}
+    '4': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 2.5, range_input_max: 4.75, range_input_min: 0.25}
+    '5': {conversion: 0, conversion_polarity: 0, input_deadband: 0, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 0.0, range_input_max: 0.0, range_input_min: 0.0}
+    '6': {conversion: 0, conversion_polarity: 0, input_deadband: 0, input_motor_one: 0,
+      input_motor_two: 0, input_use: 0, range_input_center: 0.0, range_input_max: 0.0, range_input_min: 0.0}
+  pulse:
+    '1': {conversion: 1, conversion_polarity: 0, input_deadband: 5, input_motor_one: 1, input_motor_two: 0, 
+      input_use: 1, range_input_center: 1.5, range_input_max: 2.0, range_input_min: 1.0}
+    '2': {conversion: 1, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0, input_motor_two: 1, 
+      input_use: 1, range_input_center: 1.5, range_input_max: 2.0, range_input_min: 1.0}
+    '3': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0, input_motor_two: 0, 
+      input_use: 0, range_input_center: 1.5, range_input_max: 2.0, range_input_min: 1.0}
+    '4': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0, input_motor_two: 0, 
+      input_use: 0, range_input_center: 1.5, range_input_max: 2.0, range_input_min: 1.0}
+    '5': {conversion: 0, conversion_polarity: 0, input_deadband: 5, input_motor_one: 0, input_motor_two: 0, 
+      input_use: 0, range_input_center: 1.5, range_input_max: 2.0, range_input_min: 1.0}
+    '6': {conversion: 0, conversion_polarity: 0, input_deadband: 0, input_motor_one: 0, input_motor_two: 0, 
+      input_use: 0, range_input_center: 0.0, range_input_max: 0.0, range_input_min: 0.0}
+  encoder:
+    '1': {PPR: 400, configuration: 2, encoder_high_count_limit: 20000, encoder_home_count: 0,
+      encoder_low_count_limit: -20000, input_motor_one: 1, input_motor_two: 0, position: 1}
+    '2': {PPR: 400, configuration: 2, encoder_high_count_limit: 20000, encoder_home_count: 0,
+      encoder_low_count_limit: -20000, input_motor_one: 0, input_motor_two: 1, position: 1}
+
+#Definition motors
+left_joint:
+  number: 2
+  ratio: 16.0
+  rotation: 1
+  stall_detection: 2
+  amper_limit: 20.0
+  max_speed: 256.0
+  max_acceleration: 3125.0
+  max_deceleration: 3125.0
+  max_forward: 100
+  max_reverse: 100
+  pid:
+    closed_loop_position: 2
+    closed_loop_velocity: 6
+    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    torque: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 2, position_mode_velocity: 1000, turn_min_to_max: 25.0}
+
+right_joint:
+  number: 1
+  ratio: 16.0
+  rotation: 1
+  stall_detection: 2
+  amper_limit: 20.0
+  max_speed: 256.0
+  max_acceleration: 3125.0
+  max_deceleration: 3125.0
+  max_forward: 100
+  max_reverse: 100
+  pid:
+    closed_loop_position: 2
+    closed_loop_velocity: 6
+    position: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    torque: {Kp: 0.0, Ki: 0.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 0, position_mode_velocity: 0, turn_min_to_max: 0.0}
+    velocity: {Kp: 2.0, Ki: 2.0, Kd: 0.0, integrator_limit: 100, loop_error_detection: 2, position_mode_velocity: 1000, turn_min_to_max: 25.0}
+

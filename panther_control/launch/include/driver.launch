@@ -24,26 +24,25 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-    <arg name="port" default="/dev/ttyUSB0" />
+    <arg name="port" default="/dev/ttyACM0" />
 
     <!-- Load robot description -->
     <include file="$(find panther_description)/launch/description.launch" />
 
     <!-- ORBus harware driver -->
-    <node pkg="orbus_interface" type="hardware_unav" name="unav" output="screen">
-        <rosparam command="load" file="$(find panther_control)/config/unav.yaml" />
-        <!--<rosparam subst_value="true">
+    <node pkg="roboteq_control" type="driver_node" name="roboteq" output="screen">
+        <rosparam command="load" file="$(find panther_control)/config/motors.yaml" />
+        <rosparam subst_value="true">
             serial_port: $(arg port)
-            serial_rate: 115000
-
-            control_frequency: 10.0
-            diagnostic_frequency: 1.0
-        </rosparam>-->
+            serial_rate: 115200
+            control_frequency: 50.0
+            diagnostic_frequency: 5.0
+        </rosparam>
     </node>
 
     <!-- Diagnostic Aggregator -->
-    <!--<node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
         <rosparam command="load" file="$(find panther_control)/config/diagnostics.yaml"/>
-    </node>-->
+    </node>
 
 </launch>
