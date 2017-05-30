@@ -50,7 +50,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Send the Panther Robot URDF/XACRO to param server -->
   <param name="robot_description" 
-	command="$(find xacro)/xacro.py '$(find panther_gazebo)/urdf/description.gazebo.xacro'" />
+	command="$(find xacro)/xacro.py --inorder '$(find panther_gazebo)/urdf/description.gazebo.xacro'" />
 
   <!-- Activate node to propagate the joint state -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
