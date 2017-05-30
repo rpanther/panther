@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="track">
 
  <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
- <xacro:macro name="track" params="position parent passive_wheel_type *joint_pose">
+ <xacro:macro name="track" params="name position parent passive_wheel_type *joint_pose">
 
   <!-- TRACK FIXED LINKS -->
   <link name="track_${position}_link">
@@ -217,6 +217,7 @@
     <axis xyz="0 0 -1" />
   </joint>
 
+  <!-- Front passive wheel all time type continous -->
   <link name="wheel_${position}_front_down_Link">
     <inertial>
       <origin xyz="0 0 -0.020143" rpy="0 0 0" />
@@ -232,8 +233,14 @@
       </geometry>
       <material name="White-Alpha" />
     </visual>
+    <collision>
+      <origin xyz="0 0 -0.025" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+    </collision>
   </link>
-  <joint name="wheel_${position}_front_down_joint" type="${passive_wheel_type}">
+  <joint name="wheel_${position}_front_down_joint" type="continuous">
     <origin
       xyz="-0.15659 -0.020143 -0.034143"
       rpy="1.5708 -0.36637 2.3494E-17" />
@@ -336,70 +343,17 @@
     <axis xyz="0 0 -1" />
   </joint>
 
-  <!-- TRACTION WHEELS -->
-<!--  <link name="gear_${position}_Link">
-    <inertial>
-      <origin xyz="0 0 0.008" rpy="0 0 0" />
-      <mass value="0.0111" />
-      <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_meshes}/track/gear_link.STL" />
-      </geometry>
-      <material name="DarkGrey" />
-    </visual>
-  </link>
-  <joint name="gear_${position}_joint" type="continuous">
-    <xacro:if value="${position == 'left'}">
-    <origin
-      xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
-      rpy="-1.5707963267949 -1.50760970347625 3.14159265358979" />
-    </xacro:if>
-    <xacro:if value="${position == 'right'}">
-    <origin
-      xyz="0.0536535102814494 0.00979339452125411 0.0186240655062149"
-      rpy="1.5707963267949 -1.50760970347625 3.14159265358979" />
-    </xacro:if>
-    <parent link="track_${position}_link" />
-    <child link="gear_${position}_Link" />
-    <axis xyz="0 0 -1" />
-  </joint>-->
+  <!-- Sprocket -->
+  <xacro:sprocket name="${name}" position="${position}" parent="track_${position}_link">
+    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+  </xacro:sprocket>
+  <!-- Sprocket - END -->
 
-<!--  <link name="sprocket_${position}_Link">
-    <inertial>
-      <origin xyz="0 0 -0.0167" rpy="0 0 0" />
-      <mass value="0.098" />
-      <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_meshes}/track/sprocket_link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-  </link>
-  <joint name="sprocket_${position}_joint" type="continuous">
-    <xacro:if value="${position == 'left'}">
-    <origin
-      xyz="0.15476 -0.020382 -0.026643"
-      rpy="1.5708 -1.5708 0" />
-    </xacro:if>
-    <xacro:if value="${position == 'right'}">
-    <origin
-      xyz="0.15476 0.020382 -0.026643"
-      rpy="-1.5708 -1.5708 0" />
-    </xacro:if>
-    <parent link="track_${position}_link" />
-    <child link="sprocket_${position}_Link" />
-    <axis xyz="0 0 -1" />
-  </joint>-->
+  <!-- Gear -->
+  <xacro:gear name="${name}" position="${position}" parent="track_${position}_link">
+    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+  </xacro:gear>
+  <!-- Gear - END -->
 
   </xacro:macro>
 

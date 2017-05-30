@@ -54,37 +54,37 @@
 
   <!-- IMU -->
   <xacro:imu name="base_imu" parent="frame_link">
-    <!--<origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />-->
-    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${-M_PI/2} 0 ${M_PI/2}" />
+    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />
+    <!--<origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${-M_PI/2} 0 ${M_PI/2}" />-->
   </xacro:imu>
   <!-- IMU -->
 
   <!-- Track -->
-  <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
-  <xacro:track position="left" parent="frame_link" passive_wheel_type="fixed">
+  <!-- passive_wheel_type type: (1) continuous or (2) fixed -->
+  <xacro:track name="Left" position="left" parent="frame_link" passive_wheel_type="fixed">
     <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:track>
-  <xacro:track position="right" parent="frame_link" passive_wheel_type="fixed">
+  <xacro:track name="Right" position="right" parent="frame_link" passive_wheel_type="fixed">
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
   </xacro:track>
   <!-- Track - END -->
 
   <!-- Sprocket -->
-  <xacro:sprocket name="Left" position="left" parent="track_left_link">
+  <!--<xacro:sprocket name="Left" position="left" parent="track_left_link">
     <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:sprocket>
   <xacro:sprocket name="Right" position="right" parent="track_right_link">
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
-  </xacro:sprocket>
+  </xacro:sprocket>-->
   <!-- Sprocket - END -->
 
   <!-- Gear -->
-  <xacro:gear name="Left" position="left" parent="track_left_link">
+  <!--<xacro:gear name="Left" position="left" parent="track_left_link">
     <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
   </xacro:gear>
   <xacro:gear name="Right" position="right" parent="track_right_link">
     <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
-  </xacro:gear>
+  </xacro:gear>-->
   <!-- Gear - END -->
 
   </xacro:macro>
