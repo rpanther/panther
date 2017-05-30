@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="track">
 
  <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
- <xacro:macro name="track" params="name position parent passive_wheel_type *joint_pose">
+ <xacro:macro name="track" params="name position parent passive_wheel_type *track_pose *joint_pose *gear_pose">
 
   <!-- TRACK FIXED LINKS -->
   <link name="track_${position}_link">
@@ -22,7 +22,7 @@
     </visual>
   </link>
   <joint name="track_${position}_joint" type="fixed">
-    <xacro:insert_block name="joint_pose"/>
+    <xacro:insert_block name="track_pose"/>
     <parent link="${parent}" />
     <child link="track_${position}_link" />
     <axis xyz="0 0 0" />
@@ -344,14 +344,14 @@
   </joint>
 
   <!-- Sprocket -->
-  <xacro:sprocket name="${name}" position="${position}" parent="track_${position}_link">
-    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+  <xacro:sprocket name="${name}" position="${position}" parent="${parent}">
+    <xacro:insert_block name="joint_pose"/>
   </xacro:sprocket>
   <!-- Sprocket - END -->
 
   <!-- Gear -->
   <xacro:gear name="${name}" position="${position}" parent="track_${position}_link">
-    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+    <xacro:insert_block name="gear_pose"/>
   </xacro:gear>
   <!-- Gear - END -->
 

@@ -56,12 +56,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </gazebo>-->
 
   <!-- Gazebo plugin for ROS Control -->
-  <!--<gazebo>
+  <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
-  </gazebo>-->
+  </gazebo>
 
   <xacro:panther_robot />
   <!--<xacro:panther_robot_gazebo />-->

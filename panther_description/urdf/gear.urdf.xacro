@@ -20,16 +20,7 @@
     </visual>
   </link>
   <joint name="gear_${position}_joint" type="continuous">
-    <xacro:if value="${position == 'left'}">
-    <origin
-      xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
-      rpy="-1.5707963267949 -1.50760970347625 3.14159265358979" />
-    </xacro:if>
-    <xacro:if value="${position == 'right'}">
-    <origin
-      xyz="0.0536535102814494 0.00979339452125411 0.0186240655062149"
-      rpy="1.5707963267949 -1.50760970347625 3.14159265358979" />
-    </xacro:if>
+    <xacro:insert_block name="joint_pose"/>
     <parent link="track_${position}_link" />
     <child link="gear_${position}_Link" />
     <axis xyz="0 0 -1" />

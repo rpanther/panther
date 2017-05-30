@@ -26,17 +26,8 @@
     </collision>
   </link>
   <joint name="${name}" type="continuous">
-    <xacro:if value="${position == 'left'}">
-    <origin
-      xyz="0.15476 -0.020382 -0.026643"
-      rpy="1.5708 -1.5708 0" />
-    </xacro:if>
-    <xacro:if value="${position == 'right'}">
-    <origin
-      xyz="0.15476 0.020382 -0.026643"
-      rpy="-1.5708 -1.5708 0" />
-    </xacro:if>
-    <parent link="track_${position}_link" />
+    <xacro:insert_block name="joint_pose"/>
+    <parent link="${parent}" />
     <child link="sprocket_${position}_Link" />
     <axis xyz="0 0 -1" />
     <limit effort="12" velocity="22"/>

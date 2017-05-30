@@ -62,30 +62,28 @@
   <!-- Track -->
   <!-- passive_wheel_type type: (1) continuous or (2) fixed -->
   <xacro:track name="Left" position="left" parent="frame_link" passive_wheel_type="fixed">
-    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
+    <origin 
+      xyz="0 -0.161 -0.014" 
+      rpy="0 0 0" />
+    <origin
+      xyz="0.15476 -${0.020382 + 0.161} -${0.026643 + 0.014}"
+      rpy="${M_PI/2} -${M_PI/2} 0" />
+    <origin
+      xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
+      rpy="-${M_PI/2} -${M_PI/2} ${M_PI}" />
   </xacro:track>
   <xacro:track name="Right" position="right" parent="frame_link" passive_wheel_type="fixed">
-    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
+    <origin 
+      xyz="0 0.161 -0.014"
+      rpy="0 0 0" />
+    <origin
+      xyz="0.15476 ${0.020382 + 0.161} -${0.026643 + 0.014}"
+      rpy="-${M_PI/2} -${M_PI/2} 0" />
+    <origin
+      xyz="0.0536535102814494 0.00979339452125411 0.0186240655062149"
+      rpy="${M_PI/2} -${M_PI/2} ${M_PI}" />
   </xacro:track>
   <!-- Track - END -->
-
-  <!-- Sprocket -->
-  <!--<xacro:sprocket name="Left" position="left" parent="track_left_link">
-    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
-  </xacro:sprocket>
-  <xacro:sprocket name="Right" position="right" parent="track_right_link">
-    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
-  </xacro:sprocket>-->
-  <!-- Sprocket - END -->
-
-  <!-- Gear -->
-  <!--<xacro:gear name="Left" position="left" parent="track_left_link">
-    <origin xyz="0 -0.161 -0.014" rpy="0 0 0" />
-  </xacro:gear>
-  <xacro:gear name="Right" position="right" parent="track_right_link">
-    <origin xyz="0 0.161 -0.014" rpy="0 0 0" />
-  </xacro:gear>-->
-  <!-- Gear - END -->
 
   </xacro:macro>
 
