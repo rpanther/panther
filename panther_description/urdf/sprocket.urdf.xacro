@@ -31,7 +31,7 @@
     <child link="sprocket_${position}_Link" />
     <axis xyz="0 0 -1" />
     <limit effort="12" velocity="22"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
   <transmission name="${name}_trans" type="SimpleTransmission">
@@ -40,7 +40,7 @@
       <mechanicalReduction>${gear_teeth/sprocket_teeth}</mechanicalReduction>
     </actuator>
     <joint name="${name}">
-      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
 

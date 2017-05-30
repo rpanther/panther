@@ -33,27 +33,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:arg name="name_space" default="/" />
 
   <xacro:include filename="$(find panther_description)/urdf/panther.urdf.xacro" />
-  <!--<xacro:include filename="$(find panther_gazebo)/urdf/panther.gazebo.xacro" />-->
-
-  <!-- Differential drive -->
-  <!--<gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-    <alwaysOn>true</alwaysOn>
-    <robotNamespace>$(arg name_space)</robotNamespace>
-    <updateRate>10.0</updateRate>
-     <leftJoint>Left</leftJoint>
-    <rightJoint>Right</rightJoint>
-    <wheelSeparation>${wheel_offset_y*2}</wheelSeparation>
-    <wheelDiameter>${wheel_radius*2}</wheelDiameter>
-    <torque>20</torque>
-    <commandTopic>unav_velocity_controller/cmd_vel</commandTopic>
-    <odometryTopic>odom</odometryTopic>
-    <odometryFrame>odom</odometryFrame>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <publishWheelTF>true</publishWheelTF>
-    <publishWheelJointState>true</publishWheelJointState>
-    </plugin>
-  </gazebo>-->
+  <xacro:include filename="$(find panther_gazebo)/urdf/panther_color.gazebo.xacro" />
 
   <!-- Gazebo plugin for ROS Control -->
   <gazebo>
@@ -64,6 +44,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </gazebo>
 
   <xacro:panther_robot />
-  <!--<xacro:panther_robot_gazebo />-->
+  <xacro:pantker_color_gazebo />
 
 </robot>

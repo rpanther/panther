@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+Copyright (C) 2017, Raffaello Bonghi <raffaello@rnext.it>
+All rights reserved
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<robot name="pantker_color_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--<xacro:include filename="$(find panther_gazebo)/urdf/accessories/imu.gazebo.xacro"/>-->
+
+  <xacro:macro name="pantker_color_gazebo">
+
+  <!-- COLOR REFERENCE:
+   https://bitbucket.org/osrf/gazebo/src/default/media/materials/scripts/gazebo.material?fileviewer=file-view-default
+  -->
+
+  <!-- chassis -->
+  <gazebo reference="cover_link">
+    <material>Gazebo/WhiteGlow</material>
+  </gazebo>
+  <gazebo reference="iron_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="frame_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="antenna_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="speaker_link">
+    <material>Gazebo/Gold</material>
+  </gazebo>
+
+  <!-- track -->
+  <gazebo reference="track_left_Link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="fender_left_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="chain_left_Link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="rubber_left_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="sprocket_left_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="track_right_Link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="fender_right_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="chain_right_Link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="rubber_right_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="sprocket_right_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  </xacro:macro>
+
+</robot>
