@@ -30,7 +30,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="track">
 
  <!-- passive_wheel_type tye: (1) continuous or (2) fixed -->
- <xacro:macro name="track" params="name position parent passive_wheel_type *track_pose *joint_pose *gear_pose">
+ <xacro:macro name="track" params="position parent passive_wheel_type *track_pose *joint_pose *gear_pose">
 
   <!-- TRACK FIXED LINKS -->
   <link name="track_${position}_link">
@@ -194,14 +194,26 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <axis xyz="0 0 0" />
   </joint>
 
+  <!-- Sprocket -->
+  <xacro:sprocket position="${position}" parent="${parent}">
+    <xacro:insert_block name="joint_pose"/>
+  </xacro:sprocket>
+  <!-- Sprocket - END -->
+
+  <!-- Gear -->
+  <xacro:gear position="${position}" parent="track_${position}_link">
+    <xacro:insert_block name="gear_pose"/>
+  </xacro:gear>
+  <!-- Gear - END -->
+
   <!-- PASSIVE WHEELS -->
   <link name="wheel_${position}_center_up_Link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <mass value="0.016" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -214,22 +226,26 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="wheel_${position}_center_up_joint" type="${passive_wheel_type}">
     <origin
       xyz="0 0 0.0735790044064745"
-      rpy="1.5707963267949 -0.800774112020821 6.31428234397228E-17" />
+      rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_center_up_Link" />
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
 
   <link name="wheel_${position}_front_up_Link">
     <inertial>
-      <origin xyz="0 0 -0.020143" rpy="0 0 0" />
+      <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <mass value="0.043" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <geometry>
         <mesh filename="${path_meshes}/track/wheel_front_link.STL" />
       </geometry>
@@ -238,24 +254,28 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </link>
   <joint name="wheel_${position}_front_up_joint" type="${passive_wheel_type}">
     <origin
-      xyz="-0.18867 -0.020143 0.010536"
-      rpy="-1.5708 -0.13483 3.1416" />
+      xyz="-0.18867 0 0.010536"
+      rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_front_up_Link" />
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
 
   <!-- Front passive wheel all time type continous -->
   <link name="wheel_${position}_front_down_Link">
     <inertial>
-      <origin xyz="0 0 -0.020143" rpy="0 0 0" />
+      <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <mass value="0.0431" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <geometry>
         <mesh filename="${path_meshes}/track/wheel_front_link.STL" />
       </geometry>
@@ -268,22 +288,28 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </geometry>
     </collision>
   </link>
-  <joint name="wheel_${position}_front_down_joint" type="continuous">
+  <joint name="wheel_${position}_front_down_joint" type="${passive_wheel_type}">
     <origin
-      xyz="-0.15659 -0.020143 -0.034143"
-      rpy="1.5708 -0.36637 2.3494E-17" />
+      xyz="-0.15659 0 -0.034143"
+      rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_front_down_Link" />
     <axis xyz="0 0 -1" />
+
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
+
 
   <link name="wheel_${position}_center_A_Link">
     <inertial>
       <origin xyz="-0.064 -0.046 0.004" rpy="0 0 0" />
       <mass value="0.0082" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -294,10 +320,16 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </visual>
   </link>
   <joint name="wheel_${position}_center_A_joint" type="${passive_wheel_type}">
-    <origin xyz="-0.065 -0.004 -0.042" rpy="1.5708 0 0" />
+    <origin 
+       xyz="-0.065 -0.004 -0.042" 
+       rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_center_A_Link" />.
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
 
   <link name="wheel_${position}_center_B_Link">
@@ -305,8 +337,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <origin xyz="-0.020 -0.0465 0.004" rpy="0 0 0" />
       <mass value="0.0083" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -317,10 +349,16 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </visual>
   </link>
   <joint name="wheel_${position}_center_B_joint" type="${passive_wheel_type}">
-    <origin xyz="-0.020 -0.004 -0.042" rpy="1.5708 0 0" />
+    <origin 
+       xyz="-0.020 -0.004 -0.042" 
+       rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_center_B_Link" />
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
 
   <link name="wheel_${position}_center_C_Link">
@@ -328,8 +366,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <origin xyz="0.020 -0.0462 0.004" rpy="0 0 0" />
       <mass value="0.0083" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
       <origin
@@ -342,10 +380,16 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </visual>
   </link>
   <joint name="wheel_${position}_center_C_joint" type="${passive_wheel_type}">
-    <origin xyz="0.020 -0.004 -0.042" rpy="1.5708 0 0" />
+    <origin 
+       xyz="0.020 -0.004 -0.042" 
+       rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_center_C_Link" />
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
 
   <link name="wheel_${position}_center_D_Link">
@@ -353,8 +397,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <origin xyz="0.0648 -0.0462 0.004" rpy="0 0 0" />
       <mass value="0.0083" />
       <inertia ixx="0" ixy="0" ixz="0"
-        iyy="0" iyz="0"
-        izz="0" />
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -365,23 +409,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </visual>
   </link>
   <joint name="wheel_${position}_center_D_joint" type="${passive_wheel_type}">
-    <origin xyz="0.065 -0.004 -0.042" rpy="1.5707963267949 0 0" />
+    <origin 
+       xyz="0.065 -0.004 -0.042" 
+       rpy="-${M_PI/2} 0 0" />
     <parent link="track_${position}_link" />
     <child link="wheel_${position}_center_D_Link" />
     <axis xyz="0 0 -1" />
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
-
-  <!-- Sprocket -->
-  <xacro:sprocket name="${name}" position="${position}" parent="${parent}">
-    <xacro:insert_block name="joint_pose"/>
-  </xacro:sprocket>
-  <!-- Sprocket - END -->
-
-  <!-- Gear -->
-  <xacro:gear name="${name}" position="${position}" parent="track_${position}_link">
-    <xacro:insert_block name="gear_pose"/>
-  </xacro:gear>
-  <!-- Gear - END -->
 
   </xacro:macro>
 

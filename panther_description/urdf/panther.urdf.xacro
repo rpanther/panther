@@ -82,44 +82,40 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Chassis - END -->
 
   <!-- ZED -->
-  <xacro:zedcamera parent="frame_link">
+  <!--<xacro:zedcamera parent="frame_link">
     <origin xyz="0.03600 0 0.1900" rpy="0 0 -1.5707963267949" />
-  </xacro:zedcamera>
+  </xacro:zedcamera>-->
   <!-- ZED - END -->
 
   <!-- IMU -->
-  <xacro:imu name="base_imu" parent="frame_link">
+  <!--<xacro:imu name="base_imu" parent="frame_link">
     <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />
-    <!--<origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${-M_PI/2} 0 ${M_PI/2}" />-->
-  </xacro:imu>
+  </xacro:imu>-->
   <!-- IMU -->
 
   <!-- Track -->
   <!-- passive_wheel_type type: (1) continuous or (2) fixed -->
-  <xacro:track name="left_joint" position="left" parent="frame_link" passive_wheel_type="fixed">
+  <xacro:track position="left" parent="frame_link" passive_wheel_type="continuous">
     <origin 
       xyz="0 -0.161 -0.014" 
       rpy="0 0 0" />
     <origin
-      xyz="0.15476 -${0.140618} -${0.026643 + 0.014}"
-      rpy="-${M_PI/2} ${M_PI/2} 0" />
-    <!--<origin
-      xyz="0.15476 -${0.020382 + 0.161} -${0.026643 + 0.014}"
-      rpy="-${M_PI/2} ${M_PI/2} 0" />-->
+      xyz="0.15476 -0.161 ${-0.014 - 0.0267}"
+      rpy="-${M_PI/2} 0 0" />
     <origin
-      xyz="0.0536535102814494 -0.00979339452125411 0.0186240655062149"
-      rpy="-${M_PI/2} -${M_PI/2} ${M_PI}" />
+      xyz="0.054 -0.010 0.019"
+      rpy="-${M_PI/2} 0 0" />
   </xacro:track>
-  <xacro:track name="right_joint" position="right" parent="frame_link" passive_wheel_type="fixed">
+  <xacro:track position="right" parent="frame_link" passive_wheel_type="continuous">
     <origin 
       xyz="0 0.161 -0.014"
       rpy="0 0 0" />
     <origin
-      xyz="0.15476 ${0.020382 + 0.161} -${0.026643 + 0.014}"
-      rpy="-${M_PI/2} ${M_PI/2} 0" />
+      xyz="0.155 0.161 ${-0.014 - 0.0267}"
+      rpy="-${M_PI/2} 0 0" />
     <origin
-      xyz="0.0536535102814494 0.00979339452125411 0.0186240655062149"
-      rpy="${M_PI/2} -${M_PI/2} ${M_PI}" />
+      xyz="0.054 0.010 0.019"
+      rpy="${M_PI/2} 0 0" />
   </xacro:track>
   <!-- Track - END -->
 

@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="gear">
 
- <xacro:macro name="gear" params="name position parent *joint_pose">
+ <xacro:macro name="gear" params="position parent *joint_pose">
 
   <link name="gear_${position}_Link">
     <inertial>
-      <origin xyz="0 0 0.008" rpy="0 0 0" />
+      <origin xyz="0 0 0.008" rpy="0 ${M_PI} 0" />
       <mass value="0.0111" />
       <inertia ixx="0" ixy="0" ixz="0"
         iyy="0" iyz="0"
         izz="0" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 ${M_PI} 0" />
       <geometry>
         <mesh filename="${path_meshes}/track/gear_link.STL" />
       </geometry>
@@ -25,7 +25,7 @@
     <child link="gear_${position}_Link" />
     <axis xyz="0 0 -1" />
     <!-- Passive sprocket rotate automatically according to the status of the active one -->
-    <mimic joint="${name}" multiplier="${sprocket_teeth/gear_teeth}" offset="0"/>
+    <mimic joint="${position}_joint" multiplier="${sprocket_teeth/gear_teeth}" offset="0"/>
   </joint>
 
   </xacro:macro>
