@@ -31,12 +31,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
-  <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/chassis.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/sprocket.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/gear.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
+  <!--<xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />-->
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -66,18 +64,18 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                        iyy="1" iyz="0"
                                izz="1" />
     </inertial>
-    <visual>
+    <!--<visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <cylinder length="0.001" radius="0.05"/>
       </geometry>
       <material name="Green" />
-    </visual>
+    </visual>-->
   </link>
 
   <!-- Chassis -->
   <xacro:chassis parent="base_link">
-    <origin xyz="0 0 0.08" rpy="0 0 3.14159" />
+    <origin xyz="0 0 0.08" rpy="0 0 0" />
   </xacro:chassis>
   <!-- Chassis - END -->
 
@@ -94,29 +92,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- IMU -->
 
   <!-- Track -->
-  <!-- passive_wheel_type type: (1) continuous or (2) fixed -->
-  <xacro:track position="left" parent="frame_link" passive_wheel_type="continuous">
-    <origin 
-      xyz="0 -0.161 -0.014" 
-      rpy="0 0 0" />
-    <origin
-      xyz="0.15476 -0.161 ${-0.014 - 0.0267}"
-      rpy="-${M_PI/2} 0 0" />
-    <origin
-      xyz="0.054 -0.010 0.019"
-      rpy="-${M_PI/2} 0 0" />
-  </xacro:track>
-  <xacro:track position="right" parent="frame_link" passive_wheel_type="continuous">
-    <origin 
-      xyz="0 0.161 -0.014"
-      rpy="0 0 0" />
-    <origin
-      xyz="0.155 0.161 ${-0.014 - 0.0267}"
-      rpy="-${M_PI/2} 0 0" />
-    <origin
-      xyz="0.054 0.010 0.019"
-      rpy="${M_PI/2} 0 0" />
-  </xacro:track>
+  <xacro:track type="left" parent="frame_link" />
+  <xacro:track type="right" parent="frame_link" />
   <!-- Track - END -->
 
   </xacro:macro>

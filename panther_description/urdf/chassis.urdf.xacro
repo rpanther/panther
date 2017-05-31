@@ -12,7 +12,7 @@
         izz="0.0219088128480578" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/frame_link.STL" />
       </geometry>
@@ -35,7 +35,7 @@
         izz="0.00823286470028232" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/iron_link.STL" />
       </geometry>
@@ -58,7 +58,7 @@
         izz="0.0140947881519727" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/cover_link.STL" />
       </geometry>
@@ -82,7 +82,7 @@
         izz="0.000307448183905368" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/antenna_link.STL" />
       </geometry>
@@ -105,7 +105,7 @@
         izz="0.00595054924573582" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/speaker_link.STL" />
       </geometry>
@@ -121,14 +121,14 @@
 
   <link name="charge_Link">
     <inertial>
-      <origin xyz="-0.00065 0.0040 0.00065" rpy="0 0 0" />
+      <origin xyz="-0.00065 0.0040 0.00065" rpy="0 0 ${M_PI}" />
       <mass value="0.0049" />
       <inertia ixx="1.88298361729241E-07" ixy="-9.05119559629111E-09" ixz="1.84328236191772E-09"
         iyy="8.57358054158734E-07" iyz="1.25447733906985E-08"
         izz="7.73895417971906E-07" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/charge_link.STL" />
       </geometry>
@@ -151,7 +151,7 @@
         izz="0.000236927840215248" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/connectors_link.STL" />
       </geometry>
@@ -183,8 +183,8 @@
   </link>
   <joint name="ssd_joint" type="fixed">
     <origin
-      xyz="-0.0465581999999993 0.0307500000000006 0.0467424000000017"
-      rpy="3.14159265358979 0 0" />
+      xyz="0.0465 0.03075 0.04674"
+      rpy="${M_PI} 0 ${M_PI}" />
     <parent link="frame_link" />
     <child link="ssd_link" />
     <axis xyz="0 0 0" />
@@ -208,8 +208,8 @@
   </link>
   <joint name="jetson_carrier_joint" type="fixed">
     <origin
-      xyz="-0.1 0.01 0.055"
-      rpy="-1.5707963267949 0 0" />
+      xyz="0.1 0.01 0.055"
+      rpy="${-M_PI/2} 0 ${M_PI}" />
     <parent link="frame_link" />
     <child link="jetson_carrier_link" />
     <axis xyz="0 0 0" />
@@ -256,7 +256,7 @@
     </visual>
   </link>
   <joint name="battery_joint" type="fixed">
-    <origin xyz="0.13 0 0.01" rpy="0 0 0" />
+    <origin xyz="-0.13 0 0.01" rpy="0 0 0" />
     <parent link="frame_link" />
     <child link="battery_link" />
     <axis xyz="0 0 0" />
@@ -272,7 +272,7 @@
     </visual>
   </link>
   <joint name="unav_joint" type="fixed">
-    <origin xyz="0.10 0 0.13" rpy="0 0 0" />
+    <origin xyz="-0.10 0 0.13" rpy="0 0 0" />
     <parent link="frame_link" />
     <child link="unav_link" />
     <axis xyz="0 0 0" />

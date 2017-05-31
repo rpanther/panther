@@ -27,56 +27,44 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sprocket">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="wheel">
 
- <xacro:macro name="sprocket" params="type orientation parent">
+  <xacro:macro name="wheel" params="type orientation conf name passive_wheel_type *visual_pose *wheel_pose *collision_shape">
 
-  <link name="sprocket_${type}_Link">
+  <!-- Front passive wheel all time type continous -->
+  <link name="wheel_${type}_${conf}_Link">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0.098" />
-      <inertia ixx="1" ixy="0" ixz="0"
-                       iyy="1" iyz="0"
-                               izz="1" />
+      <origin xyz="0 0 0.020143" rpy="0 0 0" />
+      <mass value="0.0431" />
+      <inertia ixx="0" ixy="0" ixz="0"
+                       iyy="0" iyz="0"
+                               izz="0" />
     </inertial>
-    <!-- Visual mesh -->
     <visual>
-      <origin
-        xyz="0 0 ${sprocket_leght / 2 - 0.005}"
-        rpy="0 0 0" />
+      <xacro:insert_block name="visual_pose"/>
       <geometry>
-        <mesh filename="${path_meshes}/track/sprocket_link.STL" />
+        <mesh filename="${path_meshes}/track/${name}.STL" />
       </geometry>
-      <material name="Black" />
+      <material name="White-Alpha" />
     </visual>
-    <!-- Collision cylinder -->
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder length="${sprocket_leght}" radius="${sprocket_radius}"/>
+        <xacro:insert_block name="collision_shape"/>
       </geometry>
-      <material name="Red" />
     </collision>
   </link>
-  <!-- Joint properties -->
-  <joint name="${type}_joint" type="continuous">
-    <origin xyz="-0.15476 ${orientation * -0.161} ${-0.014 - 0.0267}" rpy="${orientation * M_PI/2} 0 0" />
-    <parent link="${parent}" />
-    <child link="sprocket_${type}_Link" />
+  <joint name="wheel_${type}_${conf}_joint" type="${passive_wheel_type}">
+    <xacro:insert_block name="wheel_pose"/>
+    <parent link="track_${type}_link" />
+    <child link="wheel_${type}_${conf}_Link" />
     <axis xyz="0 0 ${-1 * orientation}" />
-    <limit effort="12" velocity="22"/>
-    <joint_properties damping="1.0" friction="1.0"/>
+
+    <!-- Passive sprocket rotate automatically according to the status of the active one -->
+    <xacro:if value="${passive_wheel_type == 'continuous'}">
+      <mimic joint="${type}_joint" multiplier="1" offset="0"/>
+    </xacro:if>
   </joint>
-  <!-- Transmission -->
-  <transmission name="${type}_trans" type="SimpleTransmission">
-    <type>transmission_interface/SimpleTransmission</type>
-    <actuator name="${type}_motor">
-      <mechanicalReduction>${gear_teeth/sprocket_teeth}</mechanicalReduction>
-    </actuator>
-    <joint name="${type}_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-  </transmission>
 
   </xacro:macro>
 </robot>

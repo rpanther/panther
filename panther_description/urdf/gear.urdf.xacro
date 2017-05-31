@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="gear">
 
- <xacro:macro name="gear" params="position parent *joint_pose">
+ <xacro:macro name="gear" params="type orientation">
 
-  <link name="gear_${position}_Link">
+  <link name="gear_${type}_Link">
     <inertial>
       <origin xyz="0 0 0.008" rpy="0 ${M_PI} 0" />
       <mass value="0.0111" />
@@ -19,13 +19,15 @@
       <material name="DarkGrey" />
     </visual>
   </link>
-  <joint name="gear_${position}_joint" type="continuous">
-    <xacro:insert_block name="joint_pose"/>
-    <parent link="track_${position}_link" />
-    <child link="gear_${position}_Link" />
-    <axis xyz="0 0 -1" />
+  <joint name="gear_${type}_joint" type="continuous">
+    <origin
+      xyz="-0.0536535102814494 -0.00979339452125411 0.0186240655062149"
+      rpy="-${M_PI/2} ${M_PI} ${M_PI}" />
+    <parent link="track_${type}_link" />
+    <child link="gear_${type}_Link" />
+    <axis xyz="0 0 ${-1 * orientation}" />
     <!-- Passive sprocket rotate automatically according to the status of the active one -->
-    <mimic joint="${position}_joint" multiplier="${sprocket_teeth/gear_teeth}" offset="0"/>
+    <mimic joint="${type}_joint" multiplier="${sprocket_teeth/gear_teeth}" offset="0"/>
   </joint>
 
   </xacro:macro>
