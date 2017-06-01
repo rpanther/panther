@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="wheel">
 
-  <xacro:macro name="wheel" params="type orientation conf name passive_wheel_type *visual_pose *wheel_pose *collision_shape">
+  <xacro:macro name="wheel" params="type orientation conf name passive_wheel_type wheel_radius *visual_pose *wheel_pose *collision_shape">
 
   <!-- Front passive wheel all time type continous -->
   <link name="wheel_${type}_${conf}_Link">
@@ -62,7 +62,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <!-- Passive sprocket rotate automatically according to the status of the active one -->
     <xacro:if value="${passive_wheel_type == 'continuous'}">
-      <mimic joint="${type}_joint" multiplier="1" offset="0"/>
+      <mimic joint="${type}_joint" multiplier="${sprocket_radius/wheel_radius}" offset="0"/>
     </xacro:if>
   </joint>
 

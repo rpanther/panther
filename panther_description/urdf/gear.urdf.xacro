@@ -46,6 +46,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </geometry>
       <material name="DarkGrey" />
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.01" radius="0.016"/>
+      </geometry>
+    </collision>
   </link>
   <joint name="gear_${type}_joint" type="continuous">
     <origin

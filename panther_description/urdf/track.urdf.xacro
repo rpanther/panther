@@ -212,7 +212,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:gear type="${type}" orientation="${orientation}" />
 
   <!-- Passive wheels -->
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="front_down" name="wheel_front_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="front_down" name="wheel_front_link" wheel_radius="0.025" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <!-- joint origin -->
@@ -222,7 +222,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.05" radius="0.025"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="front_up" name="wheel_front_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="front_up" name="wheel_front_link" wheel_radius="0.025" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0.020143" rpy="0 0 0" />
       <!-- joint origin -->
@@ -232,7 +232,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.05" radius="0.025"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_up" name="wheel_center_up_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_up" name="wheel_center_up_link" wheel_radius="0.016" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0" rpy="0 0 0" />
       <!-- joint origin -->
@@ -242,7 +242,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.05" radius="0.016"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_A" name="wheel_center_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_A" name="wheel_center_link" wheel_radius="0.016" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0" rpy="0 0 0" />
       <!-- joint origin -->
@@ -252,7 +252,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.01" radius="0.016"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_B" name="wheel_center_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_B" name="wheel_center_link" wheel_radius="0.016" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0" rpy="0 0 0" />
       <!-- joint origin -->
@@ -262,7 +262,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.01" radius="0.016"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_C" name="wheel_center_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_C" name="wheel_center_link" wheel_radius="0.016" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0" rpy="0 0 0" />
       <!-- joint origin -->
@@ -272,7 +272,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- collisione shape -->
       <cylinder length="0.01" radius="0.016"/>
   </xacro:wheel>
-  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_D" name="wheel_center_link" passive_wheel_type="continuous">
+  <xacro:wheel type="${type}" orientation="${orientation}" conf="center_D" name="wheel_center_link" wheel_radius="0.016" passive_wheel_type="continuous">
       <!-- visual wheel origin offest-->
       <origin xyz="0 0 0" rpy="0 0 0" />
       <!-- joint origin -->

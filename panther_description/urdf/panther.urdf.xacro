@@ -33,8 +33,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find panther_description)/urdf/chassis.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
-  <!--<xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />-->
+  <xacro:include filename="$(find panther_description)/urdf/zedcamera.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -64,13 +64,13 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                        iyy="1" iyz="0"
                                izz="1" />
     </inertial>
-    <!--<visual>
+    <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <cylinder length="0.001" radius="0.05"/>
       </geometry>
       <material name="Green" />
-    </visual>-->
+    </visual>
   </link>
 
   <!-- Chassis -->
@@ -80,15 +80,15 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Chassis - END -->
 
   <!-- ZED -->
-  <!--<xacro:zedcamera parent="frame_link">
-    <origin xyz="0.03600 0 0.1900" rpy="0 0 -1.5707963267949" />
-  </xacro:zedcamera>-->
+  <xacro:zedcamera parent="frame_link">
+    <origin xyz="-0.03600 0 0.1900" rpy="${M_PI} ${M_PI} ${-M_PI/2}" />
+  </xacro:zedcamera>
   <!-- ZED - END -->
 
   <!-- IMU -->
-  <!--<xacro:imu name="base_imu" parent="frame_link">
-    <origin xyz="0.0420817256507905 0 0.091441320597534" rpy="${M_PI} ${M_PI/2} 0" />
-  </xacro:imu>-->
+  <xacro:imu name="base_imu" parent="frame_link">
+    <origin xyz="-0.0420817256507905 0 0.091441320597534" rpy="0 ${M_PI/2} 0" />
+  </xacro:imu>
   <!-- IMU -->
 
   <!-- Track -->
