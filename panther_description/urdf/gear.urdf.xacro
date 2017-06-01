@@ -64,6 +64,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <mimic joint="${type}_joint" multiplier="${sprocket_teeth/gear_teeth}" offset="0"/>
   </joint>
 
+  <gazebo reference="gear_${type}_Link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
   </xacro:macro>
 
 </robot>

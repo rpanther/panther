@@ -68,6 +68,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
   <!-- Transmission -->
+  <gazebo reference="sprocket_${type}_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- Transmission -->
   <transmission name="${type}_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="${type}_motor">

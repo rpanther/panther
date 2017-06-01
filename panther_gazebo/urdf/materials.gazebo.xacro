@@ -31,7 +31,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!--<xacro:include filename="$(find panther_gazebo)/urdf/accessories/imu.gazebo.xacro"/>-->
 
-  <xacro:macro name="pantker_color_gazebo">
+  <xacro:macro name="materials_gazebo">
 
   <!-- COLOR REFERENCE:
    https://bitbucket.org/osrf/gazebo/src/default/media/materials/scripts/gazebo.material?fileviewer=file-view-default
@@ -52,39 +52,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </gazebo>
   <gazebo reference="speaker_link">
     <material>Gazebo/Gold</material>
-  </gazebo>
-
-  <!-- track -->
-  <gazebo reference="track_left_Link">
-    <material>Gazebo/White</material>
-  </gazebo>
-  <gazebo reference="fender_left_Link">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="chain_left_Link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
-  <gazebo reference="rubber_left_Link">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="sprocket_left_Link">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <gazebo reference="track_right_Link">
-    <material>Gazebo/White</material>
-  </gazebo>
-  <gazebo reference="fender_right_Link">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="chain_right_Link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
-  <gazebo reference="rubber_right_Link">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="sprocket_right_Link">
-    <material>Gazebo/Black</material>
   </gazebo>
 
   </xacro:macro>

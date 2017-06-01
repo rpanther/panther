@@ -43,6 +43,28 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:property name="orientation" value="1"/>
   </xacro:if>
 
+  <gazebo reference="track_${type}_Link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="fender_${type}_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="chain_${type}_Link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="rubber_${type}_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="iron_${type}_Link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="damper_${type}_Link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="damper_label_${type}_Link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
   <!-- TRACK FIXED LINKS -->
   <link name="track_${type}_link">
     <inertial>

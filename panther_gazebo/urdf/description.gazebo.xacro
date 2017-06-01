@@ -33,7 +33,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:arg name="name_space" default="/" />
 
   <xacro:include filename="$(find panther_description)/urdf/panther.urdf.xacro" />
-  <xacro:include filename="$(find panther_gazebo)/urdf/panther_color.gazebo.xacro" />
+  <xacro:include filename="$(find panther_gazebo)/urdf/materials.gazebo.xacro" />
 
   <!-- Gazebo plugin for ROS Control -->
   <gazebo>
@@ -44,6 +44,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </gazebo>
 
   <xacro:panther_robot />
-  <xacro:pantker_color_gazebo />
+  <xacro:materials_gazebo />
 
 </robot>

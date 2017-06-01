@@ -66,5 +66,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </xacro:if>
   </joint>
 
+  <gazebo reference="wheel_${type}_${conf}_Link">
+    <material>Gazebo/WhiteGlow</material>
+  </gazebo>
+
   </xacro:macro>
 </robot>
