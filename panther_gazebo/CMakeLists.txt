@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(panther_gazebo)
 
-find_package(catkin REQUIRED COMPONENTS roslaunch gazebo_ros)
+find_package(catkin REQUIRED COMPONENTS roslaunch)
 
 catkin_package()
 
