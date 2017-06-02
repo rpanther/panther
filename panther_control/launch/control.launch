@@ -37,9 +37,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             args="panther_joint_publisher panther_velocity_controller --shutdown-timeout 3"/>
 
     <!-- Launch EKF localization -->
-    <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
       <rosparam command="load" file="$(find panther_control)/config/localization.yaml" />
-    </node>-->
+    </node>
 
     <!-- Mux to control via joy, keyboard, high level control the robot -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">

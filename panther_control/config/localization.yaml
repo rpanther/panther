@@ -7,13 +7,21 @@ two_d_mode: true
 
 frequency: 50
 
-odom0: unav_velocity_controller/odom
+odom0: panther_velocity_controller/odom
 odom0_config: [true, true, true,
                false, false, true,
                false, false, false,
                false, false, false,
                false, false, false]
 odom0_differential: true
+
+odom1: zed/odom
+odom1_config: [true, true, true,
+               false, false, true,
+               false, false, false,
+               false, false, false,
+               false, false, false]
+odom1_differential: true
 
 imu0: imu/data
 imu0_config: [false, false, false,

@@ -81,7 +81,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- ZED -->
   <xacro:zedcamera parent="frame_link">
-    <origin xyz="-0.03600 0 0.1900" rpy="${M_PI} ${M_PI} ${-M_PI/2}" />
+    <origin xyz="-0.03600 0 0.1700" rpy="0 0 0" />
   </xacro:zedcamera>
   <!-- ZED - END -->
 
