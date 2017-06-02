@@ -29,29 +29,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
+  <!-- Launch 3D visualization from IMU node remapping -->
+  <node pkg="razor_imu_9dof" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
+    <remap from="imu" to="imu/data"/>
+  </node>
 
-  <!-- Load unav hardware interface -->
-  <include file="$(find panther_control)/launch/include/driver.launch" />
-
-  <!-- Load controller and EKF -->
-  <include file="$(find panther_control)/launch/control.launch" />
-
-  <!-- Launch IMU sensor -->
-  <include file="$(find panther_control)/launch/include/imu.launch" />
-
-  <!-- Start ZED camera and laser scan -->
-  <group if="$(arg zed)">
-    <include file="$(find panther_control)/launch/include/zed_stereo.launch" />
-  </group>
-
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_control)/launch/diagnostic.launch" />
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
 </launch>

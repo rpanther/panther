@@ -83,6 +83,15 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <child link="zed_initial_frame" />
     <axis xyz="0 0 0" />
   </joint>
+
+  <link name="zed_current_frame" />
+  <joint name="zed_current_joint" type="fixed">
+    <origin xyz="0 0.0 0" rpy="0 0 0" />
+    <parent link="zed_initial_frame" />
+    <child link="zed_current_frame" />
+    <axis xyz="0 0 0" />
+  </joint>
+
   <link name="zed_depth_frame" />
   <joint name="zed_depth_joint" type="fixed">
     <origin xyz="0 0.0 0" rpy="-${M_PI/2} 0 -${M_PI/2}" />

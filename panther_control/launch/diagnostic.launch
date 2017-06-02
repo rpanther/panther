@@ -29,29 +29,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
+  <!-- Diagnostic Aggregator -->
+  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+    <rosparam command="load" file="$(find panther_control)/config/diagnostics.yaml"/>
+  </node>
 
-  <!-- Load unav hardware interface -->
-  <include file="$(find panther_control)/launch/include/driver.launch" />
-
-  <!-- Load controller and EKF -->
-  <include file="$(find panther_control)/launch/control.launch" />
-
-  <!-- Launch IMU sensor -->
-  <include file="$(find panther_control)/launch/include/imu.launch" />
-
-  <!-- Start ZED camera and laser scan -->
-  <group if="$(arg zed)">
-    <include file="$(find panther_control)/launch/include/zed_stereo.launch" />
-  </group>
-
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_control)/launch/diagnostic.launch" />
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
 </launch>
