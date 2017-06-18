@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
+  <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
   <arg name="joy_dev" default="/dev/input/js0" />
 
   <rosparam command="load" file="$(find panther_control)/config/teleop.yaml" />
@@ -9,6 +10,8 @@
     <param name="dev" value="$(arg joy_dev)" />
   </node>
 
-  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+    <remap from="cmd_vel" to="$(arg cmd_topic)"/>
+  </node>
 
 </launch>
