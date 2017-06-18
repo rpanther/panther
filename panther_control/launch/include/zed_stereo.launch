@@ -37,7 +37,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Laserscan topic -->
   <arg name="scan_topic" default="scan"/>
   <arg name="scan_processing"  default="true"/>
-  <arg name="cloud_frame_id"  default="zed_left_frame"/>
+  <arg name="cloud_frame_id"  default="zed_current_frame"/>
 
   <group ns="$(arg camera)">
     <group if="$(arg publish_tf)">
@@ -85,16 +85,16 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    <!--                        Laserscan 
      This uses lazy subscribing, so will not activate until scan is requested.
    -->
-    <!--<group if="$(arg scan_processing)">
+    <group if="$(arg scan_processing)">
       <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" output="screen">
         <param name="scan_height" value="7"/>
         <param name="output_frame_id" value="$(arg cloud_frame_id)"/>
         <param name="range_min" value="0.1"/>
-        <remap from="image" to="depth/image_raw"/>
+        <remap from="image" to="depth/depth_registered"/>
         <remap from="camera_info" to="depth/camera_info"/>
         <remap from="scan" to="$(arg scan_topic)"/>
       </node>
-     </group>-->
+     </group>
 
 
   </group>
