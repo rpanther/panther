@@ -28,9 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <include file="$(find panther_unmanned)/launch/include/bringup.launch">
     <arg name="rgbd_enabled" value="true"/>
   </include>
-  
-  <!-- ALERT LAUNCH THE WANDERING NODE!!! -->
-  <!--<node name="wandering" pkg="robot_wandering_demo_ros" type="robot_wandering_node" />-->
 
+  <!-- ALERT LAUNCH THE WANDERING NODE!!! -->
+  <include file="$(find ros_robot_wandering_demo)/launch/wandering_demo.launch">
  
 </launch>

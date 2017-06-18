@@ -1,0 +1,96 @@
+DWAPlannerROS: {acc_lim_th: 9.2, acc_lim_theta: 3.2, acc_lim_x: 1.5, acc_lim_y: 0.0,
+  acc_limit_trans: 0.1, angular_sim_granularity: 0.1, forward_point_distance: 0.325,
+  goal_distance_bias: 64.0, latch_xy_goal_tolerance: false, max_rot_vel: 5.0, max_scaling_factor: 0.2,
+  max_trans_vel: 0.5, max_vel_x: 0.1, max_vel_y: 0.0, min_rot_vel: 0.1, min_trans_vel: 0.1,
+  min_vel_x: 0.0, min_vel_y: 0.0, occdist_scale: 0.02, oscillation_reset_angle: 0.2,
+  oscillation_reset_dist: 0.05, path_distance_bias: 64.0, prune_plan: false, restore_defaults: false,
+  rot_stopped_vel: 0.1, scaling_speed: 0.25, sim_granularity: 0.025, sim_time: 1.7,
+  stop_time_buffer: 0.2, trans_stopped_vel: 0.1, use_dwa: true, vth_samples: 20, vx_samples: 3,
+  vy_samples: 10, xy_goal_tolerance: 0.1, yaw_goal_tolerance: 0.1}
+NavfnROS: {allow_unknown: true, default_tolerance: 0.1}
+TrajectoryPlannerROS: {acc_lim_theta: 9.2, acc_lim_x: 2.5, angular_sim_granularity: 0.02,
+  controller_frequency: 20.0, dwa: true, escape_reset_dist: 0.1, escape_reset_theta: 0.1,
+  escape_vel: -0.1, gdist_scale: 1.0, heading_lookahead: 0.325, heading_scoring: false,
+  heading_scoring_timestep: 0.8, holonomic_robot: false, latch_xy_goal_tolerance: false,
+  max_vel_theta: 5.0, max_vel_x: 1.0, meter_scoring: true, min_in_place_vel_theta: 0.2,
+  min_vel_theta: -5.0, min_vel_x: 0.0, occdist_scale: 0.1, oscillation_reset_dist: 0.25,
+  pdist_scale: 0.75, publish_cost_grid_pc: true, sim_granularity: 0.02, sim_time: 2.0,
+  simple_attractor: false, vtheta_samples: 20, vx_samples: 6, xy_goal_tolerance: 0.2,
+  yaw_goal_tolerance: 0.1}
+aggressive_reset: {reset_distance: 1.84}
+base_global_planner: navfn/NavfnROS
+base_local_planner: dwa_local_planner/DWAPlannerROS
+clearing_rotation_allowed: true
+conservative_reset: {reset_distance: 3.0}
+conservative_reset_dist: 3.0
+controller_frequency: 5.0
+controller_patience: 5.0
+global_costmap:
+  footprint: '[[-0.25,-0.33],[-0.25,0.33],[0.25,0.33],[0.25,-0.33]]'
+  footprint_padding: 0.01
+  global_frame: odom
+  height: 100
+  inflation: {cost_scaling_factor: 10.0, enabled: true, inflation_radius: 1.0}
+  obstacle_range: 5.5
+  obstacles_laser:
+    combination_method: 1
+    enabled: true
+    laser: {clearing: true, data_type: LaserScan, inf_is_valid: true, marking: true,
+      topic: scan}
+    max_obstacle_height: 2.0
+    observation_sources: laser
+  obstacles_laser_footprint: {enabled: true}
+  origin_x: 0.0
+  origin_y: 0.0
+  plugins:
+  - {name: obstacles_laser, type: 'costmap_2d::ObstacleLayer'}
+  - {name: inflation, type: 'costmap_2d::InflationLayer'}
+  publish_frequency: 3.0
+  raytrace_range: 6.0
+  resolution: 0.05
+  robot_base_frame: base_link
+  robot_radius: 0.46
+  rolling_window: true
+  static: {map_topic: /map, subscribe_to_updates: true}
+  track_unknown_space: true
+  transform_tolerance: 0.5
+  update_frequency: 4.0
+  width: 100
+local_costmap:
+  footprint: '[[-0.25,-0.33],[-0.25,0.33],[0.25,0.33],[0.25,-0.33]]'
+  footprint_padding: 0.01
+  global_frame: odom
+  height: 10
+  inflation: {cost_scaling_factor: 10.0, enabled: true, inflation_radius: 1.0}
+  obstacle_range: 5.5
+  obstacles_laser:
+    combination_method: 1
+    enabled: true
+    laser: {clearing: true, data_type: LaserScan, inf_is_valid: true, marking: true,
+      topic: scan}
+    max_obstacle_height: 2.0
+    observation_sources: laser
+  obstacles_laser_footprint: {enabled: true}
+  origin_x: 0.0
+  origin_y: 0.0
+  plugins:
+  - {name: obstacles_laser, type: 'costmap_2d::ObstacleLayer'}
+  - {name: inflation, type: 'costmap_2d::InflationLayer'}
+  publish_frequency: 3.0
+  raytrace_range: 6.0
+  resolution: 0.05
+  robot_base_frame: base_link
+  robot_radius: 0.46
+  rolling_window: true
+  static: {map_topic: /map, subscribe_to_updates: true}
+  transform_tolerance: 0.5
+  update_frequency: 4.0
+  width: 10
+oscillation_distance: 0.5
+oscillation_timeout: 0.0
+planner_frequency: 0.0
+planner_patience: 5.0
+recovery_behavior_enabled: true
+recovery_behaviour_enabled: true
+restore_defaults: false
+shutdown_costmaps: false
