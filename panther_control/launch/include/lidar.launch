@@ -28,33 +28,11 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-
-  <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
-
-  <!-- Load unav hardware interface -->
-  <include file="$(find panther_control)/launch/include/driver.launch" />
-
-  <!-- Load controller and EKF -->
-  <include file="$(find panther_control)/launch/control.launch" />
-
-  <!-- Launch LIDAR sensor -->
-  <include file="$(find panther_control)/launch/include/lidar.launch" />
-
-  <!-- Launch IMU sensor -->
-  <include file="$(find panther_control)/launch/include/imu.launch" />
-
-  <!-- Start ZED camera and laser scan -->
-  <group if="$(arg zed)">
-    <include file="$(find panther_control)/launch/include/zed_stereo.launch" />
-  </group>
-
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_control)/launch/diagnostic.launch" />
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+  <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>  
+  <param name="serial_baudrate"     type="int"    value="115200"/>
+  <param name="frame_id"            type="string" value="laser_frame"/>
+  <param name="inverted"            type="bool"   value="false"/>
+  <param name="angle_compensate"    type="bool"   value="true"/>
+  </node>
 </launch>

@@ -3,7 +3,7 @@ odom_frame: odom
 base_link_frame: base_link
 world_frame: odom
 
-two_d_mode: true
+# two_d_mode: true
 
 frequency: 50
 
@@ -17,7 +17,7 @@ odom0_differential: true
 
 odom1: zed/odom
 odom1_config: [true, true, true,
-               false, false, true,
+               true, true, true,
                false, false, false,
                false, false, false,
                false, false, false]
