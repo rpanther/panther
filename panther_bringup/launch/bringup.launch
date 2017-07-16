@@ -35,9 +35,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Load unav hardware interface -->
   <include file="$(find panther_bringup)/launch/include/driver.launch" />
 
-  <!-- Load controller and EKF -->
-  <include file="$(find panther_bringup)/launch/control.launch" />
-
   <!-- Launch LIDAR sensor -->
   <include file="$(find panther_bringup)/launch/include/lidar.launch" />
 
@@ -51,6 +48,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
+
+  <!-- Load controller and EKF -->
+  <include file="$(find panther_control)/launch/control.launch" />
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick)">

@@ -16,13 +16,12 @@
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
 
-  <run_depend>panther_description</run_depend>
   <run_depend>panther_bringup</run_depend>
+  <run_depend>panther_description</run_depend>
   <run_depend>panther_control</run_depend>
-  <run_depend>panther_navigation</run_depend>
   <run_depend>panther_gazebo</run_depend>
+  <run_depend>panther_navigation</run_depend>
 
   <export>
     <metapackage/>
