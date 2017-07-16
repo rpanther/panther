@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
   <!-- Send the Panther Robot URDF/XACRO to param server -->
-  <param name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find panther_description)/urdf/description.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find panther_description)/urdf/description.xacro'" />
   
   <!-- Activate node to propagate the joint state -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
