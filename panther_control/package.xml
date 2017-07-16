@@ -28,7 +28,6 @@
   <run_depend>twist_mux</run_depend>
   <run_depend>joy</run_depend>
   <run_depend>robot_localization</run_depend>
-  <run_depend>ros_dude_description</run_depend>
-  <run_depend>orbus_interface</run_depend>
+  <run_depend>panther_description</run_depend>
 
 </package>

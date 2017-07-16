@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>panther_unmanned</name>
+  <name>panther_bringup</name>
   <version>0.1.0</version>
   <description>
-	This is a list of all demo avaiable for robot
+	This is a package with all driver and startup nodes
   </description>
 
   

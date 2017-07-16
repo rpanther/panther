@@ -33,24 +33,24 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="joystick" default="false"/>
 
   <!-- Load unav hardware interface -->
-  <include file="$(find panther_control)/launch/include/driver.launch" />
+  <include file="$(find panther_bringup)/launch/include/driver.launch" />
 
   <!-- Load controller and EKF -->
-  <include file="$(find panther_control)/launch/control.launch" />
+  <include file="$(find panther_bringup)/launch/control.launch" />
 
   <!-- Launch LIDAR sensor -->
-  <include file="$(find panther_control)/launch/include/lidar.launch" />
+  <include file="$(find panther_bringup)/launch/include/lidar.launch" />
 
   <!-- Launch IMU sensor -->
-  <include file="$(find panther_control)/launch/include/imu.launch" />
+  <include file="$(find panther_bringup)/launch/include/imu.launch" />
 
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
-    <include file="$(find panther_control)/launch/include/zed_stereo.launch" />
+    <include file="$(find panther_bringup)/launch/include/zed_stereo.launch" />
   </group>
 
   <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_control)/launch/diagnostic.launch" />
+  <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick)">

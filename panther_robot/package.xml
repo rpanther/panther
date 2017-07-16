@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>panther_robot</name>
+  <version>0.1.0</version>
+  <description>
+	Panther meta package provides all the basic drivers for running and using a this robot
+  </description>
+
+  
+  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/rbonghi/panther</url>
+
+  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+
+  <run_depend>panther_description</run_depend>
+  <run_depend>panther_bringup</run_depend>
+  <run_depend>panther_control</run_depend>
+  <run_depend>panther_navigation</run_depend>
+  <run_depend>panther_gazebo</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
