@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      display.launch
+\authors   Raffaello Bonghi <raffaello@rnext.it
+\copyright Copyright (c) 2016, Raffaello Bonghi, All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <group ns="rtabmap">
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
+          <param name="frame_id" type="string" value="base_link"/>
+
+          <param name="subscribe_depth" type="bool" value="true"/>
+          <param name="subscribe_scan" type="bool" value="true"/>
+          <!--<param name="approx_sync" type="bool" value="false"/>-->
+
+          <remap from="odom" to="/odometry/filtered"/>
+          <remap from="scan" to="/scan"/>
+
+          <remap from="rgb/image" to="/zed/rgb/image_rect_color"/>
+          <remap from="depth/image" to="/zed/depth/depth_registered"/>
+          <remap from="rgb/camera_info" to="/zed/rgb/camera_info"/>
+
+          <param name="queue_size" type="int" value="10"/>
+
+          <!-- RTAB-Map's parameters -->
+          <param name="Grid/FromDepth"                    type="string" value="false"/>
+          <param name="Grid/DepthDecimation"              type="string" value="4"/>
+          <param name="Grid/FlatObstacleDetected"         type="string" value="true"/>
+
+          <param name="RGBD/NeighborLinkRefining"         type="string" value="true"/>
+          <param name="RGBD/ProximityBySpace"             type="string" value="true"/>
+          <param name="RGBD/AngularUpdate"                type="string" value="0.01"/>
+          <param name="RGBD/LinearUpdate"                 type="string" value="0.01"/>
+          <param name="RGBD/OptimizeFromGraphEnd"         type="string" value="false"/>
+          <param name="RGBD/LoopClosureReextractFeatures" type="string" value="true"/>
+
+          <param name="Kp/MaxFeatures"                    type="string" value="200"/>
+          <param name="Kp/MaxDepth"                       type="string" value="10"/>
+          <param name="Kp/DetectorStrategy"               type="string" value="0"/>   <!-- use SURF -->
+          <param name="SURF/HessianThreshold"             type="string" value="1000"/>
+          
+          <param name="Reg/Strategy"                      type="string" value="1"/> <!-- 1=ICP -->
+          <param name="Reg/Force3DoF"                     type="string" value="true"/>
+
+          <param name="Vis/EstimationType"                type="string" value="0"/>   <!-- 0=3D->3D, 1=3D->2D (PnP) -->
+          <param name="Vis/MinInliers"                    type="string" value="5"/>
+          <param name="Vis/InlierDistance"                type="string" value="0.1"/>
+          <param name="Vis/MaxDepth"                      type="string" value="10"/>
+          
+          <param name="Rtabmap/TimeThr"           type="string" value="700"/>
+          <param name="Mem/RehearsalSimilarity"   type="string" value="0.45"/>
+
+    </node>
+  </group>
+</launch>
