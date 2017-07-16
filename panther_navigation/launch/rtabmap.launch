@@ -59,7 +59,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <param name="SURF/HessianThreshold"             type="string" value="1000"/>
           
           <param name="Reg/Strategy"                      type="string" value="1"/> <!-- 1=ICP -->
-          <param name="Reg/Force3DoF"                     type="string" value="true"/>
+          <param name="Reg/Force3DoF"                     type="string" value="false"/>
 
           <param name="Vis/EstimationType"                type="string" value="0"/>   <!-- 0=3D->3D, 1=3D->2D (PnP) -->
           <param name="Vis/MinInliers"                    type="string" value="5"/>
