@@ -34,7 +34,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:include filename="$(find panther_description)/urdf/panther.urdf.xacro" />
   <xacro:include filename="$(find panther_gazebo)/urdf/materials.gazebo.xacro" />
-  <!-- lidar -->
+  <!-- sensors -->
+  <xacro:include filename="$(find panther_gazebo)/urdf/zed.gazebo.xacro" />
   <xacro:include filename="$(find panther_gazebo)/urdf/lidar.gazebo.xacro" />
 
   <!-- Gazebo plugin for ROS Control -->
@@ -49,5 +50,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:materials_gazebo />
 
   <xacro:lidar_gazebo />
+  <xacro:zed_camera_gazebo prefix="zed_camera" />
 
 </robot>
