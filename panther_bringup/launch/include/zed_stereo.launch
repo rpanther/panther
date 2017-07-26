@@ -36,7 +36,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="camera"      default="zed"/>
   <!-- Laserscan topic -->
   <arg name="scan_topic" default="scan"/>
-  <arg name="scan_processing"  default="true"/>
+  <arg name="scan_processing"  default="false"/>
   <arg name="cloud_frame_id"  default="zed_initial_frame"/>
 
   <group ns="$(arg camera)">
