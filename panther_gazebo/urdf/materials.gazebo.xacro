@@ -54,6 +54,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <material>Gazebo/Gold</material>
   </gazebo>
 
+  <gazebo reference="stand_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="laser_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
   </xacro:macro>
 
 </robot>
