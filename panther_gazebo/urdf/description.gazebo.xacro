@@ -50,6 +50,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:materials_gazebo />
 
   <xacro:lidar_gazebo />
-  <xacro:zed_camera_gazebo prefix="zed_camera" />
+  <xacro:zed_camera_gazebo prefix="zed" />
 
 </robot>
