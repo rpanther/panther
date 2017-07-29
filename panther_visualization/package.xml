@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>panther_visualization</name>
+  <version>0.1.0</version>
+  <description>
+	This is a collector of all visualizations
+  </description>
+
+  
+  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/rbonghi/panther</url>
+
+  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+
+</package>
