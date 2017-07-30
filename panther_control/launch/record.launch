@@ -28,9 +28,10 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <arg name="record_cameras" default="true" />
+  <arg name="folder" default="/home/nvidia" doc="Folder where you save the rosbag"/>
+  <arg name="record_cameras" default="true" />  
        
   <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
-        args="-o /home/nvidia/panther /zed/left/camera_info /zed/right/camera_info /zed/left/image_raw_color /zed/right/image_raw_color /zed/depth/camera_info /zed/depth/depth_registered /tf /odometry/filtered /imu/data /scan" 
+        args="-o $(arg folder)/panther /zed/rgb/camera_info /zed/rgb/image_rect_color/compressed /zed/depth/camera_info /zed/depth/depth_registered/compressedDepth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
         if="$(arg record_cameras)" />
 </launch>

@@ -43,6 +43,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <group if="$(arg publish_tf)">
       <include file="$(find zed_wrapper)/launch/zed_tf.launch" />
     </group>
+    
     <node name="zed_wrapper_node" pkg="zed_wrapper" type="zed_wrapper_node" output="screen">
 
       <!-- SVO file path -->
@@ -61,7 +62,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <param name="confidence"            value="100" />
 
       <!-- ROS topic names -->
-      <param name="rgb_topic"             value="rgb/image_rect_color" />
+      <param name="rgb_topic"             value="rgb/image_rect_color_raw" />
       <param name="rgb_raw_topic"         value="rgb/image_raw_color" />
       <param name="rgb_cam_info_topic"    value="rgb/camera_info" />
 
@@ -73,7 +74,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <param name="right_raw_topic"       value="right/image_raw_color" />
       <param name="right_cam_info_topic"  value="right/camera_info" />
 
-      <param name="depth_topic"           value="depth/depth_registered" />
+      <param name="depth_topic"           value="depth/depth_registered_raw" />
       <param name="depth_cam_info_topic"  value="depth/camera_info" />
 
       <param name="point_cloud_topic"     value="point_cloud/cloud_registered" />
@@ -81,6 +82,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <param name="odometry_topic"        value="odom" />
 
     </node>
+    <!-- TEMP Will be remove after fix from zed error -->
+    <node name="republish_rgb"   type="republish" pkg="image_transport" args="raw in:=rgb/image_rect_color_raw out:=rgb/image_rect_color" />
+    <node name="republish_depth" type="republish" pkg="image_transport" args="raw in:=depth/depth_registered_raw out:=depth/depth_registered" />
  
    <!--                        Laserscan 
      This uses lazy subscribing, so will not activate until scan is requested.
