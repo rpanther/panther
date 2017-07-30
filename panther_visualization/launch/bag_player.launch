@@ -28,6 +28,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Standalone launcher to visualize the robot model. -->
   <include file="$(find panther_description)/launch/description.launch"/>
+  
+  <node name="republish_rgb"  type="republish" pkg="image_transport" args="compressed in:=/zed/rgb/image_rect_color raw out:=/zed/rgb/image_rect_color" />
+  <node name="republish_depth" type="republish" pkg="image_transport" args="compressedDepth in:=/zed/depth/depth_registered raw out:=/zed/depth/depth_registered" />
+
 
   <node name="rviz" pkg="rviz" type="rviz" output="screen" />
 
