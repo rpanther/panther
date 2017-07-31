@@ -31,7 +31,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="folder" default="/home/nvidia" doc="Folder where you save the rosbag"/>
   <arg name="record_cameras" default="true" />  
        
-  <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
+  <!--<node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
         args="-o $(arg folder)/panther /zed/rgb/camera_info /zed/rgb/image_rect_color/compressed /zed/depth/camera_info /zed/depth/depth_registered/compressedDepth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
+        if="$(arg record_cameras)" />-->
+
+   <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
+        args="-o $(arg folder)/panther /zed/rgb/camera_info /zed/rgb/image_rect_color /zed/depth/camera_info /zed/depth/depth_registered /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
         if="$(arg record_cameras)" />
+
 </launch>
