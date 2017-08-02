@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+Copyright (C) 2017, Raffaello Bonghi <raffaello@rnext.it>
+All rights reserved
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+
+  <arg name="interactive_maker" default="true"/>
+  <arg name="interactive_maker_target_frame" default="base_link"/>
+  <arg name="depthcloud" default="true"/>
+  <arg name="depth_camera" default="/zed/depth/depth_registered" />
+  <arg name="rgb_camera" default="/zed/rgb/image_raw_color" />
+
+  <!-- ROSBRIDGE -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+     <arg name="port" value="9090"/>
+  </include>
+  <!-- TF WEB PUB -->
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" />
+  <!-- Interactive maker proxy -->
+  <group if="$(arg interactive_maker)">
+    <node name="web_proxy" pkg="interactive_marker_proxy" type="proxy">
+      <remap from="topic_ns" to="/twist_marker_server"/>
+      <remap from="target_frame" to="$(arg interactive_maker_target_frame)"/>
+    </node>
+  </group>
+  <!-- rosrun web_video_server web_video_server _port:=9999 -->
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server" output="screen">
+     <param name="port" value="9999"/>
+  </node>
+
+  <group if="$(arg depthcloud)">
+    <!-- rosrun depthcloud_encoder depthcloud_encoder_node _depth:=/camera/depth_registered/image_float _rgb:=/camera/rgb/image_rect_color -->
+    <node name="depthcloud_encoder" pkg="depthcloud_encoder" type="depthcloud_encoder_node" output="screen">
+       <param name="depth" value="$(arg depth_camera)/image_float" />
+       <param name="rgb" value="$(arg rgb_camera)" />
+    </node>
+
+    <!-- rosrun nodelet nodelet standalone depth_image_proc/convert_metric image_raw:=/zed/depth/depth_registered image:=/zed/depth/depth_registered/image_float -->
+    <node name="nodelet_standalone" pkg="nodelet" type="nodelet" args="standalone depth_image_proc/convert_metric" output="screen">
+       <remap from="image_raw" to="$(arg depth_camera)" />
+       <remap from="image" to="$(arg depth_camera)/image_float" />
+    </node>
+  </group>
+
+</launch>
