@@ -28,36 +28,23 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+    <!-- Define type of localization -->
+    <arg name="two_d_mode" default="false"/>
+    <!-- Print diagnostic filter -->
+    <arg name="diagnostics" default="true"/>
+    <!-- Type of filter -->
+    <!-- ekf= Extended Kalman Filter -->
+    <!-- ukf= Unscented Kalman Filter -->
+    <arg name="filter" default="ukf"/>
 
-  <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
-  <arg name="two_d_mode" default="false"/>
-
-  <!-- Load unav hardware interface -->
-  <include file="$(find panther_bringup)/launch/include/driver.launch" />
-
-  <!-- Launch LIDAR sensor -->
-  <include file="$(find panther_bringup)/launch/include/lidar.launch" />
-
-  <!-- Launch IMU sensor -->
-  <include file="$(find panther_bringup)/launch/include/imu.launch" />
-
-  <!-- Start ZED camera and laser scan -->
-  <group if="$(arg zed)">
-    <include file="$(find panther_bringup)/launch/include/zed_stereo.launch" />
-  </group>
-
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
-
-  <!-- Load controller and EKF -->
-  <include file="$(find panther_control)/launch/control.launch">
-    <arg name="two_d_mode" value="$(arg two_d_mode)" />
-  </include>
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
+    <!-- Launch EKF localization -->
+    <node pkg="robot_localization" type="$(arg filter)_localization_node" name="$(arg filter)_localization" output="screen">
+        <!-- Load definition filter -->
+        <rosparam command="load" file="$(find panther_control)/config/localization.yaml" />
+        <!-- Set 3D localization -->
+        <param name="two_d_mode" value="$(arg two_d_mode)" />
+        <!-- Print diagnostic -->
+        <param name="print_diagnostics" value="$(arg diagnostics)" />
+    </node>
+    
 </launch>

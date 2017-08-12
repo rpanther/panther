@@ -1,33 +1,51 @@
+# Reference http://docs.ros.org/lunar/api/robot_localization/html/index.html
+# REMEMBER:
+# map -> odom -> base_link
+# all sensor must be referenced to base_link
+
 map_frame: map
 odom_frame: odom
 base_link_frame: base_link
 world_frame: odom
 
-two_d_mode: true
-
+# Working frequency
 frequency: 50
 
-odom0: panther_velocity_controller/odom
-odom0_config: [true, true, false,
-               false, false, true,
-               false, false, false,
-               false, false, false,
-               false, false, false]
-odom0_differential: true
+# Sensor configuration http://docs.ros.org/lunar/api/robot_localization/html/state_estimation_nodes.html#sensor-config
+#        X,         Y,        Z,
+#     roll,     pitch,      yaw,
+#    dot X,     dot Y,    dot Z,
+# dot roll, dot pitch,  dot yaw,
+# dotdot X,  dotdot Y, dotdot Z
 
-odom1: zed/odom
-odom1_config: [true, true, true,
+odom0: /zed/odom
+odom0_config: [true, true, true,
                true, true, true,
                false, false, false,
                false, false, false,
                false, false, false]
-odom1_differential: true
+odom0_differential: false
+odom0_relative: false
 
-imu0: imu/data
-imu0_config: [false, false, false,
-              true, true, true,
-              false, false, false,
-              true, true, true,
-              false, false, false]
-imu0_differential: true
-imu0_remove_gravitational_acceleration: true
+#odom0_queue_size: 2
+#odom0_pose_rejection_threshold: 0.1
+#odom0_twist_rejection_threshold: 0
+
+odom1: panther_velocity_controller/odom
+odom1_config: [false, false, false,
+               false, false, false,
+               true, false, false,
+               false, false, false,
+               false, false, false]
+odom1_differential: true
+odom1_relative: false
+
+#imu0: /imu/data
+#imu0_config: [false, false, false,
+#              true, true, true,
+#              false, false, false,
+#              true, true, true,
+#              false, false, false]
+#imu0_differential: true
+#imu0_remove_gravitational_acceleration: true
+

@@ -32,5 +32,5 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find panther_description)/urdf/description.xacro'" />
   
   <!-- Activate node to propagate the joint state -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="panther_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>

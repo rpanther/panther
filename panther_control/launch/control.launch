@@ -28,6 +28,8 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+    <!-- Define type of localization, if true 2D localization -->
+    <arg name="two_d_mode" default="false"/>
 
     <!-- Differential controller parameters -->
     <rosparam command="load" file="$(find panther_control)/config/control.yaml" />
@@ -37,9 +39,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             args="panther_joint_publisher panther_velocity_controller --shutdown-timeout 3"/>
 
     <!-- Launch EKF localization -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
-      <rosparam command="load" file="$(find panther_control)/config/localization.yaml" />
-    </node>
+    <include file="$(find panther_control)/launch/localization.launch">
+        <arg name="two_d_mode" value="$(arg two_d_mode)" />
+    </include>
 
     <!-- Mux to control via joy, keyboard, high level control the robot -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
