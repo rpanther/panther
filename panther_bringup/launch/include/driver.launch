@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Load robot description -->
     <include file="$(find panther_description)/launch/description.launch" />
 
-    <!-- ORBus harware driver -->
+    <!-- Roboteq harware driver -->
     <node pkg="roboteq_control" type="driver_node" name="roboteq" output="screen">
         <rosparam command="load" file="$(find panther_bringup)/config/motors.yaml" />
         <rosparam subst_value="true">

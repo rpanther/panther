@@ -33,6 +33,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="joystick" default="false"/>
   <arg name="two_d_mode" default="false"/>
 
+  <!-- Enable/Disable sensor fusion -->
+  <arg name="filter" default="true"/>
+
   <!-- Load unav hardware interface -->
   <include file="$(find panther_bringup)/launch/include/driver.launch" />
 
@@ -44,14 +47,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
-    <include file="$(find panther_bringup)/launch/include/zed.launch" />
+    <include file="$(find panther_bringup)/launch/include/zed.launch">
+      <arg name="publish_tf" value="false" />
+    </include>
   </group>
 
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
 
-  <!-- Load controller and EKF -->
+  <!-- Load controller and filter -->
   <include file="$(find panther_control)/launch/control.launch">
+    <arg name="filter"     value="$(arg filter)" />
     <arg name="two_d_mode" value="$(arg two_d_mode)" />
   </include>
 

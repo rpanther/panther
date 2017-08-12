@@ -29,19 +29,33 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Define type of localization, if true 2D localization -->
-    <arg name="two_d_mode" default="false"/>
+    <arg name="two_d_mode"         default="false"/>
+    <!-- Enable/Disable filter -->
+    <arg name="filter"             default="true"/>
+    <!-- Enable/Disable TF odometry motor -->
+    <arg name="enable_odom_tf"     default="false"/>
 
     <!-- Differential controller parameters -->
     <rosparam command="load" file="$(find panther_control)/config/control.yaml" />
+    <!-- Enable/Disable TF odometry -->
+    <!-- Works only if filter is disabled -->
+    <group if="$(arg filter)">
+        <param name="enable_odom_tf" value="false" />
+    </group>
+    <group unless="$(arg filter)">
+        <param name="enable_odom_tf" value="$(arg enable_odom_tf)" />
+    </group>
 
     <!-- Launch and running al controller -->
     <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
             args="panther_joint_publisher panther_velocity_controller --shutdown-timeout 3"/>
 
     <!-- Launch EKF localization -->
-    <include file="$(find panther_control)/launch/localization.launch">
-        <arg name="two_d_mode" value="$(arg two_d_mode)" />
-    </include>
+    <group if="$(arg filter)">
+        <include file="$(find panther_control)/launch/localization.launch">
+            <arg name="two_d_mode" value="$(arg two_d_mode)" />
+        </include>
+    </group>
 
     <!-- Mux to control via joy, keyboard, high level control the robot -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
