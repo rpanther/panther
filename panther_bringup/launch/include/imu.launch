@@ -28,8 +28,17 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+  
+  <!-- Launch razor imu node  -->
   <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node" output="screen">
-    <rosparam file="$(find panther_bringup)/config/razor.yaml" command="load"/>
+    <rosparam command="load" file="$(find panther_bringup)/config/razor.yaml" />
     <remap from="imu" to="imu/data"/>
   </node>
+  
+  <!-- Launch IMU coordinate transform in base link -->
+  <node pkg="imu_transformer" type="imu_transformer_node" name="imu_transformer" output="screen">
+    <remap from="imu_in/data"  to="imu/data"/>
+    <remap from="imu_out/data" to="imu"/>
+  </node>
+  
 </launch>
