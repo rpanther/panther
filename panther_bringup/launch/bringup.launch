@@ -44,7 +44,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
-    <include file="$(find panther_bringup)/launch/include/zed_stereo.launch" />
+    <include file="$(find panther_bringup)/launch/include/zed.launch" />
   </group>
 
   <!-- Launch diagnostic aggregator -->
