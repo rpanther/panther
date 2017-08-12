@@ -29,9 +29,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="imu">
 
-  <xacro:macro name="imu" params="name parent *joint_pose">
+  <xacro:macro name="imu" params="parent *joint_pose">
 
-    <link name="${name}_center_link">
+    <link name="imu_board_link">
       <inertial>
         <origin xyz="0.0002 0.003 -0.00025" rpy="0 0 0" />
         <mass value="0.0045" />
@@ -48,17 +48,18 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <material name="Red" />
       </visual>
     </link>
-    <joint name="${name}_center_joint" type="fixed">
+    <joint name="imu_board_joint" type="fixed">
       <xacro:insert_block name="joint_pose"/>
       <parent link="${parent}" />
-      <child link="${name}_center_link" />
+      <child link="imu_board_link" />
     </joint>
 
-    <link name="${name}_link" />
-    <joint name="${name}_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
-      <parent link="${name}_center_link" />
-      <child link="${name}_link" />
+    <!-- Required "base_imu_link" to read the razor IMU data -->
+    <link name="base_imu_link" />
+    <joint name="base_imu_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 ${-M_PI/2} 0" />
+      <parent link="imu_board_link" />
+      <child link="base_imu_link" />
     </joint>
 
  </xacro:macro>
