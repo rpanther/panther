@@ -40,10 +40,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Enable/Disable TF odometry -->
     <!-- Works only if filter is disabled -->
     <group if="$(arg filter)">
-        <param name="enable_odom_tf" value="false" />
+        <param name="enable_odom_tf" type="bool" value="false" />
     </group>
     <group unless="$(arg filter)">
-        <param name="enable_odom_tf" value="$(arg enable_odom_tf)" />
+        <param name="enable_odom_tf" type="bool" value="$(arg enable_odom_tf)" />
     </group>
 
     <!-- Launch and running al controller -->

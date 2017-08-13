@@ -29,26 +29,40 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
   <!-- Launch the ZED wrapper node -->
-  <arg name="zed" default="true"/>
+  <arg name="zed"          default="true"  />
   <!-- Enable/disable 2D mode -->
-  <arg name="two_d_mode" default="false"/>
+  <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
-  <arg name="filter" default="false"/>
+  <arg name="filter"       default="false" />
+  
+  <!-- USB port selection -->
+  <arg name="ttyMOTOR"     default="/dev/ttyACM0" />
+  <arg name="ttyIMU"       default="/dev/ttyUSB0" />
+  <arg name="ttyLIDAR"     default="/dev/ttyUSB1" />
 
   <!-- Load motor control hardware interface -->
-  <include file="$(find panther_bringup)/launch/include/driver.launch" />
+  <include file="$(find panther_bringup)/launch/include/driver.launch">
+    <!-- Set TTY motor controller -->
+    <arg name="port"             value="$(arg ttyMOTOR)" />
+  </include>
 
   <!-- Launch LIDAR sensor -->
-  <include file="$(find panther_bringup)/launch/include/lidar.launch" />
+  <include file="$(find panther_bringup)/launch/include/lidar.launch">
+    <!-- Set TTY LIDAR controller -->
+    <arg name="port"             value="$(arg ttyLIDAR)" />
+  </include>
 
   <!-- Launch IMU sensor -->
-  <include file="$(find panther_bringup)/launch/include/imu.launch" />
+  <include file="$(find panther_bringup)/launch/include/imu.launch">
+    <!-- Set TTY IMU controller -->
+    <arg name="port"             value="$(arg ttyIMU)"   />
+  </include>
 
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
     <include file="$(find panther_bringup)/launch/include/zed.launch">
       <!-- Enable/Disable odometry TF from ZED -->
-      <arg name="publish_tf"       value="false" />
+      <arg name="publish_tf"     value="false" />
     </include>
   </group>
 
