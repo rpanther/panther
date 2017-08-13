@@ -35,6 +35,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="scan_topic"       default="scan"/>
     <arg name="scan_processing"  default="false"/>
     <arg name="cloud_frame_id"   default="zed_initial_frame"/>
+    <!-- Republish RGB and depth -->
+    <arg name="republish_topic"  default="true"/>
   
     <!-- Launch ZED camera node -->
     <group ns="$(arg camera)">
@@ -51,9 +53,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </include>
     
         <!-- TEMP Will be remove after fix from zed error -->
-        <!--<node name="republish_rgb"   type="republish" pkg="image_transport" args="raw in:=rgb/image_rect_color_raw out:=rgb/image_rect_color" />
-        <node name="republish_depth" type="republish" pkg="image_transport" args="raw in:=depth/depth_registered_raw out:=depth/depth_registered" />-->
- 
+        <group if="$(arg republish_topic)">        
+            <node name="republish_rgb"   type="republish" pkg="image_transport" args="raw in:=rgb/image_rect_color_raw out:=rgb/image_rect_color" />
+            <node name="republish_depth" type="republish" pkg="image_transport" args="raw in:=depth/depth_registered_raw out:=depth/depth_registered" />
+        </group> 
         <!--                        Laserscan 
             This uses lazy subscribing, so will not activate until scan is requested.
           -->

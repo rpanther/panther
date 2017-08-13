@@ -30,15 +30,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
   <!-- Launch the ZED wrapper node -->
   <arg name="zed"          default="true"  />
+  <!-- Launch web controller       -->
+  <arg name="web"          default="false" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
-  <arg name="filter"       default="false" />
+  <arg name="filter"       default="true" />
   
   <!-- USB port selection -->
   <arg name="ttyMOTOR"     default="/dev/ttyACM0" />
-  <arg name="ttyIMU"       default="/dev/ttyUSB0" />
-  <arg name="ttyLIDAR"     default="/dev/ttyUSB1" />
+  <arg name="ttyIMU"       default="/dev/ttyUSB1" />
+  <arg name="ttyLIDAR"     default="/dev/ttyUSB0" />
 
   <!-- Load motor control hardware interface -->
   <include file="$(find panther_bringup)/launch/include/driver.launch">
@@ -84,5 +86,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
+  
+  <!-- Launch web controller -->
+  <group if="$(arg web)">
+    <include file="$(find panther_control)/launch/web.launch" />
+  </group>
   
 </launch>

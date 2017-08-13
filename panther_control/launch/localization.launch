@@ -45,6 +45,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <param name="two_d_mode" value="$(arg two_d_mode)" />
         <!-- Print diagnostic -->
         <param name="print_diagnostics" value="$(arg diagnostics)" />
+        <!-- Remap inital pose. Compliant with RVIZ -->
+        <remap from="/set_pose" to="/initialpose" />
     </node>
     
 </launch>
