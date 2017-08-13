@@ -1,7 +1,3 @@
-## USB port
-port: /dev/ttyUSB1
-
-
 ##### Calibration ####
 ### accelerometer
 accel_x_min: -261.0

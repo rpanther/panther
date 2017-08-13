@@ -28,11 +28,16 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+  <!-- Set Lidar port -->
+  <arg name="port" default="/dev/ttyUSB0" />
+
+  <!-- Launch rplidar controller -->
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
-  <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>  
-  <param name="serial_baudrate"     type="int"    value="115200"/>
-  <param name="frame_id"            type="string" value="laser_frame"/>
-  <param name="inverted"            type="bool"   value="false"/>
-  <param name="angle_compensate"    type="bool"   value="true"/>
+    <param name="serial_port"         type="string" value="$(arg port)"/>  
+    <param name="serial_baudrate"     type="int"    value="115200"/>
+    <param name="frame_id"            type="string" value="laser_frame"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
   </node>
+  
 </launch>

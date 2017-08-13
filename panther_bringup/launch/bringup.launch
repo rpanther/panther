@@ -28,42 +28,61 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-
-  <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
-  <arg name="two_d_mode" default="false"/>
-
+  <!-- Launch the ZED wrapper node -->
+  <arg name="zed"          default="true"  />
+  <!-- Enable/disable 2D mode -->
+  <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
-  <arg name="filter" default="true"/>
+  <arg name="filter"       default="false" />
+  
+  <!-- USB port selection -->
+  <arg name="ttyMOTOR"     default="/dev/ttyACM0" />
+  <arg name="ttyIMU"       default="/dev/ttyUSB0" />
+  <arg name="ttyLIDAR"     default="/dev/ttyUSB1" />
 
-  <!-- Load unav hardware interface -->
-  <include file="$(find panther_bringup)/launch/include/driver.launch" />
+  <!-- Load motor control hardware interface -->
+  <include file="$(find panther_bringup)/launch/include/driver.launch">
+    <!-- Set TTY motor controller -->
+    <arg name="port"             value="$(arg ttyMOTOR)" />
+  </include>
 
   <!-- Launch LIDAR sensor -->
-  <include file="$(find panther_bringup)/launch/include/lidar.launch" />
+  <include file="$(find panther_bringup)/launch/include/lidar.launch">
+    <!-- Set TTY LIDAR controller -->
+    <arg name="port"             value="$(arg ttyLIDAR)" />
+  </include>
 
   <!-- Launch IMU sensor -->
-  <include file="$(find panther_bringup)/launch/include/imu.launch" />
+  <include file="$(find panther_bringup)/launch/include/imu.launch">
+    <!-- Set TTY IMU controller -->
+    <arg name="port"             value="$(arg ttyIMU)"   />
+  </include>
 
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
     <include file="$(find panther_bringup)/launch/include/zed.launch">
-      <arg name="publish_tf" value="false" />
+      <!-- Enable/Disable odometry TF from ZED -->
+      <arg name="publish_tf"     value="false" />
     </include>
   </group>
 
+  <!-- Load controller -->
+  <include file="$(find panther_control)/launch/control.launch">
+    <!-- Publish odom TF from motor controller -->
+    <arg name="enable_odom_tf"     value="false" />
+    <!-- Launch filter externally. See below -->
+    <arg name="filter"             value="false" />
+  </include>
+  
+  <!-- Load Sensor fusion filter -->
+  <group if="$(arg filter)">
+    <include file="$(find panther_control)/launch/localization.launch">
+      <!-- Enable/Disable 2D mode -->
+      <arg name="two_d_mode" value="$(arg two_d_mode)" />
+    </include>
+  </group>
+  
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
-
-  <!-- Load controller and filter -->
-  <include file="$(find panther_control)/launch/control.launch">
-    <arg name="filter"     value="$(arg filter)" />
-    <arg name="two_d_mode" value="$(arg two_d_mode)" />
-  </include>
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
+  
 </launch>

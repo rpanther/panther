@@ -28,10 +28,16 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+  <!-- Set Lidar port -->
+  <arg name="port" default="/dev/ttyUSB1" />
   
   <!-- Launch razor imu node  -->
   <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node" output="screen">
+    <!-- load serial port   -->
+    <param name="port"         type="string" value="$(arg port)"/>
+    <!-- load configuration -->
     <rosparam command="load" file="$(find panther_bringup)/config/razor.yaml" />
+    <!-- Remap imu data     -->
     <remap from="imu" to="imu/data"/>
   </node>
   
