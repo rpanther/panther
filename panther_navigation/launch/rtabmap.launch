@@ -29,6 +29,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <arg name="frame_id"  default="base_link" />
     <arg name="odom"      default="/odometry/filtered" />
 
+    <arg name="rgb_image"       default="/zed/rgb/image_rect_color"/>
+    <arg name="depth_image"     default="/zed/depth/depth_registered"/>
+    <arg name="rgb_camera_info" default="/zed/rgb/camera_info"/>
+        
+    <group if="$(arg throttled)">
+        <arg name="rgb_image"       value="/zed/data_throttled_image"/>
+        <arg name="depth_image"     value="/zed/data_throttled_image_depth"/>
+        <arg name="rgb_camera_info" value="/zed/data_throttled_camera_info"/>
+    </group>
+    
     <group ns="rtabmap">
         <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
             <!-- Register frame ID -->
@@ -41,16 +51,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <remap from="odom" to="$(arg odom)"/>
             <remap from="scan" to="/scan"/>
 
-            <group if="$(arg throttled)">
-                <remap from="rgb/image"       to="/zed/data_throttled_image"/>
-                <remap from="depth/image"     to="/zed/data_throttled_image_depth"/>
-                <remap from="rgb/camera_info" to="/zed/data_throttled_camera_info"/>
-            </group>
-            <group unless="$(arg throttled)">
-                <remap from="rgb/image"       to="/zed/rgb/image_rect_color"/>
-                <remap from="depth/image"     to="/zed/depth/depth_registered"/>
-                <remap from="rgb/camera_info" to="/zed/rgb/camera_info"/>
-            </group>
+            <remap from="rgb/image"       to="$(arg rgb_image)"/>
+            <remap from="depth/image"     to="$(arg depth_image)"/>
+            <remap from="rgb/camera_info" to="$(arg rgb_camera_info)"/>
             
             <param name="queue_size" type="int" value="5"/>
 
