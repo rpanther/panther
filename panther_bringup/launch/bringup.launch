@@ -28,15 +28,14 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-
+  <!-- Launch the ZED wrapper node -->
   <arg name="zed" default="true"/>
-  <arg name="joystick" default="false"/>
+  <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode" default="false"/>
-
   <!-- Enable/Disable sensor fusion -->
-  <arg name="filter" default="true"/>
+  <arg name="filter" default="false"/>
 
-  <!-- Load unav hardware interface -->
+  <!-- Load motor control hardware interface -->
   <include file="$(find panther_bringup)/launch/include/driver.launch" />
 
   <!-- Launch LIDAR sensor -->
@@ -48,22 +47,28 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Start ZED camera and laser scan -->
   <group if="$(arg zed)">
     <include file="$(find panther_bringup)/launch/include/zed.launch">
-      <arg name="publish_tf" value="false" />
+      <!-- Enable/Disable odometry TF from ZED -->
+      <arg name="publish_tf"       value="false" />
     </include>
   </group>
 
+  <!-- Load controller -->
+  <include file="$(find panther_control)/launch/control.launch">
+    <!-- Publish odom TF from motor controller -->
+    <arg name="enable_odom_tf"     value="false" />
+    <!-- Launch filter externally. See below -->
+    <arg name="filter"             value="false" />
+  </include>
+  
+  <!-- Load Sensor fusion filter -->
+  <group if="$(arg filter)">
+    <include file="$(find panther_control)/launch/localization.launch">
+      <!-- Enable/Disable 2D mode -->
+      <arg name="two_d_mode" value="$(arg two_d_mode)" />
+    </include>
+  </group>
+  
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
-
-  <!-- Load controller and filter -->
-  <include file="$(find panther_control)/launch/control.launch">
-    <arg name="filter"     value="$(arg filter)" />
-    <arg name="two_d_mode" value="$(arg two_d_mode)" />
-  </include>
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick)">
-    <include file="$(find panther_control)/launch/teleop.launch" />
-  </group>
- 
+  
 </launch>

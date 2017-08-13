@@ -31,7 +31,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Define type of localization, if true 2D localization -->
     <arg name="two_d_mode"         default="false"/>
     <!-- Enable/Disable filter -->
-    <arg name="filter"             default="true"/>
+    <arg name="filter"             default="false"/>
     <!-- Enable/Disable TF odometry motor -->
     <arg name="enable_odom_tf"     default="false"/>
 

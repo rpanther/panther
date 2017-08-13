@@ -1,7 +1,7 @@
 # Reference http://docs.ros.org/lunar/api/robot_localization/html/index.html
 # REMEMBER:
 # map -> odom -> base_link
-# all sensor must be referenced to base_link
+# all sensor MUST be referenced to base_link
 
 map_frame: map
 odom_frame: odom
@@ -31,7 +31,7 @@ odom0_relative: false
 #odom0_pose_rejection_threshold: 0.1
 #odom0_twist_rejection_threshold: 0
 
-odom1: panther_velocity_controller/odom
+odom1: /panther_velocity_controller/odom
 odom1_config: [false, false, false,
                false, false, false,
                true, false, false,
@@ -40,7 +40,7 @@ odom1_config: [false, false, false,
 odom1_differential: true
 odom1_relative: false
 
-#imu0: /imu/data
+#imu0: /imu
 #imu0_config: [false, false, false,
 #              true, true, true,
 #              false, false, false,
