@@ -32,30 +32,31 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="record_cameras" default="true" />  
   <arg name="camera" default="zed" />
   
+  <!-- Reference http://official-rtab-map-forum.67519.x6.nabble.com/RTAB-setup-with-a-3D-LiDAR-td1080.html -->
   <arg name="rate"  default="10"/>
   <!-- Reduce the image size, e.g., 2 means "width/2 x height/2". -->
-  <arg name="decimation"  default="1"/>
+  <arg name="decimation"  default="2"/>
   <arg name="approx_sync" default="true" />
   
   <!-- Throttling messages -->
   <group ns="$(arg camera)">
-    <node pkg="nodelet" type="nodelet" name="data_throttle" args="load rtabmap_ros/data_throttle camera_nodelet_manager" output="screen">
+     <node pkg="nodelet" type="nodelet" name="data_throttle" args="standalone rtabmap_ros/data_throttle" output="screen">
       <param name="rate" type="double" value="$(arg rate)"/>
       <param name="decimation" type="int" value="$(arg decimation)"/>
       <param name="approx_sync" type="bool" value="$(arg approx_sync)"/>
-   
-      <remap from="rgb/image_in"       to="rgb/image_rect_color"/>
-      <remap from="depth/image_in"     to="depth_registered"/>
+         
+      <remap from="rgb/image_in"       to="rgb/image_rect_color_raw"/>
+      <remap from="depth/image_in"     to="depth/depth_registered_raw"/>
       <remap from="rgb/camera_info_in" to="rgb/camera_info"/>
     
       <remap from="rgb/image_out"       to="data_throttled_image"/>
       <remap from="depth/image_out"     to="data_throttled_image_depth"/>
       <remap from="rgb/camera_info_out" to="data_throttled_camera_info"/>
-    </node>   
+    </node>
   </group>
 
-   <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
-        args="-o $(arg folder)/panther /$(arg camera)/data_throttled_camera_info /$(arg camera)/data_throttled_image /$(arg camera)/data_throttled_image_depth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
+  <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
+        args="-b 1024 -o $(arg folder)/panther /$(arg camera)/data_throttled_camera_info /$(arg camera)/data_throttled_image /$(arg camera)/data_throttled_image_depth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
         if="$(arg record_cameras)" />
 
 </launch>
