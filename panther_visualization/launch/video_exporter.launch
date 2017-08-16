@@ -2,7 +2,7 @@
 <!--
 Software License Agreement (BSD)
 
-\file      bag_player.launch
+\file      display.launch
 \authors   Raffaello Bonghi <raffaello@rnext.it
 \copyright Copyright (c) 2016, Raffaello Bonghi, All rights reserved.
 
@@ -24,28 +24,23 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-    <arg name="filter" default="false"/>
-    <arg name="video"  default="false" />
-    <!-- Set simulation mode -->
-    <param name="use_sim_time" type="bool" value="True"/>
 
-    <!-- Standalone launcher to visualize the robot model. -->
-    <include file="$(find panther_description)/launch/description.launch"/>
-    
-    <!-- Launch EKF localization -->
-    <group if="$(arg filter)">
-        <include file="$(find panther_control)/launch/localization.launch">
-            <!-- Enable/Disable 2D mode -->
-            <arg name="two_d_mode" value="$(arg two_d_mode)" />
-        </include>
-    </group>
-    
-    <!-- Launch RGB video recorder -->
-    <group if="$(arg video)">
-        <include file="$(find panther_visualization)/launch/video_exporter.launch" />
-    </group>
-    
-    <!-- Launch visualization tool -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find panther_visualization)/rviz/bag_player.rviz" output="screen" />
-    
+    <!-- Check https://answers.ros.org/question/261616/get-timestamp-during-roslaunch/ to solve automatic set date in every video -->
+
+    <arg name="fps" value="10"/>
+
+    <node name="rgb_extract" pkg="image_view" type="video_recorder" respawn="false" output="screen">
+        <remap from="image" to="/zed/data_throttled_image"/>
+        <param name="fps" type="int" value="$(arg fps)" />
+        <param name="filename" value="$(env HOME)/Videos/$(anon video)_rgb.avi" />
+    </node>
+  
+    <!--
+    <node name="depth_extract" pkg="image_view" type="video_recorder" respawn="false" output="screen">
+        <remap from="image" to="/zed/data_throttled_image_depth"/>
+        <param name="fps" type="int" value="$(arg fps)" />
+        <param name="filename" value="$(env HOME)/Videos/$(anon video)_depth.avi" />
+    </node>
+    -->
+  
 </launch>
