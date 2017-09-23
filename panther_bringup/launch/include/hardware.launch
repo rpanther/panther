@@ -28,7 +28,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-    <arg name="port" default="/dev/ttyACM0" />
+    <arg name="port" default="/dev/ttyACM1" />
     
     <!-- LED effect controller -->
     <include file="$(find panther_led_controller)/launch/led_controller.launch">
@@ -37,4 +37,5 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </include>
     <!-- Audio controller -->
     <include file="$(find panther_audio)/launch/audio.launch" />
+    <node pkg="panther_audio" type="joystick_bridge.py" name="panther_audio" output="screen"/>
 </launch>

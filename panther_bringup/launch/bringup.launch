@@ -33,7 +33,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Launch web controller       -->
   <arg name="web"          default="false" />
   <!-- Enable/Disable LED effect -->
-  <arg name="effect"       default="false" />
+  <arg name="effect"       default="true" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
