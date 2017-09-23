@@ -37,5 +37,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </include>
     <!-- Audio controller -->
     <include file="$(find panther_audio)/launch/audio.launch" />
-    <node pkg="panther_audio" type="joystick_bridge.py" name="panther_audio" output="screen"/>
 </launch>
