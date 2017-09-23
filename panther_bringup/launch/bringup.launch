@@ -90,15 +90,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
 
-  <!-- Launch LED effect controller -->
+  <!-- Launch LED and AUDIO effect controller -->
   <group if="$(arg effect)">
-    <!-- LED effect controller -->
-    <include file="$(find panther_led_controller)/launch/led_controller.launch">
-        <!-- Set TTY LED controller -->
-        <arg name="port"             value="$(arg ttyEFFECT)" />
+    <include file="$(find panther_bringup)/launch/include/hardware.launch">
+        <!-- Set TTY LED arduino controller -->
+        <arg name="port"           value="$(arg ttyEFFECT)" />
     </include>
-    <!-- Audio controller -->
-    <include file="$(find panther_audio)/launch/audio.launch" />
   </group>
   
   <!-- Launch web controller -->
