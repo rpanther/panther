@@ -32,6 +32,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="zed"          default="true"  />
   <!-- Launch web controller       -->
   <arg name="web"          default="false" />
+  <!-- Enable/Disable LED effect -->
+  <arg name="effect"       default="false" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
@@ -41,7 +43,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="ttyMOTOR"     default="/dev/ttyACM0" />
   <arg name="ttyIMU"       default="/dev/ttyUSB1" />
   <arg name="ttyLIDAR"     default="/dev/ttyUSB0" />
-
+  <arg name="ttyEFFECT"     default="/dev/ttyACM1" />
+  
   <!-- Load motor control hardware interface -->
   <include file="$(find panther_bringup)/launch/include/driver.launch">
     <!-- Set TTY motor controller -->
@@ -86,6 +89,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   
   <!-- Launch diagnostic aggregator -->
   <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
+
+  <!-- Launch LED effect controller -->
+  <group if="$(arg effect)">
+    <!-- LED effect controller -->
+    <include file="$(find panther_led_controller)/launch/led_controller.launch">
+        <!-- Set TTY LED controller -->
+        <arg name="port"             value="$(arg ttyEFFECT)" />
+    </include>
+    <!-- Audio controller -->
+    <include file="$(find panther_audio)/launch/audio.launch" />
+  </group>
   
   <!-- Launch web controller -->
   <group if="$(arg web)">
