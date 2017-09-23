@@ -56,7 +56,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <node pkg="rosbag" type="record" name="rosbag_record" output="screen" 
-        args="-b 1024 -o $(arg folder)/panther /$(arg camera)/data_throttled_camera_info /$(arg camera)/data_throttled_image /$(arg camera)/data_throttled_image_depth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf" 
+        args="-b 1024 -o $(arg folder)/panther /$(arg camera)/data_throttled_camera_info /$(arg camera)/data_throttled_image /$(arg camera)/data_throttled_image_depth /panther_velocity_controller/odom /zed/odom /imu/data /odometry/filtered /scan /tf /panther_velocity_controller/cmd_vel" 
         if="$(arg record_cameras)" />
 
 </launch>
