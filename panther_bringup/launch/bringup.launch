@@ -92,7 +92,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Launch LED and AUDIO effect controller -->
   <group if="$(arg effect)">
-    <include file="$(find panther_bringup)/launch/include/hardware.launch">
+    <include file="$(find panther_hardware)/launch/hardware.launch">
         <!-- Set TTY LED arduino controller -->
         <arg name="port"           value="$(arg ttyEFFECT)" />
     </include>
