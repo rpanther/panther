@@ -35,7 +35,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Enable/Disable LED effect -->
   <arg name="effect"       default="true" />
   <!-- Enable/disable 2D mode -->
-  <arg name="two_d_mode"   default="false" />
+  <arg name="two_d_mode"   default="true" />
   <!-- Enable/Disable sensor fusion -->
   <arg name="filter"       default="true" />
   
