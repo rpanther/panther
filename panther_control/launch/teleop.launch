@@ -30,7 +30,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
   <!-- Define arguments -->
   <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
-  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joy_dev" default="/dev/input/js1" />
   <!-- Load joystick configuration -->
   <rosparam command="load" file="$(find panther_control)/config/teleop.yaml" />
   <!-- Joystick node -->

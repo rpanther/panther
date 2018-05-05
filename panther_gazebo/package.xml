@@ -19,6 +19,6 @@
   <build_depend>roslaunch</build_depend>
 
   <run_depend>panther_description</run_depend>
-  <run_depend>gazebo_ros</run_depend>
+  <!--<run_depend>gazebo_ros</run_depend>-->
 
 </package>

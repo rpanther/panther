@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
   <!-- Set Lidar port -->
-  <arg name="port" default="/dev/ttyUSB0" />
+  <arg name="port" default="/dev/ttyUSB1" />
 
   <!-- Launch rplidar controller -->
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
