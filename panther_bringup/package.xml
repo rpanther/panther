@@ -1,26 +1,20 @@
 <?xml version="1.0"?>
 <package>
   <name>panther_bringup</name>
-  <version>0.1.0</version>
-  <description>
-	This is a package with all driver and startup nodes
-  </description>
+  <version>1.0.0</version>
+  <description>This package bring-up your Panther robot</description>
 
-  
+  <license>MIT</license>
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-
-  <license>BSD</license>
-
   <url type="repository">https://github.com/rbonghi/panther</url>
-
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
+  <!--<build_depend>roslaunch</build_depend>-->
 
   <run_depend>panther_description</run_depend>
   
   <!-- remove depend <run_depend>razor_imu_9dof</run_depend> -->
-  <run_depend>imu_transformer</run_depend>
+  <!--<run_depend>imu_transformer</run_depend>-->
 
 </package>

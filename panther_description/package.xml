@@ -2,18 +2,15 @@
 <package format="2">
   <name>panther_description</name>
   <version>1.0.0</version>
-  <description>The panther_description package</description>
+  <description>This package collect all Panther meshes and TF configuration</description>
 
+  <license>MIT</license>
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-
-  <license>TODO</license>
-
-  <url type="website">http://rnext.it/panther</url>
-
+  <url type="repository">https://github.com/rbonghi/panther</url>
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <depend>xacro</depend>
+  <!--<depend>xacro</depend>-->
   
 </package>

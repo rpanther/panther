@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <package>
   <name>panther_robot</name>
-  <version>0.1.0</version>
-  <description>
-	Panther meta package provides all the basic drivers for running and using a this robot
-  </description>
+  <version>1.0.0</version>
+  <description>Panther meta package provides all the basic drivers for running and using a this robot</description>
 
-  
+  <license>MIT</license>
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-
-  <license>BSD</license>
-
   <url type="repository">https://github.com/rbonghi/panther</url>
-
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
