@@ -4,9 +4,11 @@
   <version>1.0.0</version>
   <description>Panther meta package provides all the basic drivers for running and using a this robot</description>
 
-  <license>MIT</license>
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-  <url type="repository">https://github.com/rbonghi/panther</url>
+  <license>MIT</license>
+  
+  <url type="website">https://rnext.it/panther</url>
+  <url type="repository">https://github.com/rpanther/panther</url>
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -14,7 +16,6 @@
   <run_depend>panther_bringup</run_depend>
   <run_depend>panther_description</run_depend>
   <run_depend>panther_control</run_depend>
-  <run_depend>panther_gazebo</run_depend>
   <run_depend>panther_navigation</run_depend>
 
   <export>
