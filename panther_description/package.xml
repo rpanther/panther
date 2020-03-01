@@ -4,13 +4,17 @@
   <version>1.0.0</version>
   <description>This package collect all Panther meshes and TF configuration</description>
 
-  <license>MIT</license>
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-  <url type="repository">https://github.com/rbonghi/panther</url>
+  <license>MIT</license>
+  
+  <url type="website">https://rnext.it/panther</url>
+  <url type="repository">https://github.com/rpanther/panther</url>
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <!--<depend>xacro</depend>-->
+  <!-- TODO: Check if require another more dependencies -->
+  <depend>joint_state_publisher_gui</depend>
+  <depend>xacro</depend>
   
 </package>
