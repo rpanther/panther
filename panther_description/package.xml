@@ -14,7 +14,7 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <!-- TODO: Check if require another more dependencies -->
-  <depend>joint_state_publisher_gui</depend>
-  <depend>xacro</depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>xacro</exec_depend>
   
 </package>

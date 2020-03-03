@@ -90,7 +90,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </joint>
 
   <!-- ZED camera -->
-    <link name="zed_center">
+  <!--  <link name="zed_center">
     <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -148,7 +148,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <parent link="zed_center"/>
         <child link="zed_right_camera"/>
         <origin xyz="0 -0.06 0" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
   </xacro:macro>
 </robot>

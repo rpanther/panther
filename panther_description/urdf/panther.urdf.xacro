@@ -30,9 +30,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find panther_description)/urdf/chassis.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/track.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/track/track.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/zed_lidar.urdf.xacro" />
   <xacro:include filename="$(find panther_description)/urdf/imu.urdf.xacro" />
+  <xacro:include filename="$(find zed_wrapper)/urdf/zed.urdf.xacro" /> <!-- ZED external xacro -->
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -72,6 +73,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:zed_lidar parent="frame_link">
     <origin xyz="-0.03600 0 0.1700" rpy="0 0 0" />
   </xacro:zed_lidar>
+  
+  <xacro:zed parent="stand_link" camera_name="zed" camera_model="zed2">
+    <origin xyz="0.028 0 0.021" rpy="0 0 0" />
+  </xacro:zed>
   <!-- ZED - END -->
 
   <!-- IMU -->

@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <!--
-Copyright (C) 2017, Raffaello Bonghi <raffaello@rnext.it>
+Copyright (C) 2020, Raffaello Bonghi <raffaello@rnext.it>
 All rights reserved
-
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
-
 1. Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright
@@ -29,9 +27,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="track">
 
-  <xacro:include filename="$(find panther_description)/urdf/sprocket.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/gear.urdf.xacro" />
-  <xacro:include filename="$(find panther_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/track/sprocket.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/track/gear.urdf.xacro" />
+  <xacro:include filename="$(find panther_description)/urdf/track/wheel.urdf.xacro" />
 
   <xacro:macro name="track" params="type parent">
 

@@ -30,5 +30,5 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <include file="$(find panther_description)/launch/description.launch"/>
 
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" output="screen" />
-  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find panther_description)/rviz/urdf.rviz" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find panther_description)/rviz/urdf.rviz" output="screen" required="true"/>
 </launch>
