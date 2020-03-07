@@ -42,6 +42,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <remap from="cmd_vel" to="$(arg cmd_topic)"/>
   </node>
   <!-- Interactive maker -->
-  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>
+  <!--<node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>-->
 
 </launch>

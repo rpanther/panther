@@ -3,14 +3,20 @@
   <name>panther_control</name>
   <version>1.0.0</version>
   <description>This package configure and run all controllers.</description>
-  
-  <license>MIT</license>
+
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
+  <license>MIT</license>
+
+  <url type="website">https://rnext.it/</url>
   <url type="repository">https://github.com/rbonghi/panther</url>
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <!--<build_depend>roslaunch</build_depend>-->
+
+  <run_depend>joy</run_depend>
+  <run_depend>teleop_twist_joy</run_depend>
+  <!--<run_depend>twist_mux</run_depend>-->
+
 
   <!-- remove depend <run_depend>interactive_marker_twist_server</run_depend> -->
   <!--<run_depend>diff_drive_controller</run_depend>-->
@@ -19,8 +25,6 @@
   <!--<run_depend>rostopic</run_depend>-->
   <!--<run_depend>controller_manager</run_depend>-->
   <!--<run_depend>teleop_twist_joy</run_depend>-->
-  <!--<run_depend>twist_mux</run_depend>-->
-  <!--<run_depend>joy</run_depend>-->
   <!--<run_depend>robot_localization</run_depend>-->
   <!--<run_depend>panther_description</run_depend>-->
 
