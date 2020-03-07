@@ -10,11 +10,7 @@
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <!--<build_depend>roslaunch</build_depend>-->
 
-  <run_depend>panther_description</run_depend>
-  
-  <!-- remove depend <run_depend>razor_imu_9dof</run_depend> -->
-  <!--<run_depend>imu_transformer</run_depend>-->
+  <run_depend>panther_control</run_depend>
 
 </package>

@@ -35,7 +35,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <!-- Send the Panther Robot URDF/XACRO to param server -->
     <param name="robot_description"
-         command="$(find xacro)/xacro --inorder '$(find panther_description)/urdf/panther.urdf.xacro'
+         command="$(find xacro)/xacro '$(find panther_description)/urdf/panther.urdf.xacro'
                   zed_model:=$(arg zed_model)
                   jetson:=$(arg jetson)
                   motor_board:=$(arg motor_board)
@@ -43,5 +43,5 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     />
 
     <!-- Activate node to propagate the joint state -->
-    <node name="panther_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>

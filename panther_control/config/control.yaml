@@ -1,9 +1,9 @@
 # Publish all joint states -----------------------------------
-panther_joint_publisher:
+joint_publisher:
   type: "joint_state_controller/JointStateController"
   publish_rate: 50
 
-panther_velocity_controller:
+velocity_controller:
   type: "diff_drive_controller/DiffDriveController"
   left_wheel: 'left_joint'
   right_wheel: 'right_joint'
@@ -17,7 +17,7 @@ panther_velocity_controller:
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
-  enable_odom_tf: false
+  enable_odom_tf: true
 
   # Panther hardware provides wheel velocities
   estimate_velocity_from_position: false

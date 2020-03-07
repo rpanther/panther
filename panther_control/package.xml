@@ -1,30 +1,29 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>panther_control</name>
   <version>1.0.0</version>
   <description>This package configure and run all controllers.</description>
 
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
   <license>MIT</license>
-
-  <url type="website">https://rnext.it/</url>
-  <url type="repository">https://github.com/rbonghi/panther</url>
+  
+  <url type="website">https://rnext.it/panther</url>
+  <url type="repository">https://github.com/rpanther/panther</url>
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>joy</run_depend>
-  <run_depend>teleop_twist_joy</run_depend>
-  <!--<run_depend>twist_mux</run_depend>-->
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>twist_mux</exec_depend>
 
+  <exec_depend>joy</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
 
   <!-- remove depend <run_depend>interactive_marker_twist_server</run_depend> -->
-  <!--<run_depend>diff_drive_controller</run_depend>-->
-  <!--<run_depend>joint_state_controller</run_depend>-->
-  <!--<run_depend>joint_trajectory_controller</run_depend>-->
   <!--<run_depend>rostopic</run_depend>-->
-  <!--<run_depend>controller_manager</run_depend>-->
-  <!--<run_depend>teleop_twist_joy</run_depend>-->
   <!--<run_depend>robot_localization</run_depend>-->
   <!--<run_depend>panther_description</run_depend>-->
 
