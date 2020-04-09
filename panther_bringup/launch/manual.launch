@@ -2,8 +2,10 @@
 <!--
 Copyright (C) 2020, Raffaello Bonghi <raffaello@rnext.it>
 All rights reserved
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
+
 1. Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright
@@ -26,30 +28,14 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-    <!-- Define arguments -->
-    <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
-    <arg name="joy_dev" default="/dev/input/js0" />
-    <arg name="joystick" default="false" />
-
-    <!-- Load joystick configuration -->
-    <rosparam command="load" file="$(find panther_control)/config/teleop.yaml" />
-    <!-- Joystick node -->
-    <node pkg="joy" type="joy_node" name="joy_node">
-        <param name="dev" value="$(arg joy_dev)" />
-    </node>
-    <!-- Twister node controller -->
-    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
-        <remap from="cmd_vel" to="$(arg cmd_topic)"/>
-    </node>
   
-    <!-- Launch joystick bridge -->
-    <group if="$(arg joystick)">
-        <node pkg="panther_hardware" type="joystick_bridge.py" name="panther_audio" output="screen">
-          <rosparam command="load" file="$(find panther_drivers)/config/joystick.yaml" />
-        </node>
-    </group>
-
-  <!-- Interactive maker -->
-  <!--<node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>-->
+  <!-- Launch Teesny controller -->
+  <include file="$(find panther_hardware)/launch/hardware.launch">
+    <arg name="twist" value="/joy_teleop/cmd_vel"/>
+    <arg name="led"   value="false"/>
+  </include>
+    
+  <!-- Launch teloperation -->
+  <include file="$(find panther_control)/launch/teleop.launch" /> 
 
 </launch>

@@ -38,7 +38,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="localization"       default="false" />
 
     <!-- Launch diagnostic aggregator -->
-    <include file="$(find panther_bringup)/launch/include/diagnostic.launch" />
+    <!-- <include file="$(find panther_drivers)/launch/include/diagnostic.launch" />-->
 
     <group if="$(arg drivers)">
         <include file="$(find panther_drivers)/launch/drivers.launch" />
