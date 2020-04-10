@@ -27,27 +27,20 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Define arguments -->
-    <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
+    <!--<arg name="cmd_topic" default="joy_teleop/cmd_vel" />-->
+    <arg name="cmd_topic" default="velocity_controller/cmd_vel" />
     <arg name="joy_dev" default="/dev/input/js0" />
-    <arg name="joystick" default="false" />
 
     <!-- Load joystick configuration -->
     <rosparam command="load" file="$(find panther_control)/config/teleop.yaml" />
     <!-- Joystick node -->
-    <node pkg="joy" type="joy_node" name="joy_node">
+    <node pkg="joy" type="joy_node" name="joy_node" respawn="true" respawn_delay="60">
         <param name="dev" value="$(arg joy_dev)" />
     </node>
     <!-- Twister node controller -->
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
         <remap from="cmd_vel" to="$(arg cmd_topic)"/>
     </node>
-  
-    <!-- Launch joystick bridge -->
-    <group if="$(arg joystick)">
-        <node pkg="panther_hardware" type="joystick_bridge.py" name="panther_audio" output="screen">
-          <rosparam command="load" file="$(find panther_drivers)/config/joystick.yaml" />
-        </node>
-    </group>
 
   <!-- Interactive maker -->
   <!--<node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>-->

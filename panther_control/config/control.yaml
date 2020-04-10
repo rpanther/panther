@@ -17,7 +17,7 @@ velocity_controller:
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
-  enable_odom_tf: true
+# DISABLED (enable from control.launch) enable_odom_tf: true
 
   # Panther hardware provides wheel velocities
   estimate_velocity_from_position: false

@@ -26,20 +26,24 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-    <!-- Enable/Disable TF odometry motor -->
-    <arg name="enable_odom_tf"     default="false"/>
+  <!-- Odometry fused with IMU is published by robot_localization, so
+        no need to publish a TF based on encoders alone. -->
+  <arg name="enable_odom_tf" default="true" />
 
-    <!-- Differential controller parameters -->
-    <rosparam command="load" file="$(find panther_control)/config/control.yaml" />
+  <!-- Differential controller parameters -->
+  <rosparam command="load" file="$(find panther_control)/config/control.yaml" />
+  <group ns="velocity_controller">
+    <rosparam subst_value="true">
+        enable_odom_tf: $(arg enable_odom_tf)
+    </rosparam>
+  </group>
+  <!-- Launch and running al controller -->
+  <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
+          args="joint_publisher velocity_controller"/>
 
-    <!-- Launch and running al controller -->
-    <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
-            args="joint_publisher velocity_controller"/>
-
-    <!-- Mux to control via joy, keyboard, high level control the robot -->
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-      <rosparam command="load" file="$(find panther_control)/config/twist_mux.yaml" />
-      <remap from="cmd_vel_out" to="velocity_controller/cmd_vel"/>
-    </node>
-
+  <!-- Mux to control via joy, keyboard, high level control the robot -->
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find panther_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="velocity_controller/cmd_vel"/>
+  </node>
 </launch>

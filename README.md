@@ -24,7 +24,10 @@ Read more about [Panther]
   - 2 speakers
   - 2 microphones
 - Motors:
-  - 2x P2052416 - 52.8W - 150Ncm
+  - [Micromotors] 2x [P205.24.16] - 52.8W - 150Ncm
+    * Motor ratio: 16
+    * Gear: 16
+    * Sprocket: 24
 - Battery:
   - 6S1P LiPo battery 22.2V - 5Ah
 Materials:
@@ -32,8 +35,11 @@ Materials:
   - Cover and Tracks in transparent PVC
 
 [Panther]: http://rnext.it/panther/
+
 [AGX Xavier]: https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit
 [TX2]: http://www.nvidia.com/object/embedded-systems-dev-kits-modules.html
+[Micromotors]: http://www.micromotors.eu/micro_motors_eng.html
+[P205.24.16]: http://www.micromotors.eu/planetary_gear_motor_p205.html
 [SDC2130]: https://www.roboteq.com/index.php/roboteq-products-and-services/brushed-dc-motor-controllers/249/sdc21xx-family
 [Stereolabs]: https://www.stereolabs.com/
 [ZED2]: https://www.stereolabs.com/zed-2/
