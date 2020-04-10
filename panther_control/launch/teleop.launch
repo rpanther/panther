@@ -27,8 +27,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Define arguments -->
-    <!--<arg name="cmd_topic" default="joy_teleop/cmd_vel" />-->
-    <arg name="cmd_topic" default="velocity_controller/cmd_vel" />
+    <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
+    <!--<arg name="cmd_topic" default="velocity_controller/cmd_vel" />-->
     <arg name="joy_dev" default="/dev/input/js0" />
 
     <!-- Load joystick configuration -->

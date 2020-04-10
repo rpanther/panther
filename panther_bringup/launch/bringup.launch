@@ -58,7 +58,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </include>
     <!-- Teleoperation mode -->
     <include file="$(find panther_control)/launch/teleop.launch" />
-
     <!-- Load Sensor fusion filter -->
     <group if="$(arg localization)">
       <include file="$(find panther_control)/launch/localization.launch">
