@@ -28,14 +28,26 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  
-  <!-- Launch Teesny controller -->
-  <include file="$(find panther_hardware)/launch/hardware.launch">
-    <arg name="twist" value="/joy_teleop/cmd_vel"/>
-    <arg name="led"   value="false"/>
+  <arg name="web"          default="false" />
+  <arg name="marker"       default="false" />
+  <arg name="cmd_topic"    default="joy_teleop/cmd_vel" />
+  <!-- Output
+        - screen
+        - log
+       -->
+  <arg name="output"          default="log" />
+
+  <!-- Teleoperation mode -->
+  <include file="$(find panther_control)/launch/teleop.launch">
+    <arg name="cmd_topic"    value="$(arg cmd_topic)" />
   </include>
-    
-  <!-- Launch teloperation -->
-  <include file="$(find panther_control)/launch/teleop.launch" /> 
+  <!-- Interactive maker -->
+  <group if="$(arg marker)">
+    <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="$(arg output)"/>
+  </group>
+  <!-- Launch web controller -->
+  <group if="$(arg web)">
+    <include file="$(find panther_control)/launch/web.launch" />
+  </group>
 
 </launch>

@@ -35,8 +35,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Enable/Disable sensor fusion -->
   <arg name="localization"       default="true" />
 
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_bringup)/launch/diagnostic.launch" />
   <!-- Load all device drivers
         - Roboteq
         - ZED2
@@ -47,6 +45,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <group if="$(arg drivers)">
     <include file="$(find panther_drivers)/launch/drivers.launch" />
   </group>
+
   <!-- Load controller -->
   <group ns="panther">
     <!-- 1. ROS_Control:
@@ -66,13 +65,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <arg name="two_d_mode" value="$(arg two_d_mode)" />
       </include>
     </group>
-    <!--TODO: Merge in a single launch -->
-    <!-- Teleoperation mode -->
-    <include file="$(find panther_control)/launch/teleop.launch" />
-    <!-- Launch web controller -->
-    <group if="$(arg web)">
-      <include file="$(find panther_control)/launch/web.launch" />
-    </group>
+    <!-- User Drive Interfaces -->
+    <include file="$(find panther_bringup)/launch/user_drive_interface.launch">
+      <arg name="web" value="$(arg web)" />
+    </include>
   </group>
+  <!-- Launch diagnostic aggregator -->
+  <include file="$(find panther_bringup)/launch/diagnostic.launch" />
 
 </launch>

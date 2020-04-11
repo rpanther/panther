@@ -27,8 +27,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Define arguments -->
-    <arg name="cmd_topic" default="joy_teleop/cmd_vel" />
-    <!--<arg name="cmd_topic" default="velocity_controller/cmd_vel" />-->
+    <arg name="cmd_topic" default="velocity_controller/cmd_vel" />
     <arg name="joy_dev" default="/dev/input/js0" />
 
     <!-- Load joystick configuration -->
@@ -41,8 +40,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
         <remap from="cmd_vel" to="$(arg cmd_topic)"/>
     </node>
-
-  <!-- Interactive maker -->
-  <!--<node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>-->
-
 </launch>
