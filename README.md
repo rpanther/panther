@@ -4,7 +4,7 @@
 
 Panther is an outdoor tracked robot, with a ZED stereocamera and an NVIDIA Jetson [AGX Xavier], this robot can interact with all objects around it.
 
-This robot can climbs little rocks and little bumps. it is heavy with 9kg and with the big size 42cm with, 40cm deep and 30cm height, have a ground clearance of 7cm. The tracks have a particular damping system, with three different dampers to absorbe all vibration when the robot drift on the grass.
+This robot can climbs little rocks and little bumps. it is heavy with 11kg and with the big size 42cm with, 40cm deep and 30cm height, have a ground clearance of 7cm. The tracks have a particular damping system, with three different dampers to absorbe all vibration when the robot drift on the grass.
 
 Read more about [Panther]
 
@@ -20,6 +20,7 @@ Read more about [Panther]
 - Sensors:
   - Stereolabs [ZED2]
   - RPLIDAR [A2]
+  - Razor IMU [IMU]
   - 2x encoder 1024 CPR
   - 2 speakers
   - 2 microphones
@@ -46,3 +47,4 @@ Materials:
 [A2]: https://www.slamtec.com/en/Lidar/A2
 [ROS]: http://www.ros.org/
 [DCDC-USB]: https://www.mini-box.com/DCDC-USB?sc=8&category=981
+[IMU]: http://wiki.ros.org/razor_imu_9dof

@@ -1,0 +1,17 @@
+analyzers:
+  localization:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Localization
+    contains: 'localization'
+    find_and_remove_prefix: localization
+    num_items: 2
+  joystick:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Joystick
+    contains: 'joy_node'
+    find_and_remove_prefix: joy_node
+  Twist:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Twist
+    contains: 'twist_mux'
+    find_and_remove_prefix: twist_mux
