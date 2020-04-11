@@ -20,7 +20,7 @@ frequency: 50
 
 ################ ODOM0 ################
 
-odom0: /panther_velocity_controller/odom
+odom0: velocity_controller/odom
 odom0_config: [false, false, false,
                false, false, false,
                true, false, false,
@@ -34,7 +34,7 @@ odom0_twist_rejection_threshold: 5.0
 
 ################ ODOM1 ################
 
-odom1: /zed/odom
+odom1: zed/odom
 odom1_config: [true, true, true,
                true, true, true,
                false, false, false,
@@ -48,7 +48,7 @@ odom1_twist_rejection_threshold: 5.0
 
 ################ IMU ################
 
-imu0: /imu
+imu0: x/razor/imu
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,

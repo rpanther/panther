@@ -19,10 +19,6 @@ topics:
   topic   : move_base/cmd_vel
   timeout : 0.5
   priority: 2
-- name    : robot_wandering_node
-  topic   : wandering/cmd_vel
-  timeout : 0.5
-  priority: 2
 - name    : external
   topic   : cmd_vel
   timeout : 0.5

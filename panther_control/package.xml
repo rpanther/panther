@@ -43,14 +43,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <exec_depend>joint_state_controller</exec_depend>
   <exec_depend>diff_drive_controller</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
   <exec_depend>twist_mux</exec_depend>
 
   <exec_depend>joy</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
 
   <!-- remove depend <run_depend>interactive_marker_twist_server</run_depend> -->
-  <!--<run_depend>rostopic</run_depend>-->
-  <!--<run_depend>robot_localization</run_depend>-->
-  <!--<run_depend>panther_description</run_depend>-->
 
 </package>

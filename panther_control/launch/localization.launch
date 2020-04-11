@@ -29,13 +29,14 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- Define type of localization -->
-    <arg name="two_d_mode" default="false"/>
+    <arg name="two_d_mode"  default="false"/>
     <!-- Print diagnostic filter -->
     <arg name="diagnostics" default="true"/>
-    <!-- Type of filter -->
-    <!-- ekf= Extended Kalman Filter -->
-    <!-- ukf= Unscented Kalman Filter -->
-    <arg name="filter" default="ukf"/>
+    <!-- Type of filter
+         - ekf -> Extended Kalman Filter
+         - ukf -> Unscented Kalman Filter
+        -->
+    <arg name="filter"      default="ukf"/>
 
     <!-- Launch EKF localization -->
     <node pkg="robot_localization" type="$(arg filter)_localization_node" name="$(arg filter)_localization" output="screen">
@@ -46,7 +47,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <!-- Print diagnostic -->
         <param name="print_diagnostics" value="$(arg diagnostics)" />
         <!-- Remap inital pose. Compliant with RVIZ -->
-        <remap from="/set_pose" to="/initialpose" />
+        <remap from="set_pose" to="/initialpose" />
     </node>
     
 </launch>

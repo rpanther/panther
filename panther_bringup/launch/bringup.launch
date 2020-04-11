@@ -35,7 +35,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
-  <arg name="localization"       default="false" />
+  <arg name="localization"       default="true" />
 
   <!-- Launch diagnostic aggregator -->
   <!--<include file="$(find panther_drivers)/launch/include/diagnostic.launch" />-->
@@ -54,10 +54,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find panther_control)/launch/control.launch">
       <!-- Odometry fused with IMU is published by robot_localization, so
             no need to publish a TF based on encoders alone. -->
-      <arg name="enable_odom_tf" value="true" />
+      <arg name="enable_odom_tf" value="false" />
     </include>
-    <!-- Teleoperation mode -->
-    <include file="$(find panther_control)/launch/teleop.launch" />
     <!-- Load Sensor fusion filter -->
     <group if="$(arg localization)">
       <include file="$(find panther_control)/launch/localization.launch">
@@ -65,7 +63,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <arg name="two_d_mode" value="$(arg two_d_mode)" />
       </include>
     </group>
-
+    <!--TODO: Merge in a single launch -->
+    <!-- Teleoperation mode -->
+    <include file="$(find panther_control)/launch/teleop.launch" />
     <!-- Launch web controller -->
     <group if="$(arg web)">
       <include file="$(find panther_control)/launch/web.launch" />
