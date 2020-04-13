@@ -47,7 +47,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
   <!-- Launch web controller -->
   <group if="$(arg web)">
-    <include file="$(find panther_control)/launch/web.launch" />
+    <include file="$(find ros_webconsole)/launch/ros_webconsole.launch">
+      <arg name="config" value="$(find panther_bringup)/config/webconsole.yaml" />
+    </include>
   </group>
 
 </launch>

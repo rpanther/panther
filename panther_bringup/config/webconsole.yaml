@@ -1,0 +1,13 @@
+ros:
+  websocket: 9090
+  packages: 8001
+view3D:
+  tf: {angularThres: 0.01, frame: base_link, rate: 10, transThres: 0.01}
+  viewer: {antialias: true, background: '#EEEEEE'}
+  objects:
+  - config: {cellSize: 1, num_cells: 5}
+    id: grid0
+    type: grid
+  - config: {param: panther/robot_description}
+    id: urdf1
+    type: urdf
