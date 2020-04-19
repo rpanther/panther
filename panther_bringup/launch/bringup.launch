@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <arg name="drivers"       default="true" />
   <!-- Launch web controller       -->
-  <arg name="web"          default="false" />
+  <arg name="web"          default="true" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
