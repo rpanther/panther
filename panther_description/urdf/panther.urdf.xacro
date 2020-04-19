@@ -34,6 +34,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:include filename="$(find panther_description)/urdf/chassis/battery.urdf.xacro" />
     <xacro:include filename="$(find panther_description)/urdf/track/track.urdf.xacro" />
     <!-- Sensors -->
+    <xacro:include filename="$(find panther_description)/urdf/sensors/ultrasounds.urdf.xacro" />
     <xacro:include filename="$(find panther_description)/urdf/sensors/imu.urdf.xacro" />
     <xacro:include filename="$(find panther_description)/urdf/sensors/rplidar.urdf.xacro" />
     <xacro:include filename="$(find zed_wrapper)/urdf/zed.urdf.xacro" /> <!-- ZED external xacro -->
@@ -90,6 +91,15 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </xacro:if>
 
     <!-- Sensors -->
+    <xacro:ultrasounds name="SFR10_left" parent="frame_link">
+        <origin xyz="0.15 0.095 -0.015" rpy="0 0 0" />
+    </xacro:ultrasounds>
+    <xacro:ultrasounds name="SFR10_right" parent="frame_link">
+        <origin xyz="0.15 -0.095 -0.015" rpy="0 0 0" />
+    </xacro:ultrasounds>
+    <xacro:ultrasounds name="SFR10_rear" parent="frame_link">
+        <origin xyz="-0.15 0 -0.015" rpy="${M_PI} ${M_PI} 0" />
+    </xacro:ultrasounds>
     <xacro:razor_imu parent="frame_link">
         <origin xyz="-0.0420817256507905 0 0.091441320597534" rpy="0 ${M_PI/2} 0" />
     </xacro:razor_imu>

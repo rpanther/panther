@@ -27,39 +27,23 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="razor_imu">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ultrasounds">
 
-    <xacro:macro name="razor_imu" params="parent *joint_pose">
+    <xacro:macro name="ultrasounds" params="name parent *joint_pose">
 
-        <link name="imu_board_link">
-            <inertial>
-                <origin xyz="0.0002 0.003 -0.00025" rpy="0 0 0" />
-                <mass value="0.0045" />
-                <inertia ixx="6.80E-07" ixy="2.59E-08" ixz="6.27E-09"
-                         iyy="2.68E-07" iyz="3.01E-08"
-                                                       izz="9.30E-07" />
-            </inertial>
+        <link name="${name}_frame">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="${path_meshes}/sensors/razor_imu.stl" />
+                    <box size="0.03 0.03 0.015"/>
                 </geometry>
-                <material name="Red" />
+                <material name="Black" />
             </visual>
         </link>
-        <joint name="imu_board_joint" type="fixed">
+        <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="joint_pose"/>
             <parent link="${parent}" />
-            <child link="imu_board_link" />
-        </joint>
-
-        <!-- Required "base_imu_link" to read the razor IMU data -->
-        <link name="base_imu_link" />
-        
-        <joint name="base_imu_joint" type="fixed">
-            <origin xyz="0 0 0" rpy="0 ${-M_PI/2} 0" />
-            <parent link="imu_board_link" />
-            <child link="base_imu_link" />
+            <child link="${name}_frame" />
         </joint>
 
     </xacro:macro>
