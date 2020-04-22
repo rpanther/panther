@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>panther_robot</name>
+  <name>panther</name>
   <version>1.0.0</version>
-  <description>Panther meta package provides all the basic drivers for running and using a this robot</description>
+  <description>Panther meta package provides description, controllers and navigation</description>
 
   <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
   <license>MIT</license>

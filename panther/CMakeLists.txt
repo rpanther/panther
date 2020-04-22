@@ -1,4 +1,4 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(panther_robot)
+project(panther)
 find_package(catkin REQUIRED)
 catkin_metapackage()
