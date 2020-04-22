@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+Copyright (C) 2020, Raffaello Bonghi <raffaello@rnext.it>
+All rights reserved
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<robot name="panther" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find panther_description)/urdf/materials.urdf" />
+    <!-- Panther parts -->
+    <xacro:include filename="$(find panther_description)/urdf/chassis/chassis.urdf.xacro" />
+    <xacro:include filename="$(find panther_description)/urdf/chassis/stand.urdf.xacro" />
+    <xacro:include filename="$(find panther_description)/urdf/chassis/battery.urdf.xacro" />
+    <xacro:include filename="$(find panther_description)/urdf/track/track.urdf.xacro" />
+    <!-- Sensors -->
+    <xacro:include filename="$(find panther_description)/urdf/sensors/ultrasounds.urdf.xacro" />
+    <xacro:include filename="$(find panther_description)/urdf/sensors/imu.urdf.xacro" />
+    <xacro:include filename="$(find panther_description)/urdf/sensors/rplidar.urdf.xacro" />
+    <xacro:include filename="$(find zed_wrapper)/urdf/zed.urdf.xacro" /> <!-- ZED external xacro -->
+    <!-- Boards -->
+    <xacro:include filename="$(find panther_description)/urdf/boards/jetson.urdf.xacro" />
+
+    <!-- Global properties -->
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="path_meshes" value="package://panther_description/meshes"/>
+
+    <!-- Sprocket and gear properties -->
+    <xacro:property name="sprocket_radius" value="0.0325"/>
+    <xacro:property name="sprocket_leght"  value="0.05"/>
+    <xacro:property name="sprocket_teeth"  value="24"/>
+    <xacro:property name="gear_teeth"      value="16"/>
+    <xacro:property name="wheel_offset_x"  value="-0.00"/>
+    <xacro:property name="wheel_offset_y"  value="0.08"/>
+    <xacro:property name="wheel_offset_z"  value="${wheel_radius}"/>
+
+    <xacro:macro name="panther" params="zed_model jetson motor_board ssd ultrasounds">
+
+        <!-- base_link -->
+        <link name="base_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry><cylinder length="0.001" radius="0.05"/></geometry>
+                <material name="Green" />
+            </visual>
+        </link>
+
+        <!-- Panther body -->
+        <xacro:chassis parent="base_link">
+            <origin xyz="0 0 0.08" rpy="0 0 0" />
+        </xacro:chassis>
+        <xacro:track type="left" parent="frame_link" />
+        <xacro:track type="right" parent="frame_link" />
+        <xacro:stand parent="frame_link" model="stand_rplidar_zed">
+            <origin xyz="-0.03600 0 0.1700" rpy="0 0 0" />
+        </xacro:stand>
+        <xacro:battery parent="frame_link" mass="0.24981">
+            <origin xyz="-0.13 0 0.01" rpy="0 0 0" />
+        </xacro:battery>
+        <xacro:if value="${ssd}">
+            <xacro:include filename="$(find panther_description)/urdf/chassis/ssd.urdf.xacro" />
+            <xacro:ssd parent="frame_link">
+                <origin xyz="0.0465 0.03075 0.04674" rpy="${M_PI} 0 ${M_PI}" />
+            </xacro:ssd>
+        </xacro:if>
+
+        <!-- Sensors -->
+        <xacro:if value="${ultrasounds}">
+            <xacro:ultrasounds name="SFR10_left" parent="frame_link">
+                <origin xyz="0.15 0.095 -0.015" rpy="0 0 0" />
+            </xacro:ultrasounds>
+            <xacro:ultrasounds name="SFR10_right" parent="frame_link">
+                <origin xyz="0.15 -0.095 -0.015" rpy="0 0 0" />
+            </xacro:ultrasounds>
+            <xacro:ultrasounds name="SFR10_rear" parent="frame_link">
+                <origin xyz="-0.15 0 -0.015" rpy="${M_PI} ${M_PI} 0" />
+            </xacro:ultrasounds>
+        </xacro:if>
+        <xacro:razor_imu parent="frame_link">
+            <origin xyz="-0.0420817256507905 0 0.091441320597534" rpy="0 ${M_PI/2} 0" />
+        </xacro:razor_imu>
+        <xacro:zed parent="stand_link" camera_name="${zed_model}" camera_model="${zed_model}">
+            <origin xyz="0.028 0 0.021" rpy="0 0 0" />
+        </xacro:zed>
+        <xacro:rplidar parent="stand_link">
+            <origin xyz="-0.03 0 0.02" rpy="0 0 0" />
+        </xacro:rplidar>
+        
+        <!-- Boards -->
+        <xacro:jetson parent="frame_link" model="${jetson}">
+            <origin xyz="0.08 0 0.05" rpy="0 0 0" />
+        </xacro:jetson>
+        <xacro:if value="${motor_board == 'unav'}">
+            <xacro:include filename="$(find panther_description)/urdf/boards/unav.urdf.xacro" />
+            <xacro:unav parent="frame_link">
+                <origin xyz="-0.10 0 0.12" rpy="0 0 0" />
+            </xacro:unav>
+        </xacro:if>
+        <xacro:if value="${motor_board == 'roboteq'}">
+            <xacro:include filename="$(find panther_description)/urdf/boards/roboteq.urdf.xacro" />
+            <xacro:roboteq parent="frame_link">
+                <origin xyz="-0.11 0 0.12" rpy="0 0 0" />
+            </xacro:roboteq>
+        </xacro:if>
+    </xacro:macro>
+
+</robot>

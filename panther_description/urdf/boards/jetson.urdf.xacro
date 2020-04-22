@@ -40,9 +40,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <xacro:if value="${model == 'xavier'}">
             <link name="jetson_carrier_link">
                 <visual>
-                    <origin xyz="0 0 0.025" rpy="0 0 0" />
+                    <origin xyz="-0.047 0.048 0.011" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
                     <geometry>
-                        <box size="0.12 0.12 0.05" />
+                        <!--<box size="0.12 0.12 0.05" />-->
+                        <mesh filename="${path_meshes}/boards/xavier_link.stl"/>
                     </geometry>
                     <material name="Black" />
                 </visual>

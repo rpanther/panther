@@ -91,7 +91,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         izz="0.0140947881519727" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 ${M_PI}" />
+      <origin xyz="0 0 0.0788" rpy="0 0 ${M_PI}" />
       <geometry>
         <mesh filename="${path_meshes}/chassis/cover_link.STL" />
       </geometry>

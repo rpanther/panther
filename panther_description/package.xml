@@ -39,7 +39,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <!-- TODO: Check if require another more dependencies -->
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>xacro</exec_depend>
   

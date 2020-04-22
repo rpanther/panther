@@ -32,6 +32,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="jetson"            default="xavier" />
     <arg name="motor_board"       default="roboteq" />
     <arg name="ssd"               default="false" />
+    <arg name="ultrasounds"       default="false" />
 
     <!-- Send the Panther Robot URDF/XACRO to param server -->
     <param name="robot_description"
@@ -39,7 +40,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                   zed_model:=$(arg zed_model)
                   jetson:=$(arg jetson)
                   motor_board:=$(arg motor_board)
-                  ssd:=$(arg ssd)"
+                  ssd:=$(arg ssd)
+                  ultrasounds:=$(arg ultrasounds)"
     />
 
     <!-- Activate node to propagate the joint state -->
