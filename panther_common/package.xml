@@ -25,7 +25,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<package>
+<package format="2">
   <name>panther_common</name>
   <version>1.0.0</version>
   <description>This package launch all common peripherals of Panther</description>
@@ -39,8 +39,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>panther_control</run_depend>
-  <run_depend>ros_webconsole</run_depend>
-  <run_depend>diagnostic_aggregator</run_depend>
+  <exec_depend>panther_control</exec_depend>
+  <exec_depend>ros_webconsole</exec_depend>
+  <exec_depend>diagnostic_aggregator</exec_depend>
 
 </package>
