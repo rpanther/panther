@@ -8,8 +8,6 @@ Panels:
         - /Status1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /Ultrasounds1
-        - /DepthCloud1/Auto Size1
       Splitter Ratio: 0.5
     Tree Height: 535
   - Class: rviz/Selection
@@ -30,7 +28,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -66,21 +64,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        SFR10_left_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        SFR10_rear_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        SFR10_right_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         antenna_link:
           Alpha: 1
           Show Axes: false
@@ -341,7 +324,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
       Name: RobotModel
-      Robot Description: panther/robot_description
+      Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
@@ -410,8 +393,17 @@ Visualization Manager:
           Topic: /panther/body/SFR10/rear
           Unreliable: false
           Value: true
-      Enabled: true
+      Enabled: false
       Name: Ultrasounds
+    - Class: rviz/InteractiveMarkers
+      Enable Transparency: true
+      Enabled: true
+      Name: InteractiveMarkers
+      Show Axes: false
+      Show Descriptions: true
+      Show Visual Aids: false
+      Update Topic: /twist_marker_server/update
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
