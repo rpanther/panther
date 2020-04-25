@@ -25,13 +25,22 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<launch>
-    <!-- Diagnostic Aggregator -->
-    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
-        <rosparam command="load" file="$(find panther_bringup)/config/diagnostic.yaml"/>
-        <!-- TODO: add <group if="..."> check if package is installed -->
-        <rosparam command="load" file="$(find panther_drivers)/config/diagnostic.yaml"/>
-        <!-- TODO: add <group if="..."> to check package is installed -->
-        <rosparam command="load" file="$(find ros_jetson_stats)/param/jtop.yaml"/>
-    </node>
-</launch>
+<package>
+  <name>panther_common</name>
+  <version>1.0.0</version>
+  <description>This package launch all common peripherals of Panther</description>
+
+  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
+  <license>MIT</license>
+  
+  <url type="website">https://rnext.it/panther</url>
+  <url type="repository">https://github.com/rpanther/panther</url>
+  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>panther_control</run_depend>
+  <run_depend>ros_webconsole</run_depend>
+  <run_depend>diagnostic_aggregator</run_depend>
+
+</package>

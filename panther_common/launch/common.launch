@@ -27,7 +27,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="drivers"       default="true" />
   <!-- Launch web controller       -->
   <arg name="web"          default="true" />
   <!-- Enable/disable 2D mode -->
@@ -35,42 +34,26 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Enable/Disable sensor fusion -->
   <arg name="localization"       default="true" />
 
-  <!-- Load all device drivers
-        - Roboteq
-        - ZED2
-        - Razor IMU
-        - RPLidar
-        - LEDs
-       -->
-  <group if="$(arg drivers)">
-    <include file="$(find panther_drivers)/launch/drivers.launch" />
-  </group>
-
-  <!-- Load controller -->
-  <group ns="panther">
-    <!-- 1. ROS_Control:
-            - joints
-            - differential drive
-         2. Twist mux
-        -->
-    <include file="$(find panther_control)/launch/control.launch">
-      <!-- Odometry fused with IMU is published by robot_localization, so
-            no need to publish a TF based on encoders alone. -->
-      <arg name="enable_odom_tf" value="false" />
-    </include>
-    <!-- Load Sensor fusion filter -->
-    <group if="$(arg localization)">
-      <include file="$(find panther_control)/launch/localization.launch">
-        <!-- Enable/Disable 2D mode -->
-        <arg name="two_d_mode" value="$(arg two_d_mode)" />
-      </include>
-    </group>
-    <!-- User Drive Interfaces -->
-    <include file="$(find panther_bringup)/launch/user_drive_interface.launch">
-      <arg name="web" value="$(arg web)" />
+  <!-- 1. ROS_Control:
+          - joints
+          - differential drive
+       2. Twist mux
+      -->
+  <include file="$(find panther_control)/launch/control.launch">
+    <!-- Odometry fused with IMU is published by robot_localization, so
+          no need to publish a TF based on encoders alone. -->
+    <arg name="enable_odom_tf" value="false" />
+  </include>
+  <!-- Load Sensor fusion filter -->
+  <group if="$(arg localization)">
+    <include file="$(find panther_control)/launch/localization.launch">
+      <!-- Enable/Disable 2D mode -->
+      <arg name="two_d_mode" value="$(arg two_d_mode)" />
     </include>
   </group>
-  <!-- Launch diagnostic aggregator -->
-  <include file="$(find panther_bringup)/launch/diagnostic.launch" />
+  <!-- User Drive Interfaces -->
+  <include file="$(find panther_common)/launch/user_drive_interface.launch">
+    <arg name="web" value="$(arg web)" />
+  </include>
 
 </launch>

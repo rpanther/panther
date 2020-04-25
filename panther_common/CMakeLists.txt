@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(panther_bringup)
+project(panther_common)
 
 find_package(catkin REQUIRED COMPONENTS roslaunch)
 
