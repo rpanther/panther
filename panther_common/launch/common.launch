@@ -29,10 +29,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Launch web controller       -->
   <arg name="web"          default="true" />
+  <arg name="port"         default="8001" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
-  <arg name="localization"       default="true" />
+  <arg name="localization" default="true" />
 
   <!-- 1. ROS_Control:
           - joints
@@ -53,7 +54,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
   <!-- User Drive Interfaces -->
   <include file="$(find panther_common)/launch/user_drive_interface.launch">
-    <arg name="web" value="$(arg web)" />
+    <arg name="web"           value="$(arg web)" />
+    <arg name="packages_port" value="$(arg port)" />
   </include>
 
 </launch>

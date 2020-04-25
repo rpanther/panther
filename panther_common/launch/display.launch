@@ -28,7 +28,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <arg name="path" default="$(find panther_bringup)/rviz/panther.rviz" />
+  <arg name="path" default="$(find panther_common)/rviz/panther.rviz" />
   <!-- Run rviz with configuration -->
   <node name="rviz" pkg="rviz" type="rviz"  args="-d $(arg path)" output="screen" required="true"/>
 </launch>

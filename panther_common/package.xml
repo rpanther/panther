@@ -42,5 +42,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <exec_depend>panther_control</exec_depend>
   <exec_depend>ros_webconsole</exec_depend>
   <exec_depend>diagnostic_aggregator</exec_depend>
+  <exec_depend>interactive_marker_twist_server</exec_depend>
 
 </package>

@@ -28,9 +28,10 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <arg name="web"          default="false" />
-  <arg name="marker"       default="false" />
-  <arg name="cmd_topic"    default="joy_teleop/cmd_vel" />
+  <arg name="web"           default="false" />
+  <arg name="packages_port" default="8001" />
+  <arg name="marker"        default="true" />
+  <arg name="cmd_topic"     default="joy_teleop/cmd_vel" />
   <!-- Output
         - screen
         - log
@@ -48,7 +49,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Launch web controller -->
   <group if="$(arg web)">
     <include file="$(find ros_webconsole)/launch/ros_webconsole.launch">
-      <arg name="config" value="$(find panther_bringup)/config/webconsole.yaml" />
+      <arg name="config"        value="$(find panther_common)/config/webconsole.yaml" />
+      <arg name="packages_port" value="$(arg packages_port)" />
     </include>
   </group>
 

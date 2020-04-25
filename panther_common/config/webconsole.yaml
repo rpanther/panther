@@ -1,6 +1,6 @@
 ros:
   websocket: 9090
-  packages: 8001
+  packages: 80
 view3D:
   tf: {angularThres: 0.01, frame: base_link, rate: 10, transThres: 0.01}
   viewer: {antialias: true, background: '#EEEEEE'}
@@ -8,6 +8,6 @@ view3D:
   - config: {cellSize: 1, num_cells: 10}
     id: grid0
     type: grid
-  - config: {param: panther/robot_description}
+  - config: {param: robot_description}
     id: urdf1
     type: urdf
