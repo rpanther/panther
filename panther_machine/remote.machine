@@ -26,13 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <!-- Definition remote user -->
-  <arg name="user"/>
-  <arg name="password"/>
-
   <machine name="server" address="localhost" default="never" timeout="10"/>
 
-  <machine name="panther" address="panther.local"
-            env-loader="/home/$(arg user)/env/$(env HOSTNAME).sh"
-            user="$(arg user)" password="$(arg password)" default="never" timeout="10"/>
+  <machine name="panther" address="panther.local" env-loader="/env/$(env HOSTNAME).sh" default="never" timeout="10"/>
 </launch>
