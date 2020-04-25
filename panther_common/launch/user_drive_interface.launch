@@ -44,7 +44,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </include>
   <!-- Interactive maker -->
   <group if="$(arg marker)">
-    <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="$(arg output)"/>
+    <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="$(arg output)">
+      <param name="robot_name"    value="Panther" />
+      <param name="link_name"     value="base_link" />
+    </node>
   </group>
   <!-- Launch web controller -->
   <group if="$(arg web)">
