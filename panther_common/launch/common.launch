@@ -28,23 +28,27 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
 
   <!-- Launch web controller       -->
-  <arg name="web"          default="true" />
+  <arg name="web"          default="false" />
   <arg name="port"         default="8001" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
   <!-- Enable/Disable sensor fusion -->
   <arg name="localization" default="true" />
+  <!-- Motor control -->
+  <arg name="control"      default="false" />
 
   <!-- 1. ROS_Control:
           - joints
           - differential drive
        2. Twist mux
       -->
-  <include file="$(find panther_control)/launch/control.launch">
-    <!-- Odometry fused with IMU is published by robot_localization, so
-          no need to publish a TF based on encoders alone. -->
-    <arg name="enable_odom_tf" value="false" />
-  </include>
+  <group if="$(arg control)">
+    <include file="$(find panther_control)/launch/control.launch">
+      <!-- Odometry fused with IMU is published by robot_localization, so
+            no need to publish a TF based on encoders alone. -->
+      <arg name="enable_odom_tf" value="false" />
+    </include>
+  </group>
   <!-- Load Sensor fusion filter -->
   <group if="$(arg localization)">
     <include file="$(find panther_control)/launch/localization.launch">
