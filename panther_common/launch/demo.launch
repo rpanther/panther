@@ -26,7 +26,16 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <node pkg="panther_drivers" type="topic_observer.py" name="topic_observer" output="screen">
-    <rosparam file="$(find panther_drivers)/config/topic_observer.yaml" command="load" />
+  <node pkg="panther_common" type="topic_observer.py" name="topic_observer" output="screen">
+    <rosparam subst_value="true">
+      # Enable or disable node
+      enable: True
+      #Service message
+      service: /orchestrator
+      # Message
+      request: 
+         launch: drivers
+         status: False
+    </rosparam>
   </node>
 </launch>
