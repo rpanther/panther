@@ -25,27 +25,8 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<package format="2">
-  <name>panther_common</name>
-  <version>1.0.0</version>
-  <description>This package launch all common peripherals of Panther</description>
-
-  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-  <license>MIT</license>
-  
-  <url type="website">https://rnext.it/panther</url>
-  <url type="repository">https://github.com/rpanther/panther</url>
-  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
-
-  <buildtool_depend>catkin</buildtool_depend>
-
-  <depend>rospy</depend>
-  <depend>genpy</depend>
-  <depend>rosservice</depend>
-
-  <exec_depend>panther_control</exec_depend>
-  <exec_depend>ros_webconsole</exec_depend>
-  <exec_depend>diagnostic_aggregator</exec_depend>
-  <exec_depend>interactive_marker_twist_server</exec_depend>
-
-</package>
+<launch>
+  <node pkg="panther_drivers" type="topic_observer.py" name="topic_observer" output="screen">
+    <rosparam file="$(find panther_drivers)/config/topic_observer.yaml" command="load" />
+  </node>
+</launch>
