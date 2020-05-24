@@ -1,4 +1,4 @@
-# Reference http://docs.ros.org/lunar/api/robot_localization/html/index.html
+# Reference http://docs.ros.org/melodic/api/robot_localization/html/index.html
 # REMEMBER:
 # map -> odom -> base_link
 # all sensor MUST be referenced to base_link
@@ -11,7 +11,7 @@ world_frame: odom
 # Working frequency
 frequency: 50
 
-# Sensor configuration http://docs.ros.org/lunar/api/robot_localization/html/state_estimation_nodes.html#sensor-config
+# Sensor configuration http://docs.ros.org/melodic/api/robot_localization/html/state_estimation_nodes.html#sensor-config
 #        X,         Y,        Z,
 #     roll,     pitch,      yaw,
 #    dot X,     dot Y,    dot Z,
@@ -23,14 +23,19 @@ frequency: 50
 odom0: velocity_controller/odom
 odom0_config: [false, false, false,
                false, false, false,
-               true, false, false,
-               false, false, false,
+               true, true, true,
+               false, false, true,
                false, false, false]
-odom0_differential: true
+
+odom0_queue_size: 10
+odom0_nodelay: true
+odom0_differential: false
 odom0_relative: false
 
-odom0_pose_rejection_threshold: 5.0
-odom0_twist_rejection_threshold: 5.0
+#odom0_differential: true
+#odom0_relative: false
+#odom0_pose_rejection_threshold: 5.0
+#odom0_twist_rejection_threshold: 5.0
 
 ################ ODOM1 ################
 
@@ -40,15 +45,20 @@ odom1_config: [true, true, true,
                false, false, false,
                false, false, false,
                false, false, false]
+
+odom1_queue_size: 10
+odom1_nodelay: true
 odom1_differential: false
 odom1_relative: false
 
-odom1_pose_rejection_threshold: 5.0
-odom1_twist_rejection_threshold: 5.0
+#odom1_differential: false
+#odom1_relative: false
+#odom1_pose_rejection_threshold: 5.0
+#odom1_twist_rejection_threshold: 5.0
 
-################ IMU ################
+################ IMU0 ################
 
-imu0: x/razor/imu
+imu0: x/zed/imu/data
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
@@ -62,4 +72,22 @@ imu0_remove_gravitational_acceleration: true
 #imu0_angular_velocity_rejection_threshold: 1.0
 #imu0_linear_acceleration_rejection_threshold: 1.0
 
+################ IMU1 ################
 
+imu1: razor/imu/data
+imu1_config: [false, false, false,
+              true, true, true,
+              false, false, false,
+              true, true, true,
+              false, false, false]
+#imu1_differential: true
+#imu1_relative: false
+#imu1_remove_gravitational_acceleration: true
+
+imu0_differential: true
+imu0_queue_size: 10
+imu0_remove_gravitational_acceleration: true
+
+#imu1_pose_rejection_threshold: 1.0
+#imu1_angular_velocity_rejection_threshold: 1.0
+#imu1_linear_acceleration_rejection_threshold: 1.0

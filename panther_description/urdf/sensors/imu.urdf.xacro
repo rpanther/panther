@@ -54,10 +54,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </joint>
 
         <!-- Required "base_imu_link" to read the razor IMU data -->
+        <!-- left to right <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" /> -->
         <link name="base_imu_link" />
         
         <joint name="base_imu_joint" type="fixed">
-            <origin xyz="0 0 0" rpy="0 ${-M_PI/2} 0" />
+            <origin xyz="0 0 0" rpy="0 ${M_PI} ${-M_PI/2}" />
             <parent link="imu_board_link" />
             <child link="base_imu_link" />
         </joint>
