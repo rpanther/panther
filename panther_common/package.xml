@@ -42,10 +42,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <depend>rospy</depend>
   <depend>genpy</depend>
   <depend>rosservice</depend>
-  <depend>zed_ros</depend>
   <exec_depend>panther_control</exec_depend>
-  <exec_depend>ros_webconsole</exec_depend>
+  <exec_depend>panther_localization</exec_depend>
+  
   <exec_depend>diagnostic_aggregator</exec_depend>
-  <exec_depend>interactive_marker_twist_server</exec_depend>
 
 </package>

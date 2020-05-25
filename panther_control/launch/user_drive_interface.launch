@@ -32,16 +32,14 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="packages_port" default="8001" />
   <arg name="marker"        default="true" />
   <arg name="cmd_topic"     default="joy_teleop/cmd_vel" />
-  <!-- Output
-        - screen
-        - log
-       -->
+  <!-- Output {screen, log} -->
   <arg name="output"          default="log" />
 
   <!-- Teleoperation mode -->
   <include file="$(find panther_control)/launch/teleop.launch">
     <arg name="cmd_topic"    value="$(arg cmd_topic)" />
   </include>
+
   <!-- Interactive maker -->
   <group if="$(arg marker)">
     <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="$(arg output)">
@@ -49,6 +47,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <param name="link_name"     value="base_link" />
     </node>
   </group>
+
   <!-- Launch web controller -->
   <group if="$(arg web)">
     <include file="$(find ros_webconsole)/launch/ros_webconsole.launch">
