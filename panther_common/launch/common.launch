@@ -34,6 +34,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Motor control -->
   <arg name="control"      default="false" />
+
   <!-- Launch web controller       -->
   <arg name="web"          default="false" />
   <arg name="port"         default="8001" />
@@ -41,9 +42,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <group if="$(arg localization)">
     <!-- Load Sensor fusion filter -->
-    <include file="$(find panther_control)/launch/localization.launch">
-      <!-- Enable/Disable 2D mode -->
-      <arg name="two_d_mode" value="$(arg two_d_mode)" />
+    <include file="$(find panther_localization)/launch/localization.launch">
+      <arg name="two_d_mode" value="$(arg two_d_mode)" />  <!-- Enable/Disable 2D mode -->
     </include>
 
   </group>
@@ -60,12 +60,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <arg name="enable_odom_tf" value="false" />
     </include>
 
-    <!-- User Drive Interfaces -->
-    <include file="$(find panther_control)/launch/user_drive_interface.launch">
-      <arg name="web"           value="$(arg web)" />
-      <arg name="packages_port" value="$(arg port)" />
-    </include>
   </group>
 
+  <!-- User Drive Interfaces -->
+  <include file="$(find panther_control)/launch/user_drive_interface.launch">
+    <arg name="web"           value="$(arg web)" />
+    <arg name="packages_port" value="$(arg port)" />
+  </include>
 
 </launch>

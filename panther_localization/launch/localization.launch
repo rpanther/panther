@@ -41,7 +41,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Launch EKF localization -->
     <node pkg="robot_localization" type="$(arg filter)_localization_node" name="$(arg filter)_localization" output="screen">
         <!-- Load definition filter -->
-        <rosparam command="load" file="$(find panther_control)/config/localization.yaml" />
+        <rosparam command="load" file="$(find panther_localization)/config/localization.yaml" />
         <!-- Set 3D localization -->
         <param name="two_d_mode" value="$(arg two_d_mode)" />
         <!-- Print diagnostic -->

@@ -38,10 +38,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <author email="raffaello@rnext.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <!--<build_depend>roslaunch</build_depend>-->
 
-  <!--<run_depend>amcl</run_depend>-->
-  <!-- Not included <run_depend>gmapping</run_depend> -->
   <!--<run_depend>map_server</run_depend>-->
   <!--<run_depend>move_base</run_depend>-->
   <!--<run_depend>navfn</run_depend>-->

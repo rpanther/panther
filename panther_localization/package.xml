@@ -39,6 +39,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>gmapping</exec_depend>
   <exec_depend>robot_localization</exec_depend>
 
 </package>
