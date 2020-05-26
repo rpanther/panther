@@ -2,8 +2,10 @@
 <!--
 Copyright (C) 2020, Raffaello Bonghi <raffaello@rnext.it>
 All rights reserved
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
+
 1. Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright
@@ -39,9 +41,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <exec_depend>panther_bringup</exec_depend>
-  <exec_depend>panther_description</exec_depend>
+  <exec_depend>panther_common</exec_depend>
   <exec_depend>panther_control</exec_depend>
+  <exec_depend>panther_description</exec_depend>
+  <exec_depend>panther_localization</exec_depend>
+  <exec_depend>panther_machine</exec_depend>
   <exec_depend>panther_navigation</exec_depend>
 
   <export>
