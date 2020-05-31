@@ -1,0 +1,15 @@
+# Vision OpenCV is needed for CUDA customization
+# Before installl vision_opencv please check your board use opencv with CUDA
+# RTAB-map need to be compiled manually to enable CUDA
+# https://github.com/introlab/rtabmap/wiki/Installation
+# https://github.com/introlab/rtabmap_ros#build-from-source-for-nvidia-jetson
+- git:
+    local-name: vision_opencv
+    uri: https://github.com/ros-perception/vision_opencv
+    version: melodic
+- git:
+    local-name: image_transport_plugins
+    uri: https://github.com/ros-perception/image_transport_plugins
+- git:
+    local-name: rtabmap_ros
+    uri: https://github.com/introlab/rtabmap_ros.git
