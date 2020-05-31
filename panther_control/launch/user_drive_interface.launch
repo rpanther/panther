@@ -51,7 +51,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Launch web controller -->
   <group if="$(arg web)">
     <include file="$(find ros_webconsole)/launch/ros_webconsole.launch">
-      <arg name="config"        value="$(find panther_common)/config/webconsole.yaml" />
+      <arg name="config"        value="$(find panther_control)/config/webconsole.yaml" />
       <arg name="packages_port" value="$(arg packages_port)" />
     </include>
   </group>
