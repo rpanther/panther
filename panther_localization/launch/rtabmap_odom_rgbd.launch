@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+Copyright (C) 2020, Raffaello Bonghi <raffaello@rnext.it>
+All rights reserved
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, 
+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+
+  <arg name="camera"  default="rtabmap" />
+  <arg name="frame_id"  default="base_link" />
+  <!-- Define type of localization -->
+  <arg name="two_d_mode"  default="false"/>
+
+  <arg name="odom"  default="odom" />
+  <arg name="rgb"  default="image_rect_color" />
+  <arg name="depth"  default="depth_registered" />
+  <!-- Output: {screen, log} -->
+  <arg name="output"          default="log" />
+
+  <group ns="$(arg camera)">
+
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_ros/rgbd_sync" output="$(arg output)">
+      <remap from="rgb/image"         to="rgb/$(arg rgb)"/>
+      <remap from="rgb/camera_info"   to="rgb/camera_info"/>
+      <remap from="depth/image"       to="depth/$(arg depth)"/>
+      <remap from="rgbd_image"        to="rgbd_image"/> <!-- output -->
+      <param name="approx_sync"       value="false"/> 
+    </node>
+
+    <!-- Odometry -->
+    <node pkg="rtabmap_ros" type="rgbd_odometry" name="rgbd_odometry" output="$(arg output)">
+      <param name="subscribe_rgbd"         type="bool"   value="true"/>
+      <param name="frame_id"               type="string" value="$(arg frame_id)"/>
+      <remap from="rgbd_image"             to="rgbd_image"/>
+      <remap from="odom"                   to="$(arg odom)"/>
+
+      <param name="publish_tf"             type="bool"   value="false"/>
+      <param name="publish_null_when_lost" type="bool"   value="false"/>
+
+      <!--
+      <param name="guess_frame_id"         type="string" value="camera_link"/>
+      <param name="guess_from_tf"          type="bool"   value="true"/>
+      -->
+
+      <param name="Odom/FillInfoData"      type="string" value="true"/>
+      <param name="Odom/ResetCountdown"    type="string" value="1"/>
+      <param name="Vis/FeatureType"        type="string" value="6"/> 
+
+      <param name="OdomF2M/MaxSize"        type="string" value="1000"/> <!-- default: 2000 -->
+      <param name="Vis/MaxFeatures"        type="string" value="500" /> <!-- default: 1000 -->
+      <param name="Odom/Strategy"                        value="0"/> <!-- 0 F2M 1 F2F -->
+
+      <param name="Reg/Force3DoF"          type="bool"   value="true" />
+    </node>
+  </group>
+</launch>
