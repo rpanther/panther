@@ -28,48 +28,39 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <!-- ORIGINAL Version from husky clearpath: https://github.com/husky/husky  -->
-  <arg name="scan_topic" default="/scan" />
+  <param name="/use_sim_time" value="true" />
 
-  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
-    <remap from="scan" to="$(arg scan_topic)"/>
-    <rosparam>
-      odom_frame: odom
-      base_frame: base_link
-      map_frame: map
+  <!-- Standalone launcher to visualize the robot model. -->
+  <include file="$(find panther_description)/launch/description.launch"/>
 
-      map_update_interval: 1.0 # Publish new map
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory
+              $(find panther_visualization)/configuration_files
+          -configuration_basename panther.lua"
+      output="screen">
+      <remap from="imu" to="/imu/data" />
+      <remap from="odom" to="/zed/odom" />
+      <!--<remap from="odom" to="/odometry/filtered" />-->
+    <!--<remap from="scan" to="/base_scan" />-->
+  </node>
 
-      maxUrange: 6.0 # Should be just less than sensor range
-      maxRange: 8.1 # Should be just greater than sensor range
-      particles: 60 # Increased from 80
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.5" />
 
-      # Update frequencies
-      linearUpdate: 0.25
-      angularUpdate: 0.262
-      temporalUpdate: -1.0
-      resampleThreshold: 0.5
-
-      # Initial Map Size
-      xmin: -10.0
-      ymin: -10.0
-      xmax: 10.0
-      ymax: 10.0
-      delta: 0.05
-
-      # All default
-      sigma: 0.05
-      kernelSize: 1
-      lstep: 0.05
-      astep: 0.05
-      iterations: 5
-      lsigma: 0.075
-      ogain: 3.0
-      lskip: 0
-      llsamplerange: 0.01
-      llsamplestep: 0.01
-      lasamplerange: 0.005
-      lasamplestep: 0.005
+  <!--<node name="tf_remove_frames" pkg="cartographer_ros"
+      type="tf_remove_frames.py">
+    <remap from="tf_out" to="/tf" />
+    <rosparam param="remove_frames">
+      - map
+      - odom_combined
     </rosparam>
+  </node>-->
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" />
+  <node name="playbag" pkg="rosbag" type="play"
+      args="--clock --rate 30 $(arg bag_filename)">
+    <remap from="tf" to="tf_in" />
   </node>
 </launch>

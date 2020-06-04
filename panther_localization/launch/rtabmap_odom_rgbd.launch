@@ -29,14 +29,14 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="camera"  default="rtabmap" />
-  <arg name="frame_id"  default="base_link" />
+  <arg name="camera"         default="rtabmap" />
+  <arg name="frame_id"       default="base_link" />
   <!-- Define type of localization -->
-  <arg name="two_d_mode"  default="false"/>
+  <arg name="two_d_mode"      default="false"/>
 
-  <arg name="odom"  default="odom" />
-  <arg name="rgb"  default="image_rect_color" />
-  <arg name="depth"  default="depth_registered" />
+  <arg name="odom"            default="odom" />
+  <arg name="rgb"             default="image_rect_color" />
+  <arg name="depth"           default="depth_registered" />
   <!-- Output: {screen, log} -->
   <arg name="output"          default="log" />
 

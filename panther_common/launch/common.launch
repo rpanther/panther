@@ -31,6 +31,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Enable/Disable sensor fusion -->
   <arg name="localization" default="true" />
+  <!-- Enable/Disable sensor fusion -->
+  <arg name="mapping"      default="true" />
   <!-- Enable/disable 2D mode -->
   <arg name="two_d_mode"   default="false" />
 
@@ -47,9 +49,15 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find panther_localization)/launch/localization.launch">
       <arg name="two_d_mode" value="$(arg two_d_mode)" />  <!-- Enable/Disable 2D mode -->
     </include>
-
   </group>
 
+  <group if="$(arg mapping)">
+    <!-- Load Sensor fusion filter -->
+    <include file="$(find panther_localization)/launch/rtabmap.launch">
+      <arg name="two_d_mode" value="$(arg two_d_mode)" />  <!-- Enable/Disable 2D mode -->
+    </include>
+  </group>
+  
   <group if="$(arg control)">
     <!-- 1. ROS_Control:
             - joints
