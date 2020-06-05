@@ -1,3 +1,4 @@
+# Teleoperation to twist joystick
 teleop_twist_joy:
   axis_linear: 1
   scale_linear: 0.2
@@ -6,6 +7,8 @@ teleop_twist_joy:
   scale_angular: 1.0
   enable_button: 0
   enable_turbo_button: 1
+# Joystick configuraton
 joy_node: 
   deadzone: 0.01
   autorepeat_rate: 20
+  sticky_buttons: false
