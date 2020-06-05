@@ -38,9 +38,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="base_local_planner"      default="teb_local_planner/TebLocalPlannerROS"/>
   <arg name="base_global_planner"     default="navfn/NavfnROS"/>
   <!-- Output {screen, log} -->
-  <arg name="output"          default="log" />
+  <arg name="output"          default="screen" />
 
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="$(arg output)">
 
     <rosparam file="$(find panther_navigation)/config/planner.yaml" command="load"/>
 

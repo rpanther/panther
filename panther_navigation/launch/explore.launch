@@ -29,7 +29,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
+  <!-- Output {screen, log} -->
+  <arg name="output"          default="screen" />
+
+  <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="$(arg output)">
   
     <param name="robot_base_frame" value="base_footprint"/>
     <param name="costmap_topic" value="rtabmap/grid_map"/>
