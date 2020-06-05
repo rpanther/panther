@@ -39,10 +39,14 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <!--<run_depend>map_server</run_depend>-->
-  <!--<run_depend>move_base</run_depend>-->
-  <!--<run_depend>navfn</run_depend>-->
-  <!--<run_depend>base_local_planner</run_depend>-->
-  <!--<run_depend>dwa_local_planner</run_depend>-->
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>navigation</exec_depend>
+  <exec_depend>explore_lite</exec_depend>
+  <exec_depend>frontier_exploration</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  
+  <exec_depend>navfn</exec_depend>
+  <exec_depend>base_local_planner</exec_depend>
+  <exec_depend>dwa_local_planner</exec_depend>
 
 </package>

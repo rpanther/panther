@@ -7,3 +7,12 @@ catkin_package()
 
 roslaunch_add_file_check(launch)
 
+#############
+## Install ##
+#############
+
+install(DIRECTORY launch/
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch )
+
+install(DIRECTORY config/
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config )

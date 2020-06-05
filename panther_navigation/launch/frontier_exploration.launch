@@ -27,25 +27,23 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<package format="2">
-  <name>panther_localization</name>
-  <version>1.0.0</version>
-  <description>This package configure and run Panther all type of localization systems</description>
+<launch>
 
-  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-  <license>MIT</license>
-  
-  <url type="website">https://rnext.it/panther</url>
-  <url type="repository">https://github.com/rpanther/panther</url>
-  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+  <!-- Output {screen, log} -->
+  <arg name="output"          default="log" />
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <node pkg="frontier_exploration" type="explore_client" name="explore_client" output="screen"/>
 
-  <exec_depend>amcl</exec_depend>
-  <exec_depend>gmapping</exec_depend>
-  <exec_depend>map_server</exec_depend>
-  <exec_depend>robot_localization</exec_depend>
-  <exec_depend>rtabmap_ros</exec_depend>
-  <exec_depend>rtabmap</exec_depend>
+  <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
 
-</package>
+    <param name="frequency" value="1.0"/>
+
+    <!-- Should be less than sensor range -->
+    <param name="goal_aliasing" value="2.0"/>
+    
+    <rosparam file="$(find panther_navigation)/config/costmap_common.yaml" command="load" ns="explore_costmap" />
+    <rosparam file="$(find panther_navigation)/config/costmap_exploration.yaml" command="load" ns="explore_costmap" />
+
+  </node>
+
+</launch>

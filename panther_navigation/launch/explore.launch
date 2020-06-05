@@ -27,25 +27,22 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<package format="2">
-  <name>panther_localization</name>
-  <version>1.0.0</version>
-  <description>This package configure and run Panther all type of localization systems</description>
+<launch>
 
-  <maintainer email="raffaello@rnext.it">Raffaello Bonghi</maintainer>
-  <license>MIT</license>
+  <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
   
-  <url type="website">https://rnext.it/panther</url>
-  <url type="repository">https://github.com/rpanther/panther</url>
-  <author email="raffaello@rnext.it">Raffaello Bonghi</author>
+    <param name="robot_base_frame" value="base_footprint"/>
+    <param name="costmap_topic" value="rtabmap/grid_map"/>
+    <!--<param name="costmap_updates_topic" value="rtabmap/grid_map"/>-->
+    <param name="visualize" value="true"/>
+    <param name="planner_frequency" value="0.33"/>
+    <param name="progress_timeout" value="30.0"/>
+    <param name="potential_scale" value="3.0"/>
+    <param name="orientation_scale" value="0.0"/>
+    <param name="gain_scale" value="1.0"/>
+    <param name="transform_tolerance" value="0.3"/>
+    <param name="min_frontier_size" value="0.01"/>
+    
+  </node>
 
-  <buildtool_depend>catkin</buildtool_depend>
-
-  <exec_depend>amcl</exec_depend>
-  <exec_depend>gmapping</exec_depend>
-  <exec_depend>map_server</exec_depend>
-  <exec_depend>robot_localization</exec_depend>
-  <exec_depend>rtabmap_ros</exec_depend>
-  <exec_depend>rtabmap</exec_depend>
-
-</package>
+</launch>
