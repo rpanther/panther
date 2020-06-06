@@ -16,3 +16,8 @@
 - git:
     local-name: rtabmap_ros
     uri: https://github.com/introlab/rtabmap_ros.git
+# Adding missing melodic packages
+- git:
+    local-name: frontier_exploration
+    uri: https://github.com/paulbovbel/frontier_exploration.git
+    version: melodic-devel
