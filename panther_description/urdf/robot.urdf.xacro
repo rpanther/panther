@@ -37,7 +37,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:include filename="$(find panther_description)/urdf/sensors/ultrasounds.urdf.xacro" />
     <xacro:include filename="$(find panther_description)/urdf/sensors/imu.urdf.xacro" />
     <xacro:include filename="$(find panther_description)/urdf/sensors/rplidar.urdf.xacro" />
-    <xacro:include filename="$(find zed_wrapper)/urdf/zed.urdf.xacro" /> <!-- ZED external xacro -->
+    <!-- Removed ZED external xacro to run panther in simulation without package -->
+    <xacro:include filename="$(find panther_description)/urdf/sensors/zed.urdf.xacro" />
     <!-- Boards -->
     <xacro:include filename="$(find panther_description)/urdf/boards/jetson.urdf.xacro" />
 
