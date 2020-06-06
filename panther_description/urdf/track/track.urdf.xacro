@@ -41,26 +41,26 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:property name="orientation" value="1"/>
   </xacro:if>
 
-  <gazebo reference="track_${type}_Link">
-    <material>Gazebo/White</material>
+  <gazebo reference="track_${type}_link">
+    <material>Gazebo/GreyTransparent</material>
   </gazebo>
-  <gazebo reference="fender_${type}_Link">
+  <gazebo reference="fender_${type}_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="chain_${type}_Link">
+  <gazebo reference="chain_${type}_link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-  <gazebo reference="rubber_${type}_Link">
+  <gazebo reference="rubber_${type}_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="iron_${type}_Link">
+  <gazebo reference="iron_${type}_link">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="damper_${type}_Link">
+  <gazebo reference="damper_${type}_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <gazebo reference="damper_label_${type}_Link">
-    <material>Gazebo/Red</material>
+  <gazebo reference="damper_label_${type}_link">
+    <material>Gazebo/Purple</material>
   </gazebo>
 
   <!-- TRACK FIXED LINKS -->
@@ -87,7 +87,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="iron_${type}_Link">
+  <link name="iron_${type}_link">
     <inertial>
       <origin xyz="0.028 0.026 0.011" rpy="0 0 0" />
       <mass value="1.412" />
@@ -106,11 +106,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="iron_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="track_${type}_link" />
-    <child link="iron_${type}_Link" />
+    <child link="iron_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="damper_${type}_Link">
+  <link name="damper_${type}_link">
     <inertial>
       <origin xyz="0.011 0.014 0.028" rpy="0 0 0" />
       <mass value="0.028" />
@@ -129,11 +129,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="damper_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="track_${type}_link" />
-    <child link="damper_${type}_Link" />
+    <child link="damper_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="damper_label_${type}_Link">
+  <link name="damper_label_${type}_link">
     <inertial>
       <origin xyz="0.0111 0.0137 0.0341" rpy="0 0 0" />
       <mass value="0.0062" />
@@ -151,12 +151,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </link>
   <joint name="damper_label_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="damper_${type}_Link" />
-    <child link="damper_label_${type}_Link" />
+    <parent link="damper_${type}_link" />
+    <child link="damper_label_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="fender_${type}_Link">
+  <link name="fender_${type}_link">
     <inertial>
       <origin xyz="-0.0044 0.0167 0.0872" rpy="0 0 0" />
       <mass value="0.0853" />
@@ -175,11 +175,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="fender_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="track_${type}_link" />
-    <child link="fender_${type}_Link" />
+    <child link="fender_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="chain_${type}_Link">
+  <link name="chain_${type}_link">
     <inertial>
       <origin xyz="0.101 0.0001 -0.0026" rpy="0 0 0" />
       <mass value="0.0708" />
@@ -198,11 +198,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="chain_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="track_${type}_link" />
-    <child link="chain_${type}_Link" />
+    <child link="chain_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="rubber_${type}_Link">
+  <link name="rubber_${type}_link">
     <inertial>
       <origin xyz="-0.0137 0 -0.0014" rpy="0 0 0" />
       <mass value="0.466" />
@@ -221,7 +221,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <joint name="rubber_${type}_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="track_${type}_link" />
-    <child link="rubber_${type}_Link" />
+    <child link="rubber_${type}_link" />
     <axis xyz="0 0 0" />
   </joint>
 

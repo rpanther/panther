@@ -29,6 +29,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <xacro:macro name="roboteq" params="parent *joint_pose">
 
+        <gazebo reference="roboteq_link">
+          <material>Gazebo/Black</material>
+        </gazebo>
+
         <link name="roboteq_link">
             <visual>
                 <origin xyz="0 0 0.015" rpy="0 0 0" />

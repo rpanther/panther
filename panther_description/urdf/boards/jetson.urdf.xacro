@@ -38,6 +38,9 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:macro name="jetson" params="parent model *joint_pose">
 
         <xacro:if value="${model == 'xavier'}">
+            <gazebo reference="jetson_carrier_link">
+              <material>Gazebo/Black</material>
+            </gazebo>
             <link name="jetson_carrier_link">
                 <visual>
                     <origin xyz="-0.047 0.048 0.011" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
